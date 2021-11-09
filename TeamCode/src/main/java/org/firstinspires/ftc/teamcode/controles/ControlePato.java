@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.habilidades.DormirRobo;
 
-@TeleOp(name = "ControleGarra_Base", group = "TeleOp_Algorithms")
+@TeleOp(name = "ControlePato_Base", group = "TeleOp_Algorithms")
 
 public class ControlePato extends OpMode {
 

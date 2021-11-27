@@ -2,112 +2,85 @@ package org.firstinspires.ftc.teamcode.controles;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+import org.firstinspires.ftc.teamcode.habilidades.SensorDistancia;
+import org.firstinspires.ftc.teamcode.locomocao.EncodersMovimentacaoGarra;
 
 @TeleOp(name = "ControleGarra_Base", group = "TeleOp_Algorithms")
 
-public class ControleGarra extends OpMode
-{
-    private Servo servoDireita, servoEsquerda;
-    private DcMotor motorBracoDireita, motorBracoEsquerda;
-    private DistanceSensor sensorDistancia;
+public class ControleGarra extends OpMode {
+    private Servo sD, sE;
+    public boolean atvM, atvS;
 
-    public boolean ativadorMotor, ativadorServo;
-    public int bracoDirPosicao, bracoEsqPosicao;
-    public double valorDistancia;
+    SensorDistancia sensorDis = new SensorDistancia();
+    EncodersMovimentacaoGarra garra = new EncodersMovimentacaoGarra();
+
+    /*
+     **************************************************************************
+     * sD - Variável servo direita                                            *
+     * sE - Variável servo esquerda                                           *
+     * atvM - Variavel ativação servo                                         *
+     * atvS - Variavel ativação motor                                         *
+     *                                                                        *
+     * sensorDis - Objeto de acesso ao código do sensor de distância          *
+     * garra - Objeto de acesso ao código do de movimentação da garra         *
+     **************************************************************************
+     */
 
     @Override
     public void init() {
         telemetry.addData("Status", "Iniciado");
 
-        servoDireita = hardwareMap.get(Servo.class, "servoDireita");
-        servoEsquerda = hardwareMap.get(Servo.class, "servoEsquerda");
-        motorBracoDireita = hardwareMap.get(DcMotor.class, "motorBracoDireita");
-        motorBracoEsquerda = hardwareMap.get(DcMotor.class, "motorBracoEsquerda");
-        sensorDistancia = hardwareMap.get(DistanceSensor.class, "sensorDistancia");
-
-        motorBracoDireita.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorBracoEsquerda.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        motorBracoDireita.setDirection(DcMotor.Direction.REVERSE);
-        motorBracoEsquerda.setDirection(DcMotor.Direction.FORWARD);
+        sD = hardwareMap.get(Servo.class, "sD");
+        sE = hardwareMap.get(Servo.class, "sE");
     }
 
     @Override
     public void start() {
-        ativadorMotor = true;
-        ativadorServo = true;
+        atvM = true;
+        atvS = true;
     }
 
     @Override
     public void loop() {
-        CapturarDistancia();
+        sensorDis.capturarDistancia();
+        if (sensorDis.vDist <= 31 && sensorDis.vDist >= 30) {
+            telemetry.addData("Distância Ideal", sensorDis.vDist);
 
-        if (valorDistancia <= 31 && valorDistancia >= 30)
-        {
-            telemetry.addData("Distância Ideal", valorDistancia);
-
-            ControleGarra();
-            ControleBracos();
+            controleGarra();
+            controleBracos();
         } else {
             assert true;
         }
     }
 
     @Override
-    public void stop() {telemetry.addData("Status", "Finalizado");}
+    public void stop() { telemetry.addData("Status", "Finalizado"); }
 
-    private void ControleBracos() {
-        if (ativadorMotor && gamepad2.b) {
-            Mov(500, 500, 1);
-            ativadorMotor = false;
-        } else if (!ativadorMotor && gamepad2.b) {
-            Mov(-500, -500, 1);
-            ativadorMotor = true;
+    private void controleBracos() {
+        if (atvM && gamepad2.b) {
+            garra.moverGarra(500, 500, 1);
+            atvM = false;
+        } else if (!atvM && gamepad2.b) {
+            garra.moverGarra(-500, -500, 1);
+            atvM = true;
         } else {
-            Mov(-500, -500, 1);
+            garra.moverGarra(-500, -500, 1);
         }
     }
 
-    private void ControleGarra() {
-        if (ativadorServo && gamepad2.x) {
-            servoDireita.setPosition(1);
-            servoEsquerda.setPosition(1);
-            ativadorServo = false;
-        } else if (!ativadorServo && gamepad2.x) {
-            servoDireita.setPosition(-1);
-            servoEsquerda.setPosition(-1);
-            ativadorServo = true;
+    private void controleGarra() {
+        if (atvS && gamepad2.x) {
+            sD.setPosition(1);
+            sE.setPosition(1);
+            atvS = false;
+        } else if (!atvS && gamepad2.x) {
+            sD.setPosition(-1);
+            sE.setPosition(-1);
+            atvS = true;
         } else {
-            servoDireita.setPosition(0);
-            servoEsquerda.setPosition(0);
+            sD.setPosition(0);
+            sE.setPosition(0);
         }
-    }
-
-    private void Mov(int bracoDirTarget, int bracoEsqTarget, double vel) {
-        bracoDirPosicao += bracoDirTarget;
-        bracoEsqPosicao += bracoEsqTarget;
-
-        motorBracoDireita.setTargetPosition(bracoDirPosicao);
-        motorBracoEsquerda.setTargetPosition(bracoEsqPosicao);
-
-        motorBracoDireita.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motorBracoEsquerda.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        motorBracoDireita.setPower(vel);
-        motorBracoEsquerda.setPower(vel);
-
-        while (motorBracoDireita.isBusy() && motorBracoEsquerda.isBusy()) {
-            assert true;
-        }
-    }
-
-    private void CapturarDistancia() {
-        valorDistancia = sensorDistancia.getDistance(DistanceUnit.CM);
-        telemetry.addData("Distância: ", valorDistancia);
-        telemetry.update();
     }
 }

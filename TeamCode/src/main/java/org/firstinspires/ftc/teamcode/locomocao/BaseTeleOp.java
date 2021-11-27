@@ -2,33 +2,21 @@ package org.firstinspires.ftc.teamcode.locomocao;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name = "Base_TeleOp", group = "TeleOp_Algorithms")
-public class Base_TeleOp extends OpMode {
-    private DcMotor motorFrontLeft, motorFrontRight, motorBackLeft, motorBackRight;
+public class BaseTeleOp extends OpMode {
     private final ElapsedTime runtime = new ElapsedTime();
+    HardwareTeleOp motor = new HardwareTeleOp(); // Objeto de acesso dos componentes do OpMode
 
     @Override
     public void init() {
         telemetry.addData("Status", "TeleOp Iniciado");
-
-        motorFrontLeft = hardwareMap.get(DcMotor.class, "motorFrontLeft");
-        motorBackLeft = hardwareMap.get(DcMotor.class, "motorBackLeft");
-        motorFrontRight = hardwareMap.get(DcMotor.class, "motorFrontRight");
-        motorBackRight = hardwareMap.get(DcMotor.class, "motorBackRight");
-
-        motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
-        motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
-        motorFrontRight.setDirection(DcMotor.Direction.FORWARD);
-        motorBackRight.setDirection(DcMotor.Direction.FORWARD);
+        motor.init();
     }
 
     @Override
-    public void start() {
-        runtime.reset();
-    }
+    public void start() { runtime.reset(); }
 
     @Override
     public void loop() {
@@ -43,11 +31,11 @@ public class Base_TeleOp extends OpMode {
         telemetry.update();
     }
 
-    private void motorPower(float powLF, float powLB, float powrRF, float powRB) {
-        motorFrontLeft.setPower(powLF);
-        motorBackLeft.setPower(powLB);
-        motorFrontRight.setPower(powrRF);
-        motorBackRight.setPower(powRB);
+    private void motorPower(float powLF, float powLB, float powRF, float powRB) {
+        motor.mFE.setPower(powLF);
+        motor.mTE.setPower(powLB);
+        motor.mFD.setPower(powRF);
+        motor.mTD.setPower(powRB);
     }
 
     private void axisXY() {
@@ -78,10 +66,12 @@ public class Base_TeleOp extends OpMode {
             motorPower(-1, -1, 1, 1);
         }
     }
+
     private void axisZ() {
         motorPower(0, gamepad1.left_trigger,0, gamepad1.right_trigger);
         motorPower(gamepad1.right_trigger, 0, 0, gamepad1.right_trigger);
     }
+
     private void roundX() {
         if (gamepad1.b) {
             motorPower(1,1,0,0);

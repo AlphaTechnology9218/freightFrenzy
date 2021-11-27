@@ -10,24 +10,28 @@ import org.firstinspires.ftc.teamcode.habilidades.DormirRobo;
 
 public class ControlePato extends OpMode {
 
-    private Servo servoPato;
-    public boolean ativador;
+    private Servo sPato;
+    public boolean atv;
+
+    /**************************************************************************
+    * sPato - Variável servo                                                  *
+    * atv - Variável ativação do servo                                        *
+    ***************************************************************************/
 
     @Override
     public void init() {
         telemetry.addData("Status", "Iniciado");
-
-        servoPato = hardwareMap.get(Servo.class, "servoPato");
+        sPato = hardwareMap.get(Servo.class, "servoPato");
     }
 
     @Override
     public void start() {
-        ativador = true;
+        atv = true;
     }
 
     @Override
     public void loop() {
-        DerrubarPato();
+        derrubarPato();
     }
 
     @Override
@@ -35,20 +39,21 @@ public class ControlePato extends OpMode {
         telemetry.addData("Status", "Finalizado");
     }
 
-    private void DerrubarPato() {
-        DormirRobo dormir = new DormirRobo();
+    private void derrubarPato() {
+        DormirRobo dormir = new DormirRobo(); // Objeto para sleep do robô
 
         if (gamepad2.y) {
             dormir.SleepRobo(500);
-            ativador = false;
+            atv = false;
             dormir.SleepRobo(500);
 
-            if (ativador) {
-                servoPato.setPosition(1);
+            if (atv) {
+                sPato.setPosition(1);
             } else {
-                servoPato.setPosition(0);
+                sPato.setPosition(0);
             }
         } else {
+            assert true;
         }
     }
 }

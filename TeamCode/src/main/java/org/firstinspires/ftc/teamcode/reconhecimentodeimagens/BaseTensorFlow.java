@@ -10,7 +10,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 
 @TeleOp(name = "TensorFlowBase", group = "Visão_Computacional")
-public class Base_TensorFlow extends LinearOpMode
+public class BaseTensorFlow extends LinearOpMode
 {
     private static final String TFOD_MODEL_ASSET = "FreightFrenzy_BCDM.tflite";
     private static final String[] LABELS = {

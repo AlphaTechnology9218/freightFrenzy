@@ -3,13 +3,10 @@ package org.firstinspires.ftc.teamcode.controles;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
+import org.firstinspires.ftc.teamcode.habilidades.RoboDesligado;
 
-import org.firstinspires.ftc.teamcode.habilidades.DormirRobo;
-
-@TeleOp(name = "ControleGarra_Base", group = "TeleOp_Algorithms")
-
-public class ControlePato extends OpMode {
-
+@TeleOp(name = "Controle: Carrossel", group = "Controle")
+public class ControleCarrossel extends OpMode {
     private Servo sPato;
     public boolean atv;
 
@@ -40,7 +37,7 @@ public class ControlePato extends OpMode {
     }
 
     private void derrubarPato() {
-        DormirRobo dormir = new DormirRobo(); // Objeto para sleep do robô
+        RoboDesligado dormir = new RoboDesligado(); // Objeto para sleep do robô
 
         if (gamepad2.y) {
             dormir.SleepRobo(500);

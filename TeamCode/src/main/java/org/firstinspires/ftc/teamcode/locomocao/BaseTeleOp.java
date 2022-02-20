@@ -3,8 +3,9 @@ package org.firstinspires.ftc.teamcode.locomocao;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.Range;
 
-@TeleOp(name = "Base_TeleOp", group = "TeleOp_Algorithms")
+@TeleOp(name = "Base_TeleOp", group = "TeleOp")
 public class BaseTeleOp extends OpMode {
     private final ElapsedTime runtime = new ElapsedTime();
     HardwareTeleOp motor = new HardwareTeleOp(); // Objeto de acesso dos componentes do OpMode

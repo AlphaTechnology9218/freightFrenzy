@@ -6,18 +6,16 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 @Disabled
-@Autonomous(name = "encodersMovimentaçãoGarra", group = "algoritmosAutonomo")
+@Autonomous(name = "Encoders da Garra", group = "algoritmosAutonomo")
 public class EncodersMovimentacaoGarra extends LinearOpMode {
     private DcMotor mBD, mBE;
     public int pBD, pBE;
-    /*
-     **************************************************************************
+    /**************************************************************************
      * mBD - Variável motor braço direito                                     *
      * mBE - Variável motor braço esquerdo                                    *                                                                   *
      * pBD - Variavel posição braço esquerdo                                  *
      * pBE - Variavel posição braço direito                                   *
-     **************************************************************************
-     */
+     **************************************************************************/
 
     @Override
     public void runOpMode() {
@@ -30,13 +28,11 @@ public class EncodersMovimentacaoGarra extends LinearOpMode {
     }
 
     public void moverGarra(int aBD, int aBE, double vel) {
-        /*
-         **************************************************************************
+        /**************************************************************************
          * aBD - Variável alvo braço direito                                      *
          * aBE - Variável alvo braço esquerdo                                     *
          * vel - Variável de velocidade                                           *
-         **************************************************************************
-         */
+         **************************************************************************/
 
         pBD += aBD;
         pBE += aBE;

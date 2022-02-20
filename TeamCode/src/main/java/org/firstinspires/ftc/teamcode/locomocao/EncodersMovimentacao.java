@@ -5,13 +5,12 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@Autonomous(name = "encodersMovimentação", group = "algoritmosAutonomo")
+@Autonomous(name = "Ecoders para Movimentacao", group = "Auto")
 @Disabled
 public class EncodersMovimentacao extends LinearOpMode {
     public DcMotor mFE, mTE, mFD, mTD;
     private int pFE, pTE, pFD, pTD;
-    /*
-     **************************************************************************
+    /**************************************************************************
      * mFE - Variável motor frente esquerda                                   *
      * mTE - Variável motor tras esquerda                                     *
      * mFD - Variável motor frente direita                                    *
@@ -21,8 +20,7 @@ public class EncodersMovimentacao extends LinearOpMode {
      * pTE - Variavel posição tras esquerda                                   *
      * pFD - Variavel posição frente direita                                  *
      * pTD - Variavel posição tras direita                                    *                                                                    *
-     **************************************************************************
-     */
+     **************************************************************************/
 
     @Override
     public void runOpMode() {
@@ -42,15 +40,13 @@ public class EncodersMovimentacao extends LinearOpMode {
         mFD.setDirection(DcMotor.Direction.FORWARD);
     }
     public void moverRobo(int aTE, int aFE, int aTD, int aFD, double vel) {
-        /*
-         **************************************************************************
+        /**************************************************************************
          * aFE - Variável alvo frente esquerda                                    *
          * aTE - Variável alvo tras esquerda                                      *
          * aFD - Variável alvo frente direita                                     *
          * aTD - Variável alvo tras direita                                       *
          * vel - Variável de velocidade                                           *
-         **************************************************************************
-         */
+         **************************************************************************/
 
         pTD += aTD;
         pTE += aTE;

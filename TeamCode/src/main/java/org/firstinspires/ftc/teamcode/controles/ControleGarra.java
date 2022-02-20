@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.habilidades.SensorDistancia;
 import org.firstinspires.ftc.teamcode.locomocao.EncodersMovimentacaoGarra;
 
-@TeleOp(name = "ControleGarra_Base", group = "TeleOp_Algorithms")
+@TeleOp(name = "Controle da Garra", group = "Controles")
 
 public class ControleGarra extends OpMode {
     private Servo sD, sE;
@@ -14,9 +14,7 @@ public class ControleGarra extends OpMode {
 
     SensorDistancia sensorDis = new SensorDistancia();
     EncodersMovimentacaoGarra garra = new EncodersMovimentacaoGarra();
-
-    /*
-     **************************************************************************
+    /**************************************************************************
      * sD - Variável servo direita                                            *
      * sE - Variável servo esquerda                                           *
      * atvM - Variavel ativação servo                                         *
@@ -24,8 +22,7 @@ public class ControleGarra extends OpMode {
      *                                                                        *
      * sensorDis - Objeto de acesso ao código do sensor de distância          *
      * garra - Objeto de acesso ao código do de movimentação da garra         *
-     **************************************************************************
-     */
+     **************************************************************************/
 
     @Override
     public void init() {

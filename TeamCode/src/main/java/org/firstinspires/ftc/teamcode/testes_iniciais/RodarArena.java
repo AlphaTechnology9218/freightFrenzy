@@ -1,10 +1,12 @@
-package org.firstinspires.ftc.teamcode.locomocao;
+package org.firstinspires.ftc.teamcode.testes_iniciais;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-@Autonomous(name = "BaseAutonomo", group = "AlgoritmosAutonomo")
-public class BaseAutonomo extends LinearOpMode {
+import org.firstinspires.ftc.teamcode.locomocao.EncodersMovimentacao;
+
+@Autonomous(name = "Teste Rodar a Arena", group = "Auto")
+public class RodarArena extends LinearOpMode {
 
     EncodersMovimentacao robo = new EncodersMovimentacao(); // Objeto para movimentação do robô
 

@@ -4,18 +4,16 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@TeleOp
-public class HardwareTeleOp extends OpMode{
+@TeleOp(name = "Componentes da Classe TeleOp", group = "TeleOp")
+public class HardwareTeleOp extends OpMode {
 
     public DcMotor mFE, mTE, mFD, mTD;
-    /*
-     **************************************************************************
+    /**************************************************************************
      * mFE - Variável motor frente esquerda                                   *
      * mTE - Variável motor tras esquerda                                     *
      * mFD - Variável motor frente direita                                    *
      * mTD - Variável motor tras direita                                      *
-     **************************************************************************
-     */
+     **************************************************************************/
 
     @Override
     public void init() {

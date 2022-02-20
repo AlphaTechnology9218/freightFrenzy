@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.reconhecimentodeimagens;
+package org.firstinspires.ftc.teamcode.visao_computacional;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -9,9 +9,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.Came
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 
-@TeleOp(name = "TensorFlowBase", group = "Visão_Computacional")
-public class BaseTensorFlow extends LinearOpMode
-{
+@TeleOp(name = "Base do Tensor Flow", group = "Visão Computacional")
+public class BaseTensorFlow extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "FreightFrenzy_BCDM.tflite";
     private static final String[] LABELS = {
             "Ball",
@@ -19,7 +18,6 @@ public class BaseTensorFlow extends LinearOpMode
             "Duck",
             "Marker"
     };
-
     private static final String VUFORIA_KEY = "AQV2x3v/////AAABmR7YRPgGBk1qj0WFSQ4LFt1z+UiyM9AC" +
             "60gmkqBNr2qIo9N8YsunPo1FXuzFM5RJwDrIaY4NNkwX9MPpT2gIlSXJ9sVpp+jmOhrQ69XSzoEp46dr76" +
             "DCp/Nq3IJvzuq9/cmS1+c5VK7vXkM/y+QJjjdIgwYCO8eDGKldugYmTZRWXW2Vzs48jElCug8hkKMDeVgS" +

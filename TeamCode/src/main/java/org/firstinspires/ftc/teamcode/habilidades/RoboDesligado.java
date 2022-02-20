@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.habilidades;
 
-public class DormirRobo {
+public class RoboDesligado {
 
     public void SleepRobo(int tMS) {
         try {

@@ -1,4 +1,6 @@
-package org.firstinspires.ftc.teamcode.visao_computacional;
+package org.firstinspires.ftc.teamcode.visao_computacional.tensorflow;
+
+import android.annotation.SuppressLint;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -26,6 +28,7 @@ public class BaseTensorFlow extends LinearOpMode {
     private VuforiaLocalizer vuforia;
     private TFObjectDetector tfod;
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void runOpMode()
     {

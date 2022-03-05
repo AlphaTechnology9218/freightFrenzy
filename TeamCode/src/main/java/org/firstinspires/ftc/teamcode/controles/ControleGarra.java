@@ -13,6 +13,8 @@ public class ControleGarra extends OpMode {
     public boolean atvM, atvS;
 
     SensorDistancia sensorDis = new SensorDistancia();
+    // TODO: Review the necessity of Distance Sensors -> we do not have at FabLab
+
     EncodersMovimentacaoGarra garra = new EncodersMovimentacaoGarra();
     /**************************************************************************
      * sD - Variável servo direita                                            *

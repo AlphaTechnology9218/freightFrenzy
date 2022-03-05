@@ -71,7 +71,7 @@ public class VuforiaFieldNavigation extends LinearOpMode {
     }
 
     public void setupVuforia() {
-        WebcamName teamWebcam = hardwareMap.get(WebcamName.class, "Robot Webcam");
+        WebcamName robotWebcam = hardwareMap.get(WebcamName.class, "Robot Webcam");
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier
                 ("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
@@ -79,7 +79,7 @@ public class VuforiaFieldNavigation extends LinearOpMode {
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
 
         parameters.vuforiaLicenseKey = VUFORIA_KEY;
-        parameters.cameraName = teamWebcam;
+        parameters.cameraName = robotWebcam;
         parameters.useExtendedTracking = false;
 
         vuforia = ClassFactory.getInstance().createVuforia(parameters);

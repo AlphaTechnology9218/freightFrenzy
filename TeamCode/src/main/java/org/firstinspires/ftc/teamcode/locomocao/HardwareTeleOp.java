@@ -28,6 +28,13 @@ public class HardwareTeleOp extends OpMode {
         mTD.setDirection(DcMotor.Direction.FORWARD);
     }
 
+    void motorPower(float powLF, float powLB, float powRF, float powRB) {
+        mFE.setPower(powLF);
+        mTE.setPower(powLB);
+        mFD.setPower(powRF);
+        mTD.setPower(powRB);
+    }
+
     @Override
     public void loop() {
 

@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+// TODO: Internationalize this program.
+
 @Autonomous(name = "Ecoders para Movimentacao", group = "Auto")
 @Disabled
 public class EncodersMovimentacao extends LinearOpMode {
@@ -39,19 +41,20 @@ public class EncodersMovimentacao extends LinearOpMode {
         mTD.setDirection(DcMotor.Direction.FORWARD);
         mFD.setDirection(DcMotor.Direction.FORWARD);
     }
-    public void moverRobo(int aTE, int aFE, int aTD, int aFD, double vel) {
-        /**************************************************************************
-         * aFE - Variável alvo frente esquerda                                    *
-         * aTE - Variável alvo tras esquerda                                      *
-         * aFD - Variável alvo frente direita                                     *
-         * aTD - Variável alvo tras direita                                       *
-         * vel - Variável de velocidade                                           *
-         **************************************************************************/
 
-        pTD += aTD;
-        pTE += aTE;
-        pFD += aFD;
-        pFE += aFE;
+    /**
+     * Move robot using encoders while motors aren't busy
+     * @param tLF - left front target
+     * @param tBL - back left target
+     * @param tRF - right front target
+     * @param tBR - back right target
+     * @param vel - velocity
+     */
+    public void moveRobot(int tLF, int tBL, int tRF, int tBR, double vel) {
+        pTD += tRF;
+        pTE += tLF;
+        pFD += tBR;
+        pFE += tBL;
 
         mFE.setTargetPosition(pFE);
         mTE.setTargetPosition(pTE);

@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.teamcode.habilidades.DormirRobo;
+import org.firstinspires.ftc.teamcode.habilidades.RoboDesligado;
 
 @TeleOp(name = "ControlePato_Base", group = "TeleOp_Algorithms")
 
@@ -36,7 +36,7 @@ public class ControlePato extends OpMode {
     }
 
     private void DerrubarPato() {
-        DormirRobo dormir = new DormirRobo();
+        RoboDesligado dormir = new RoboDesligado();
 
         if (gamepad2.y) {
             dormir.SleepRobo(500);

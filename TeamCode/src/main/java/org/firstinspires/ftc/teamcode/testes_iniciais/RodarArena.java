@@ -26,5 +26,5 @@ public class RodarArena extends LinearOpMode {
         }
     }
 
-    public void rodarArena(){ robo.moverRobo(500, 500,500,500, 1); }
+    public void rodarArena(){ robo.moveRobot(500, 500,500,500, 1); }
 }

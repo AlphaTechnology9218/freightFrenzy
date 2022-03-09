@@ -1,10 +1,10 @@
-package org.firstinspires.ftc.teamcode.Odometria;
+package org.firstinspires.ftc.teamcode.odometria;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 @Config
-public class RoadRunner {
+public class DriveConstants {
 
         public static final double TICKS_PER_REV = 1120;
         public static final double MAX_RPM = 150;

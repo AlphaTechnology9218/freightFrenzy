@@ -5,12 +5,12 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class IntegrateTeleOp extends OpMode {
-    public DcMotor mFE, mTE, mFD, mTD;
+    public DcMotor mFL, mBL, mFR, mBR;
     /**************************************************************************
-     * mFE - Variável motor frente esquerda                                   *
-     * mTE - Variável motor tras esquerda                                     *
-     * mFD - Variável motor frente direita                                    *
-     * mTD - Variável motor tras direita                                      *
+     * mFL - front left motor                                                 *
+     * mBL - back left motor                                                  *
+     * mFR - front right motor                                                *
+     * mBR - back right motor                                                 *
      **************************************************************************/
     private final ElapsedTime runtime = new ElapsedTime();
     // HardwareTeleOp motor = new HardwareTeleOp(); // Objeto de acesso dos componentes do OpMode
@@ -19,15 +19,15 @@ public class IntegrateTeleOp extends OpMode {
     public void init() {
         telemetry.addData("Status", "TeleOp Iniciado");
 
-        mFE = hardwareMap.get(DcMotor.class, "motorFE");
-        mTE = hardwareMap.get(DcMotor.class, "motorTE");
-        mFD = hardwareMap.get(DcMotor.class, "motorFD");
-        mTD = hardwareMap.get(DcMotor.class, "motorTD");
+        mFL = hardwareMap.get(DcMotor.class, "motorFE");
+        mBL = hardwareMap.get(DcMotor.class, "motorTE");
+        mFR = hardwareMap.get(DcMotor.class, "motorFD");
+        mBR = hardwareMap.get(DcMotor.class, "motorTD");
 
-        mFE.setDirection(DcMotor.Direction.REVERSE);
-        mTE.setDirection(DcMotor.Direction.REVERSE);
-        mFD.setDirection(DcMotor.Direction.FORWARD);
-        mTD.setDirection(DcMotor.Direction.FORWARD);
+        mFL.setDirection(DcMotor.Direction.REVERSE);
+        mBL.setDirection(DcMotor.Direction.REVERSE);
+        mFR.setDirection(DcMotor.Direction.FORWARD);
+        mBR.setDirection(DcMotor.Direction.FORWARD);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class IntegrateTeleOp extends OpMode {
     }
 
     private void axisZ() {
-        motorPower(0, gamepad1.left_trigger,0, gamepad1.right_trigger);
+        motorPower(0, gamepad1.left_trigger,gamepad1.right_trigger, 0);
         motorPower(gamepad1.right_trigger, 0, 0, gamepad1.right_trigger);
     }
 
@@ -90,11 +90,11 @@ public class IntegrateTeleOp extends OpMode {
         }
     }
 
-    void motorPower(float powLF, float powLB, float powRF, float powRB) {
-        mFE.setPower(powLF);
-        mTE.setPower(powLB);
-        mFD.setPower(powRF);
-        mTD.setPower(powRB);
+    void motorPower(float powFL, float powBL, float powFR, float powBR) {
+        mFL.setPower(powFL);
+        mBL.setPower(powBL);
+        mFR.setPower(powFR);
+        mBR.setPower(powBR);
     }
 
     @Override

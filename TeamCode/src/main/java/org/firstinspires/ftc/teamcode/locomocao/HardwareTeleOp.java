@@ -4,35 +4,41 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@TeleOp(name = "Componentes da Classe TeleOp", group = "TeleOp")
+@TeleOp(name = "TeleOp Robot Components", group = "Tele Operate")
 public class HardwareTeleOp extends OpMode {
 
-    public DcMotor mFE, mTE, mFD, mTD;
+    public DcMotor mFL, mBL, mFR, mBR;
     /**************************************************************************
-     * mFE - Variável motor frente esquerda                                   *
-     * mTE - Variável motor tras esquerda                                     *
-     * mFD - Variável motor frente direita                                    *
-     * mTD - Variável motor tras direita                                      *
+     * mFL - front left motor                                                 *
+     * mBL - back left motor                                                  *
+     * mFR - front right motor                                                *
+     * mBR - back right motor                                                 *
      **************************************************************************/
 
     @Override
     public void init() {
-        mFE = hardwareMap.get(DcMotor.class, "motorFE");
-        mTE = hardwareMap.get(DcMotor.class, "motorTE");
-        mFD = hardwareMap.get(DcMotor.class, "motorFD");
-        mTD = hardwareMap.get(DcMotor.class, "motorTD");
+        mFL = hardwareMap.get(DcMotor.class, "motorFL");
+        mBL = hardwareMap.get(DcMotor.class, "motorBL");
+        mFR = hardwareMap.get(DcMotor.class, "motorFR");
+        mBR = hardwareMap.get(DcMotor.class, "motorBR");
 
-        mFE.setDirection(DcMotor.Direction.REVERSE);
-        mTE.setDirection(DcMotor.Direction.REVERSE);
-        mFD.setDirection(DcMotor.Direction.FORWARD);
-        mTD.setDirection(DcMotor.Direction.FORWARD);
+        mFL.setDirection(DcMotor.Direction.REVERSE);
+        mBL.setDirection(DcMotor.Direction.REVERSE);
+        mFR.setDirection(DcMotor.Direction.FORWARD);
+        mBR.setDirection(DcMotor.Direction.FORWARD);
     }
 
+    /**
+     * @param powLF - front left motor power
+     * @param powLB - back left motor power
+     * @param powRF - front right motor power
+     * @param powRB - back right motor power
+     */
     void motorPower(float powLF, float powLB, float powRF, float powRB) {
-        mFE.setPower(powLF);
-        mTE.setPower(powLB);
-        mFD.setPower(powRF);
-        mTD.setPower(powRB);
+        mFL.setPower(powLF);
+        mBL.setPower(powLB);
+        mFR.setPower(powRF);
+        mBR.setPower(powRB);
     }
 
     @Override

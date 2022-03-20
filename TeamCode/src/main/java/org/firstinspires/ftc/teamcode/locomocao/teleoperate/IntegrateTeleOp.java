@@ -1,9 +1,11 @@
-package org.firstinspires.ftc.teamcode.locomocao;
+package org.firstinspires.ftc.teamcode.locomocao.teleoperate;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+@TeleOp(name = "Integrated Tele Op", group = "Tele Operate")
 public class IntegrateTeleOp extends OpMode {
     public DcMotor mFL, mBL, mFR, mBR;
     /**************************************************************************
@@ -13,16 +15,15 @@ public class IntegrateTeleOp extends OpMode {
      * mBR - back right motor                                                 *
      **************************************************************************/
     private final ElapsedTime runtime = new ElapsedTime();
-    // HardwareTeleOp motor = new HardwareTeleOp(); // Objeto de acesso dos componentes do OpMode
 
     @Override
     public void init() {
         telemetry.addData("Status", "TeleOp Iniciado");
 
-        mFL = hardwareMap.get(DcMotor.class, "motorFE");
-        mBL = hardwareMap.get(DcMotor.class, "motorTE");
-        mFR = hardwareMap.get(DcMotor.class, "motorFD");
-        mBR = hardwareMap.get(DcMotor.class, "motorTD");
+        mFL = hardwareMap.get(DcMotor.class, "motorFL");
+        mBL = hardwareMap.get(DcMotor.class, "motorBL");
+        mFR = hardwareMap.get(DcMotor.class, "motorFR");
+        mBR = hardwareMap.get(DcMotor.class, "motorBR");
 
         mFL.setDirection(DcMotor.Direction.REVERSE);
         mBL.setDirection(DcMotor.Direction.REVERSE);
@@ -35,7 +36,7 @@ public class IntegrateTeleOp extends OpMode {
 
     @Override
     public void loop() {
-        telemetry.addData("Status", "TeleOp Executando: " + runtime.toString());
+        telemetry.addData("Status", "TeleOp Executing: " + runtime.toString());
 
         axisXY();
         axisXYAdjusts();
@@ -90,6 +91,12 @@ public class IntegrateTeleOp extends OpMode {
         }
     }
 
+    /**
+     * @param powFL - front left motor power
+     * @param powBL - back left motor power
+     * @param powFR - front right motor power
+     * @param powBR - back right motor power
+     */
     void motorPower(float powFL, float powBL, float powFR, float powBR) {
         mFL.setPower(powFL);
         mBL.setPower(powBL);
@@ -99,6 +106,6 @@ public class IntegrateTeleOp extends OpMode {
 
     @Override
     public void stop() {
-        telemetry.addData("Status", "TeleOp Finalizado");
+        telemetry.addData("Status", "TeleOp Finished");
     }
 }

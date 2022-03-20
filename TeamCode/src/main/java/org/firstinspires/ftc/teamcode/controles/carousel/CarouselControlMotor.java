@@ -1,21 +1,22 @@
-package org.firstinspires.ftc.teamcode.controles;
+package org.firstinspires.ftc.teamcode.controles.carousel;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
+import org.firstinspires.ftc.teamcode.habilidades.SleepRobot;
 
-import org.firstinspires.ftc.teamcode.habilidades.RoboDesligado;
+@TeleOp(name = "Motor Carousel Control", group = "Controllers")
 
-@TeleOp(name = "ControlePato_Base", group = "TeleOp_Algorithms")
-
-public class ControlePato extends OpMode {
+public class CarouselControlMotor extends OpMode {
 
     private Servo servoPato;
     public boolean ativador;
 
+    // TODO: Change servo system for Core Hex Motor
+
     @Override
     public void init() {
-        telemetry.addData("Status", "Iniciado");
+        telemetry.addData("Status", "Initialized");
 
         servoPato = hardwareMap.get(Servo.class, "servoPato");
     }
@@ -32,16 +33,16 @@ public class ControlePato extends OpMode {
 
     @Override
     public void stop() {
-        telemetry.addData("Status", "Finalizado");
+        telemetry.addData("Status", "Finished");
     }
 
     private void DerrubarPato() {
-        RoboDesligado dormir = new RoboDesligado();
+        SleepRobot dormir = new SleepRobot();
 
         if (gamepad2.y) {
-            dormir.SleepRobo(500);
+            dormir.robotSleeping(500);
             ativador = false;
-            dormir.SleepRobo(500);
+            dormir.robotSleeping(500);
 
             if (ativador) {
                 servoPato.setPosition(1);

@@ -19,7 +19,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 import java.util.ArrayList;
 import java.util.List;
 
-@Autonomous(name = "Vuforia Robot Location", group = "Vuforia")
+@Autonomous(name = "Vuforia Robot Location", group = "Computer Vision")
 public class VuforiaFieldNavigation extends LinearOpMode {
 
     private static final String VUFORIA_KEY = "AQV2x3v/////AAABmR7YRPgGBk1qj0WFSQ4LFt1z+UiyM9AC" +

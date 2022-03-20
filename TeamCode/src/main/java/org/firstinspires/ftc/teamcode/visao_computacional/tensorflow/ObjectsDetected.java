@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.visao_computacional.tensorflow;
 public class ObjectsDetected {
 
     public void duckObject() {
-
     }
     public void ballObject() {
     }

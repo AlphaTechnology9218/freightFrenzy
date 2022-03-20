@@ -1,8 +1,8 @@
 package org.firstinspires.ftc.teamcode.habilidades;
 
-public class RoboDesligado {
+public class SleepRobot {
 
-    public void SleepRobo(int tMS) {
+    public void robotSleeping(int tMS) {
         try {
             Thread.sleep(tMS);
         } catch (Exception ignored) {

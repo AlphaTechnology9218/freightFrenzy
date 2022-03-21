@@ -18,9 +18,9 @@ public class SetupWebcam extends LinearOpMode {
             cameraMonitorViewId);
     // ContourPipeline myPipeline;
     /*********************************************************************************************
-     * cameraMonitorViewId -                                                                     *
-     * robotWebcam -                                                                             *
-     * camera -                                                                                  *
+     * cameraMonitorViewId - live camera preview to display on the Robot Controller screen       *
+     * robotWebcam - robot webcam                                                                *
+     * camera - create a supported camera                                                        *
      *********************************************************************************************/
 
     // TODO: Create the first Pipeline
@@ -42,7 +42,6 @@ public class SetupWebcam extends LinearOpMode {
                 camera.startStreaming(1280, 720, OpenCvCameraRotation.UPRIGHT);
                 // camera.setPipeline(yourPipeline);
             }
-
             @Override
             public void onError(int errorCode)
             {

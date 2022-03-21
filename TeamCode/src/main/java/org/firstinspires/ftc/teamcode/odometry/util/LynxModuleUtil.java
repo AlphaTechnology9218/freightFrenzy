@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.odometry.utilitarios;
+package org.firstinspires.ftc.teamcode.odometry.util;
 
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.HardwareMap;

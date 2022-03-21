@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.odometry.trajeto;
+package org.firstinspires.ftc.teamcode.odometry.traject;
 
 import androidx.annotation.Nullable;
 
@@ -16,11 +16,11 @@ import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.acmerobotics.roadrunner.trajectory.TrajectoryMarker;
 import com.acmerobotics.roadrunner.util.NanoClock;
 
-import org.firstinspires.ftc.teamcode.odometry.trajeto.sequencesegment.SequenceSegment;
-import org.firstinspires.ftc.teamcode.odometry.trajeto.sequencesegment.TrajectorySegment;
-import org.firstinspires.ftc.teamcode.odometry.trajeto.sequencesegment.TurnSegment;
-import org.firstinspires.ftc.teamcode.odometry.trajeto.sequencesegment.WaitSegment;
-import org.firstinspires.ftc.teamcode.odometry.utilitarios.DashboardUtil;
+import org.firstinspires.ftc.teamcode.odometry.traject.sequencesegment.SequenceSegment;
+import org.firstinspires.ftc.teamcode.odometry.traject.sequencesegment.TrajectorySegment;
+import org.firstinspires.ftc.teamcode.odometry.traject.sequencesegment.TurnSegment;
+import org.firstinspires.ftc.teamcode.odometry.traject.sequencesegment.WaitSegment;
+import org.firstinspires.ftc.teamcode.odometry.util.DashboardUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;

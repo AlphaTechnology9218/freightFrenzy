@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.odometria.controle;
+package org.firstinspires.ftc.teamcode.odometry.control;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;

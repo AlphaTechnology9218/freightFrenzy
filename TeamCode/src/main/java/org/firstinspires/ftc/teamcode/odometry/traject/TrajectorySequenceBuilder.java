@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.odometry.trajeto;
+package org.firstinspires.ftc.teamcode.odometry.traject;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
@@ -19,10 +19,10 @@ import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryAcceleration
 import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryVelocityConstraint;
 import com.acmerobotics.roadrunner.util.Angle;
 
-import org.firstinspires.ftc.teamcode.odometry.trajeto.sequencesegment.SequenceSegment;
-import org.firstinspires.ftc.teamcode.odometry.trajeto.sequencesegment.TrajectorySegment;
-import org.firstinspires.ftc.teamcode.odometry.trajeto.sequencesegment.TurnSegment;
-import org.firstinspires.ftc.teamcode.odometry.trajeto.sequencesegment.WaitSegment;
+import org.firstinspires.ftc.teamcode.odometry.traject.sequencesegment.SequenceSegment;
+import org.firstinspires.ftc.teamcode.odometry.traject.sequencesegment.TrajectorySegment;
+import org.firstinspires.ftc.teamcode.odometry.traject.sequencesegment.TurnSegment;
+import org.firstinspires.ftc.teamcode.odometry.traject.sequencesegment.WaitSegment;
 
 import java.util.ArrayList;
 import java.util.Collections;

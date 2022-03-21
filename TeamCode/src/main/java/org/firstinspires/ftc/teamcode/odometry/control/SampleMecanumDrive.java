@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.odometria.controle;
+package org.firstinspires.ftc.teamcode.odometry.control;
 
 import androidx.annotation.NonNull;
 
@@ -26,26 +26,26 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
-import org.firstinspires.ftc.teamcode.odometria.trajeto.TrajectorySequence;
-import org.firstinspires.ftc.teamcode.odometria.trajeto.TrajectorySequenceBuilder;
-import org.firstinspires.ftc.teamcode.odometria.trajeto.TrajectorySequenceRunner;
-import org.firstinspires.ftc.teamcode.odometria.utilitarios.LynxModuleUtil;
+import org.firstinspires.ftc.teamcode.odometry.traject.TrajectorySequence;
+import org.firstinspires.ftc.teamcode.odometry.traject.TrajectorySequenceBuilder;
+import org.firstinspires.ftc.teamcode.odometry.traject.TrajectorySequenceRunner;
+import org.firstinspires.ftc.teamcode.odometry.util.LynxModuleUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.firstinspires.ftc.teamcode.odometria.controle.DriveConstants.MAX_ACCEL;
-import static org.firstinspires.ftc.teamcode.odometria.controle.DriveConstants.MAX_ANG_ACCEL;
-import static org.firstinspires.ftc.teamcode.odometria.controle.DriveConstants.MAX_ANG_VEL;
-import static org.firstinspires.ftc.teamcode.odometria.controle.DriveConstants.MAX_VEL;
-import static org.firstinspires.ftc.teamcode.odometria.controle.DriveConstants.MOTOR_VELO_PID;
-import static org.firstinspires.ftc.teamcode.odometria.controle.DriveConstants.RUN_USING_ENCODER;
-import static org.firstinspires.ftc.teamcode.odometria.controle.DriveConstants.TRACK_WIDTH;
-import static org.firstinspires.ftc.teamcode.odometria.controle.DriveConstants.encoderTicksToInches;
-import static org.firstinspires.ftc.teamcode.odometria.controle.DriveConstants.kA;
-import static org.firstinspires.ftc.teamcode.odometria.controle.DriveConstants.kStatic;
-import static org.firstinspires.ftc.teamcode.odometria.controle.DriveConstants.kV;
+import static org.firstinspires.ftc.teamcode.odometry.control.DriveConstants.MAX_ACCEL;
+import static org.firstinspires.ftc.teamcode.odometry.control.DriveConstants.MAX_ANG_ACCEL;
+import static org.firstinspires.ftc.teamcode.odometry.control.DriveConstants.MAX_ANG_VEL;
+import static org.firstinspires.ftc.teamcode.odometry.control.DriveConstants.MAX_VEL;
+import static org.firstinspires.ftc.teamcode.odometry.control.DriveConstants.MOTOR_VELO_PID;
+import static org.firstinspires.ftc.teamcode.odometry.control.DriveConstants.RUN_USING_ENCODER;
+import static org.firstinspires.ftc.teamcode.odometry.control.DriveConstants.TRACK_WIDTH;
+import static org.firstinspires.ftc.teamcode.odometry.control.DriveConstants.encoderTicksToInches;
+import static org.firstinspires.ftc.teamcode.odometry.control.DriveConstants.kA;
+import static org.firstinspires.ftc.teamcode.odometry.control.DriveConstants.kStatic;
+import static org.firstinspires.ftc.teamcode.odometry.control.DriveConstants.kV;
 
 @Config
 public class SampleMecanumDrive extends MecanumDrive {

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.odometria.controle;
+package org.firstinspires.ftc.teamcode.odometry.control;
 
 import androidx.annotation.NonNull;
 
@@ -7,8 +7,7 @@ import com.acmerobotics.roadrunner.localization.TwoTrackingWheelLocalizer;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.odometria.controle.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.odometria.utilitarios.Encoder;
+import org.firstinspires.ftc.teamcode.odometry.util.Encoder;
 
 import java.util.Arrays;
 import java.util.List;

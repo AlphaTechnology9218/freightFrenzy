@@ -20,10 +20,11 @@ public class IntegrateTeleOp extends OpMode {
     public void init() {
         telemetry.addData("Status", "TeleOp Iniciado");
 
-        mFL = hardwareMap.get(DcMotor.class, "motorFL");
-        mBL = hardwareMap.get(DcMotor.class, "motorBL");
-        mFR = hardwareMap.get(DcMotor.class, "motorFR");
-        mBR = hardwareMap.get(DcMotor.class, "motorBR");
+        // change robot's components names
+        mFL = hardwareMap.get(DcMotor.class, "mFL");
+        mBL = hardwareMap.get(DcMotor.class, "mBL");
+        mFR = hardwareMap.get(DcMotor.class, "mFR");
+        mBR = hardwareMap.get(DcMotor.class, "mBR");
 
         mFL.setDirection(DcMotor.Direction.REVERSE);
         mBL.setDirection(DcMotor.Direction.REVERSE);
@@ -68,17 +69,18 @@ public class IntegrateTeleOp extends OpMode {
         }
     }
 
+    // reverse round
     private void round() {
         if (gamepad1.left_bumper) {
-            motorPower(1, 1, -1, -1);
+            motorPower(-1, -1, -1, -1);
         }
         if (gamepad1.right_bumper) {
-            motorPower(-1, -1, 1, 1);
+            motorPower(1, 1, -1, -1);
         }
     }
 
     private void axisZ() {
-        motorPower(0, gamepad1.left_trigger,gamepad1.right_trigger, 0);
+        motorPower(0, gamepad1.left_trigger, gamepad1.right_trigger, 0);
         motorPower(gamepad1.right_trigger, 0, 0, gamepad1.right_trigger);
     }
 

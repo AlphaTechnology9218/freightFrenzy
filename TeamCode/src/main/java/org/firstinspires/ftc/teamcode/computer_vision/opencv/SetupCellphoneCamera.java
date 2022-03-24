@@ -16,6 +16,8 @@ public class SetupCellphoneCamera extends LinearOpMode {
     OpenCvCamera camera = OpenCvCameraFactory.getInstance().createInternalCamera
             (OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
 
+    CreateFirstPipeline pipeline;
+
     @Override
     public void runOpMode() {
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
@@ -32,6 +34,7 @@ public class SetupCellphoneCamera extends LinearOpMode {
                  * 1920x1080
                  * */
                 camera.startStreaming(1280, 720, OpenCvCameraRotation.UPRIGHT);
+                camera.setPipeline(pipeline);
             }
             @Override
             public void onError(int errorCode)

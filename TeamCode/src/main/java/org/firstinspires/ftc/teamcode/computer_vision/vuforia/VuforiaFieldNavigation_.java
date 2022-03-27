@@ -1,5 +1,11 @@
 package org.firstinspires.ftc.teamcode.computer_vision.vuforia;
 
+import static org.firstinspires.ftc.robotcore.external.navigation.AngleUnit.DEGREES;
+import static org.firstinspires.ftc.robotcore.external.navigation.AxesOrder.XYZ;
+import static org.firstinspires.ftc.robotcore.external.navigation.AxesOrder.YZX;
+import static org.firstinspires.ftc.robotcore.external.navigation.AxesReference.EXTRINSIC;
+import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection.BACK;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -15,14 +21,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.firstinspires.ftc.robotcore.external.navigation.AngleUnit.DEGREES;
-import static org.firstinspires.ftc.robotcore.external.navigation.AxesOrder.XYZ;
-import static org.firstinspires.ftc.robotcore.external.navigation.AxesOrder.YZX;
-import static org.firstinspires.ftc.robotcore.external.navigation.AxesReference.EXTRINSIC;
-import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection.BACK;
-
 @TeleOp(name = "Vuforia Navigation using RC Phone Camera", group = "Computer Vision")
-public class VuforiaFieldNavigation extends LinearOpMode {
+public class VuforiaFieldNavigation_ extends LinearOpMode {
     private static final VuforiaLocalizer.CameraDirection CAMERA_CHOICE = BACK;
     private static final boolean PHONE_IS_PORTRAIT = false;
     private static final String VUFORIA_KEY = "AQV2x3v/////AAABmR7YRPgGBk1qj0WFSQ4LFt1z+UiyM9AC" +
@@ -72,14 +72,7 @@ public class VuforiaFieldNavigation extends LinearOpMode {
         identifyTarget(2, "Red Storage",        -halfField, -oneAndHalfTile, mmTargetHeight, 90, 0, 90);
         identifyTarget(3, "Red Alliance Wall",   halfTile,  -halfField,      mmTargetHeight, 90, 0, 180);
 
-        if (CAMERA_CHOICE == BACK) {
-            phoneYRotate = -90;
-        } else {
-            phoneYRotate = 90;
-        }
-        if (PHONE_IS_PORTRAIT) {
-            phoneXRotate = 90;
-        }
+        setCameraChoice();
 
         final float CAMERA_FORWARD_DISPLACEMENT  = 0.0f * mmPerInch;   // eg: Enter the forward distance from the center of the robot to the camera lens
         final float CAMERA_VERTICAL_DISPLACEMENT = 6.0f * mmPerInch;   // eg: Camera is 6 Inches above ground
@@ -95,7 +88,6 @@ public class VuforiaFieldNavigation extends LinearOpMode {
         }
 
         // waitForStart();
-
         targets.activate();
         while (!isStopRequested()) {
             targetVisible = false;
@@ -112,17 +104,7 @@ public class VuforiaFieldNavigation extends LinearOpMode {
                     break;
                 }
             }
-            if (targetVisible) {
-                VectorF translation = lastLocation.getTranslation();
-                telemetry.addData("Pos (inches)", "{X, Y, Z} = %.1f, %.1%f, %.1f",
-                        translation.get(0) / mmPerInch, translation.get(1) / mmPerInch, translation.get(2) / mmPerInch);
-
-                Orientation rotation = Orientation.getOrientation(lastLocation, EXTRINSIC, XYZ, DEGREES);
-                telemetry.addData("Rot (deg)", "{Roll, Pitch, Heading} = %.0f, %.0f, %.0f",
-                        rotation.firstAngle, rotation.secondAngle, rotation.thirdAngle);
-            } else {
-                telemetry.addData("Visible Target", "none");
-            }
+            displayTargetResults();
             telemetry.update();
         }
         targets.deactivate();
@@ -141,5 +123,30 @@ public class VuforiaFieldNavigation extends LinearOpMode {
         aTarget.setName(targetName);
         aTarget.setLocation(OpenGLMatrix.translation(dx, dy, dz)
                 .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, rx, ry, rz)));
+    }
+
+    private void setCameraChoice() {
+        if (CAMERA_CHOICE == BACK) {
+            phoneYRotate = -90;
+        } else {
+            phoneYRotate = 90;
+        }
+        if (PHONE_IS_PORTRAIT) {
+            phoneXRotate = 90;
+        }
+    }
+
+    private void displayTargetResults() {
+        if (targetVisible) {
+            VectorF translation = lastLocation.getTranslation();
+            telemetry.addData("Pos (inches)", "{X, Y, Z} = %.1f, %.1%f, %.1f",
+                    translation.get(0) / mmPerInch, translation.get(1) / mmPerInch, translation.get(2) / mmPerInch);
+
+            Orientation rotation = Orientation.getOrientation(lastLocation, EXTRINSIC, XYZ, DEGREES);
+            telemetry.addData("Rot (deg)", "{Roll, Pitch, Heading} = %.0f, %.0f, %.0f",
+                    rotation.firstAngle, rotation.secondAngle, rotation.thirdAngle);
+        } else {
+            telemetry.addData("Visible Target", "none");
+        }
     }
 }

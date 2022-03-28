@@ -37,18 +37,12 @@ public class CarouselControlServo extends OpMode {
     private void takeDownDuck() {
         SleepRobot sleep = new SleepRobot();
 
-        if (gamepad2.y) {
-            sleep.robotSleeping(500);
+        if (gamepad2.y && atv) {
+            servoDuck.setPosition(1);
             atv = false;
-            sleep.robotSleeping(500);
-
-            if (atv) {
-                servoDuck.setPosition(1);
-            } else {
-                servoDuck.setPosition(0);
-            }
-        } else {
-            assert true;
+            sleep.robotSleeping(200);
+         } else if (gamepad2.y) {
+            servoDuck.setPosition(0);
         }
     }
 }

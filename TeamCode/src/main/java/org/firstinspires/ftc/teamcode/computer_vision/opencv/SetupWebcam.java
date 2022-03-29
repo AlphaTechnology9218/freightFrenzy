@@ -16,14 +16,11 @@ public class SetupWebcam extends LinearOpMode {
     public WebcamName robotWebcam = hardwareMap.get(WebcamName.class, "Robot Webcam");
     public OpenCvCamera camera = OpenCvCameraFactory.getInstance().createWebcam(robotWebcam,
             cameraMonitorViewId);
-    // ContourPipeline myPipeline;
     /*********************************************************************************************
      * cameraMonitorViewId - live camera preview to display on the Robot Controller screen       *
      * robotWebcam - robot webcam                                                                *
      * camera - create a supported camera                                                        *
      *********************************************************************************************/
-
-    // TODO: Create the first Pipeline
 
     @Override
     public void runOpMode() {

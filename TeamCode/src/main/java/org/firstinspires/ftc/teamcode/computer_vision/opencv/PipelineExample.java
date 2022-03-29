@@ -4,7 +4,7 @@ import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-public class CreateFirstPipeline extends OpenCvPipeline {
+public class PipelineExample extends OpenCvPipeline {
     Mat grey = new Mat();
 
     int lastResult = 0;

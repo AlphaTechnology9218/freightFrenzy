@@ -37,7 +37,6 @@ public class SetupWebcam extends LinearOpMode {
                  * 1920x1080
                  * */
                 camera.startStreaming(1280, 720, OpenCvCameraRotation.UPRIGHT);
-                // camera.setPipeline(yourPipeline);
             }
             @Override
             public void onError(int errorCode)

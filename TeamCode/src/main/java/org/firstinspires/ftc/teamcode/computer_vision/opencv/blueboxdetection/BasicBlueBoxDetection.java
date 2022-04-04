@@ -16,6 +16,9 @@ public class BasicBlueBoxDetection extends OpenCvPipeline {
     Rect lowerROI = new Rect(new Point(100, 50), new Point(200, 100));
     Rect upperROI = new Rect(new Point(100, 100), new Point(200, 150));
 
+    public double lowerValue = Double.parseDouble(null);
+    public double upperValue = Double.parseDouble(null);
+
     final double THRESHOLD = 10; // Adjust in the future
 
     @Override

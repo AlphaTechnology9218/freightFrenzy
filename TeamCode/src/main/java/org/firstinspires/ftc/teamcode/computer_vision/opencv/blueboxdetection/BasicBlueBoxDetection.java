@@ -33,7 +33,7 @@ public class BasicBlueBoxDetection extends OpenCvPipeline {
 
         // Threshold | Color blue - 240°
         Imgproc.cvtColor(mat, input, Imgproc.COLOR_RGBA2RGB); // input RGBA to mat RGB
-        Imgproc.cvtColor(mat, mat, Imgproc.COLOR_RGB2HSV); // input RGB to mat HS
+        Imgproc.cvtColor(mat, mat, Imgproc.COLOR_RGB2HSV); // input RGB to mat HSV
 
         Scalar lowerBound = new Scalar(220.0 / 2, 100, 100); // lower HSV scale
         Scalar upperBound = new Scalar(260.0 / 2, 200, 200); // upper HSV scale
@@ -47,8 +47,8 @@ public class BasicBlueBoxDetection extends OpenCvPipeline {
         mat.release();
 
         // Average
-        double lowerValue = Math.round(Core.mean(lowerMat).val[2] / 255);
-        double upperValue = Math.round(Core.mean(upperMat).val[2] / 255);
+        lowerValue = Math.round(Core.mean(lowerMat).val[2] / 255);
+        upperValue = Math.round(Core.mean(upperMat).val[2] / 255);
 
         // Compare
         // TODO: address a function to the robot based in the percentage of the average

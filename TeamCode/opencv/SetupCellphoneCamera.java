@@ -1,33 +1,30 @@
-package org.firstinspires.ftc.teamcode.computer_vision.opencv;
+package org.firstinspires.ftc.robotcontroller.opencv;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
+import org.openftc.easyopencv.OpenCvInternalCamera;
 
-@TeleOp(name = "OpenCV Setup Webcam", group = "Computer Vision")
-public class SetupWebcam extends LinearOpMode {
-    int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
-            "cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+@Disabled
+@TeleOp(name = "Setup Cellphone Camera", group = "Computer Vision")
+public class SetupCellphoneCamera extends LinearOpMode {
+    int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier
+            ("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
 
-    public WebcamName robotWebcam = hardwareMap.get(WebcamName.class, "Robot Webcam");
-    public OpenCvCamera camera = OpenCvCameraFactory.getInstance().createWebcam(robotWebcam,
-            cameraMonitorViewId);
-    /*********************************************************************************************
-     * cameraMonitorViewId - live camera preview to display on the Robot Controller screen       *
-     * robotWebcam - robot webcam                                                                *
-     * camera - create a supported camera                                                        *
-     *********************************************************************************************/
+    OpenCvCamera camera = OpenCvCameraFactory.getInstance().createInternalCamera
+            (OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
 
     @Override
     public void runOpMode() {
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
         {
             @Override
-            public void onOpened() {
+            public void onOpened()
+            {
                 camera.setViewportRenderer(OpenCvCamera.ViewportRenderer.GPU_ACCELERATED);
                 /*
                  * Commonly Supported Resolutions:
@@ -44,17 +41,15 @@ public class SetupWebcam extends LinearOpMode {
                 telemetry.addData("Status:", "An error occurred with OpenCV!");
             }
         });
-
         if (opModeIsActive()) {
             telemetry.addData("Status: ", "Op Mode is Activated");
             while (opModeIsActive()) {
-                stopWebcamView();
+                stopCellphoneView();
             }
             telemetry.update();
         }
     }
-
-    public void stopWebcamView() {
+    public void stopCellphoneView() {
         if (gamepad2.y) {
             camera.pauseViewport();
         } else if (gamepad2.a) {

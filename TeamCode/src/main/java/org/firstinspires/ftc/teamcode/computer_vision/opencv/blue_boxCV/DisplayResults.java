@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.computer_vision.opencv.blueboxdetection;
+package org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_boxCV;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 

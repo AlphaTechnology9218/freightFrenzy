@@ -22,7 +22,19 @@ public class ClawControlComponents extends OpMode {
     public void loop() {
     }
 
-    protected void servoControl() {
+    protected void minorArmControl() {
+
+    }
+
+    protected void mainArmControl() {
+
+    }
+
+    protected void pointArmControl() {
+
+    }
+
+    protected void clawPointControl() {
 
     }
 }

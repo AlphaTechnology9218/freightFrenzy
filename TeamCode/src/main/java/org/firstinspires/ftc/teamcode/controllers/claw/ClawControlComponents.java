@@ -3,11 +3,14 @@ package org.firstinspires.ftc.teamcode.controllers.claw;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.controllers.gamepad.ControlButtons;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class ClawControlComponents extends OpMode {
     protected Servo s1, s2, s3, s4, s5, s6, objectServo;
+    ControlButtons gamepad2 = new ControlButtons();
 
     @Override
     public void init() {
@@ -20,21 +23,6 @@ public class ClawControlComponents extends OpMode {
 
     @Override
     public void loop() {
-    }
-
-    protected void minorArmControl() {
-
-    }
-
-    protected void mainArmControl() {
-
-    }
-
-    protected void pointArmControl() {
-
-    }
-
-    protected void clawPointControl() {
 
     }
 }

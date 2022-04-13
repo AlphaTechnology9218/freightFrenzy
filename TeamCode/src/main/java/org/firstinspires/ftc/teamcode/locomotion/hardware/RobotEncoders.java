@@ -19,7 +19,7 @@ public class RobotEncoders extends LinearOpMode {
      * pFL - front left motor position                                        *
      * pBL - back left motor position                                         *
      * pFR - front right motor position                                       *
-     * pBR - back right motor position                                        *                                                                    *
+     * pBR - back right motor position                                        *
      **************************************************************************/
 
     @Override

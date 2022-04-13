@@ -1,4 +1,6 @@
-package org.firstinspires.ftc.teamcode.computer_vision.opencv.blueboxdetection;
+package org.firstinspires.ftc.robotcontroller.opencv.blueboxdetection;
+
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -8,6 +10,7 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvPipeline;
 
+@Disabled
 public class BasicBlueBoxDetection extends OpenCvPipeline {
     Mat mat = new Mat();
     Mat lowerMat;

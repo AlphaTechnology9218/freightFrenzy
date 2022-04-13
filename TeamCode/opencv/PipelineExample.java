@@ -1,9 +1,12 @@
-package org.firstinspires.ftc.teamcode.computer_vision.opencv;
+package org.firstinspires.ftc.robotcontroller.opencv;
+
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvPipeline;
 
+@Disabled
 public class PipelineExample extends OpenCvPipeline {
     Mat grey = new Mat();
 
@@ -24,3 +27,4 @@ public class PipelineExample extends OpenCvPipeline {
         return lastResult;
     }
 }
+

@@ -1,5 +1,6 @@
-package org.firstinspires.ftc.teamcode.computer_vision.opencv;
+package org.firstinspires.ftc.robotcontroller.opencv;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -8,6 +9,7 @@ import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
+@Disabled
 @TeleOp(name = "OpenCV Setup Webcam", group = "Computer Vision")
 public class SetupWebcam extends LinearOpMode {
     int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(

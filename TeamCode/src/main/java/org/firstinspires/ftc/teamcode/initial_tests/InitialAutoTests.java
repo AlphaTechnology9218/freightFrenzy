@@ -25,5 +25,7 @@ public class InitialAutoTests extends LinearOpMode {
         }
     }
 
-    public void moveStorageUnit(){ robot.moveRobot(500, 500,500,500, 1); }
+    public void moveStorageUnit(){
+        robot.moveRobot(500, 500,500,500, 1);
+    }
 }

@@ -13,7 +13,7 @@ public class RobotDistanceSensor extends OpMode{
     * ************************************************************************/
 
     @Override
-    public void init() { distSensor = hardwareMap.get(com.qualcomm.robotcore.hardware.DistanceSensor.class, "sensorDist"); }
+    public void init() { distSensor = hardwareMap.get(DistanceSensor.class, "sensorDist"); }
 
     @Override
     public void loop() { captureDistance(); }

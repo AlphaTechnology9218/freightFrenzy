@@ -3,11 +3,11 @@ package org.firstinspires.ftc.teamcode.initial_tests;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.locomotion.hardware.RobotEncoders;
+import org.firstinspires.ftc.teamcode.locomotion.hardware.MotorEncodersSetup;
 
 @Autonomous(name = "Test Autonomous", group = "Autonomous")
 public class InitialAutoTests extends LinearOpMode {
-    RobotEncoders robot = new RobotEncoders(); // access robot components configuration
+    MotorEncodersSetup robot = new MotorEncodersSetup(); // access robot components configuration
 
     @Override
     public void runOpMode() {

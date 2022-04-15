@@ -4,12 +4,12 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-public class RobotDistanceSensor extends OpMode{
-    private DistanceSensor distSensor;
+public class DistanceSensor_ extends OpMode{
+    private com.qualcomm.robotcore.hardware.DistanceSensor distSensor;
     public double valueDist;
     /*************************************************************************
     * distSensor - distance sensor                                           *
-    * valueDist - distance value                                                 *
+    * valueDist - distance value                                             *
     * ************************************************************************/
 
     @Override

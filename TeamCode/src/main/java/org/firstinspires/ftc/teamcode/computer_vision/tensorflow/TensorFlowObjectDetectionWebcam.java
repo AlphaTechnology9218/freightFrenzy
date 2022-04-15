@@ -14,16 +14,6 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
 
-/**
- * This 2020-2021 OpMode illustrates the basics of using the TensorFlow Object Detection API to
- * determine the position of the Freight Frenzy game elements.
- *
- * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
- * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list.
- *
- * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
- * is explained below.
- */
 @TeleOp(name = "TensorFlow Object Detection Webcam", group = "Computer Vision")
 @Disabled
 public class TensorFlowObjectDetectionWebcam extends LinearOpMode {
@@ -45,21 +35,8 @@ public class TensorFlowObjectDetectionWebcam extends LinearOpMode {
             "Duck",
             "Marker"
     };
-
     ObjectsDetected objects = new ObjectsDetected();
 
-    /*
-     * IMPORTANT: You need to obtain your own license key to use Vuforia. The string below with which
-     * 'parameters.vuforiaLicenseKey' is initialized is for illustration only, and will not function.
-     * A Vuforia 'Development' license key, can be obtained free of charge from the Vuforia developer
-     * web site at https://developer.vuforia.com/license-manager.
-     *
-     * Vuforia license keys are always 380 characters long, and look as if they contain mostly
-     * random data. As an example, here is a example of a fragment of a valid key:
-     *      ... yIgIzTqZ4mWjk9wd3cZO9T1axEqzuhxoGlfOOI2dRzKS4T0hQ8kT ...
-     * Once you've obtained a license key, copy the string from the Vuforia web site
-     * and paste it in to your code on the next line, between the double quotes.
-     */
     private static final String VUFORIA_KEY = "AQV2x3v/////AAABmR7YRPgGBk1qj0WFSQ4LFt1z+UiyM9AC" +
             "60gmkqBNr2qIo9N8YsunPo1FXuzFM5RJwDrIaY4NNkwX9MPpT2gIlSXJ9sVpp+jmOhrQ69XSzoEp46dr76" +
             "DCp/Nq3IJvzuq9/cmS1+c5VK7vXkM/y+QJjjdIgwYCO8eDGKldugYmTZRWXW2Vzs48jElCug8hkKMDeVgS" +
@@ -126,9 +103,7 @@ public class TensorFlowObjectDetectionWebcam extends LinearOpMode {
                                     recognition.getRight(), recognition.getBottom());
                             i++;
 
-                            /*
-                             * Address each recognition possibility to a public method
-                             */
+                            /* Address each recognition possibility to a public method */
                             switch (recognition.getLabel()) {
                                 case "Duck":
                                     telemetry.addData("Object: ", "Duck");

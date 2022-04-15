@@ -34,20 +34,20 @@ public class VuforiaFieldNavigation extends LinearOpMode {
     /* Since ImageTarget trackable use mm to specify their dimensions, we must use mm for all the
      * physical dimension. We will define some constants and conversions here. These are useful for
      * the Freight Frenzy field. */
-    private static final float mmPerInch        = 25.4f;
-    private static final float mmTargetHeight   = 6 * mmPerInch;   // the height of the center of the target image above the floor
-    private static final float halfField        = 72 * mmPerInch;
-    private static final float halfTile         = 12 * mmPerInch;
-    private static final float oneAndHalfTile   = 36 * mmPerInch;
+    private static final float mmPerInch      = 25.4f;
+    private static final float mmTargetHeight = 6 * mmPerInch;   // the height of the center of the target image above the floor
+    private static final float halfField      = 72 * mmPerInch;
+    private static final float halfTile       = 12 * mmPerInch;
+    private static final float oneAndHalfTile = 36 * mmPerInch;
 
     private OpenGLMatrix lastLocation = null;
     private VuforiaLocalizer vuforia  = null;
     private VuforiaTrackables targets = null;
 
     private boolean targetVisible = false;
-    private float phoneXRotate     = 0;
-    private float phoneYRotate     = 0;
-    private float phoneZRotate     = 0;
+    private float phoneXRotate    = 0;
+    private float phoneYRotate    = 0;
+    private float phoneZRotate    = 0;
 
     @Override
     public void runOpMode() {

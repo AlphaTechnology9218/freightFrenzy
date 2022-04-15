@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.controllers.claw;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
-import org.firstinspires.ftc.teamcode.abilities.RobotDistanceSensor;
+import org.firstinspires.ftc.teamcode.abilities.DistanceSensor_;
 import org.firstinspires.ftc.teamcode.locomotion.hardware.ClawEncoders;
 
 @TeleOp(name = "Controle da Garra", group = "Controles")
@@ -12,7 +12,7 @@ public class ClawControl extends OpMode {
     private Servo rightS, leftS;
     public boolean atvM, atvS;
 
-    RobotDistanceSensor distance = new RobotDistanceSensor();
+    DistanceSensor_ distance = new DistanceSensor_();
     // TODO: Review the necessity of Distance Sensors -> we do not have at FabLab
 
     ClawEncoders claw = new ClawEncoders();

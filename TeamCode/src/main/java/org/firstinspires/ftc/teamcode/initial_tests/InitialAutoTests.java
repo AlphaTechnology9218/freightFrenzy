@@ -35,7 +35,7 @@ public class InitialAutoTests extends LinearOpMode {
         pointToCarousel();
     }
 
-    //todo: Call method to identify the duck position and place the freight in the correct shipping level
+    // TODO: Call method to identify the duck position and place the freight in the correct shipping level
 
     public void pointToCarousel(){
         robot.moveRobot(50, 50,-50,-50, 1);
@@ -49,7 +49,7 @@ public class InitialAutoTests extends LinearOpMode {
         walkingSideways();
     }
 
-    //todo: Knock the duck with carousel controller
+    // TODO: Knock the duck with carousel controller
 
     public void walkingSideways(){
         robot.moveRobot(-100, 100,100,-100, 1);

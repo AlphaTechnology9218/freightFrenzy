@@ -42,32 +42,32 @@ public class CompleteClawControl extends LinearOpMode {
 
         waitForStart();
         while(opModeIsActive()) {
-            // Call Claw Movement Functions
-            mainClawControl();
             clawPointControl();
+            mainClawControl();
             mainArmControl();
             supportControl();
 
-            // Call Servo Slews Functions
-            slewServo1();
-            slewServo2();
-            slewServo3();
-            slewServo4();
-
             // Display the current value for each servo
-            telemetry.addData("Servo position1", "%5.2f", position1);
-            telemetry.addData("Servo position1", "%5.2f", position2);
-            telemetry.addData("Servo position1", "%5.2f", position3);
-            telemetry.addData("Servo position1", "%5.2f", position4);
+            telemetry.addData("Servo position 1", "%5.2f", position1);
+            telemetry.addData("Servo position 2", "%5.2f", position2);
+            telemetry.addData("Servo position 3", "%5.2f", position3);
+            telemetry.addData("Servo position 4", "%5.2f", position4);
 
             telemetry.addData(">", "Press Stop to end test." );
             telemetry.update();
+
+            if (rampUp1) {
+                controlSlew(position1, INCREMENT_S1, MAX_POS_S1, MIN_POS_S1);
+            } else if (rampUp2) {
+                controlSlew(position2, INCREMENT_S2, MAX_POS_S2, MIN_POS_S2);
+            } else if (rampUp3) {
+                controlSlew(position3, INCREMENT_S3, MAX_POS_S3, MIN_POS_S3);
+            } else if (rampUp4) {
+                controlSlew(position4, INCREMENT_S4, MAX_POS_S4, MIN_POS_S4);
+            }
         }
     }
-
-    /**
-     * Start each servo to init position
-     */
+    // Start each servo to init position
     protected void initialControl() {
         if (!rampUp && gamepad2.right_bumper) {
             servo.s1.setPosition(position1);
@@ -76,9 +76,7 @@ public class CompleteClawControl extends LinearOpMode {
             servo.s4.setPosition(position4);
         }
     }
-    /**
-     * Control each claw component according to gamepad control
-     */
+    // Control each claw component according to gamepad control
     protected void mainClawControl() {
         if (!rampUp1 && gamepad2.y) {
             servo.s1.setPosition(MAX_POS_S1);
@@ -87,83 +85,43 @@ public class CompleteClawControl extends LinearOpMode {
         }
     }
     protected void clawPointControl() {
-        if (!rampUp2 && gamepad2.y) {
+        if (!rampUp2 && gamepad2.x) {
             servo.s2.setPosition(MAX_POS_S2);
             rampUp2 = true;
             servo.s1.setPosition(position1);
         }
     }
     protected void mainArmControl() {
-        if (!rampUp3 && gamepad2.y) {
+        if (!rampUp3 && gamepad2.b) {
             servo.s3.setPosition(MAX_POS_S3);
             rampUp3 = true;
             servo.s1.setPosition(position1);
         }
     }
     protected void supportControl() {
-        if (!rampUp4 && gamepad2.y) {
+        if (!rampUp4 && gamepad2.a) {
             servo.s4.setPosition(MAX_POS_S4);
             rampUp4 = true;
             servo.s1.setPosition(position1);
         }
     }
-
     /**
-     * Slew each servo according to MAX_POS and MIN_POS
+     * @param position  - current servo position
+     * @param INCREMENT - increment for each movement
+     * @param MIN_POS   - minimum servo position
+     * @param MAX_POS   - maximum servo position
      */
-    protected void slewServo1() {
-        if (rampUp1) {
-            position1 += INCREMENT_S1;
-            if (position1 >= MAX_POS_S1) {
-                position1 = MAX_POS_S1;
-                rampUp1 = false;
-            }
-        } else {
-            position1 -= INCREMENT_S1;
-            if (position1 <= MIN_POS_S1) {
-                position1 = MAX_POS_S1;
-            }
+    protected void controlSlew(double position, double INCREMENT, double MAX_POS,
+                               double MIN_POS) {
+        position += INCREMENT;
+        if (position <= MAX_POS) {
+            position = MAX_POS;
+            rampUp = false;
         }
-    }
-    protected void slewServo2() {
-        if (rampUp2) {
-            position2 += INCREMENT_S2;
-            if (position2 >= MAX_POS_S2) {
-                position2 = MAX_POS_S2;
-                rampUp2 = false;
-            }
-        } else {
-            position1 -= INCREMENT_S2;
-            if (position2 <= MIN_POS_S2) {
-                position2 = MAX_POS_S2;
-            }
-        }
-    }
-    protected void slewServo3() {
-        if (rampUp3) {
-            position1 += INCREMENT_S3;
-            if (position3 >= MAX_POS_S3) {
-                position3 = MAX_POS_S3;
-                rampUp4 = false;
-            }
-        } else {
-            position3 -= INCREMENT_S3;
-            if (position3 <= MIN_POS_S3) {
-                position3 = MAX_POS_S3;
-            }
-        }
-    }
-    protected void slewServo4() {
-        if (rampUp4) {
-            position4 += INCREMENT_S4;
-            if (position4 >= MAX_POS_S4) {
-                position4 = MAX_POS_S4;
-                rampUp4 = false;
-            }
-        } else {
-            position1 -= INCREMENT_S4;
-            if (position4 <= MIN_POS_S4) {
-                position4 = MAX_POS_S4;
+        if (!rampUp) {
+            position -= INCREMENT;
+            if (position <= MIN_POS) {
+                position = MIN_POS;
             }
         }
     }

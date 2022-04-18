@@ -70,10 +70,10 @@ public class CompleteClawControl extends LinearOpMode {
     // Start each servo to init position
     protected void initialControl() {
         if (!rampUp && gamepad2.right_bumper) {
-            servo.s1.setPosition(position1);
-            servo.s2.setPosition(position2);
-            servo.s3.setPosition(position3);
-            servo.s4.setPosition(position4);
+            servo.completeServos.get(0).setPosition(position1);
+            servo.completeServos.get(1).setPosition(position2);
+            servo.completeServos.get(2).setPosition(position3);
+            servo.completeServos.get(3).setPosition(position4);
         }
     }
     // Control each claw component according to gamepad control

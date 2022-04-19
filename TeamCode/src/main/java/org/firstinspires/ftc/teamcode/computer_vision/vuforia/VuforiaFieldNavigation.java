@@ -11,6 +11,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
+import org.firstinspires.ftc.teamcode.computer_vision.tensorflow.ObjectsDetected;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +50,14 @@ public class VuforiaFieldNavigation extends LinearOpMode {
     private float phoneYRotate    = 0;
     private float phoneZRotate    = 0;
 
+    ObjectsDetected dir = new ObjectsDetected();
+
+    float lx, ly;
+
     @Override
     public void runOpMode() {
+
+        dir.HubDirection(lx, ly);
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier
                 ("CameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
@@ -141,5 +148,6 @@ public class VuforiaFieldNavigation extends LinearOpMode {
         aTarget.setName(targetName);
         aTarget.setLocation(OpenGLMatrix.translation(dx, dy, dz)
                 .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, rx, ry, rz)));
+        lx = dx; ly = dy;
     }
 }

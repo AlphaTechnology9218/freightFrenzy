@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.initial_tests;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+import org.firstinspires.ftc.teamcode.computer_vision.tensorflow.ObjectsDetected;
 import org.firstinspires.ftc.teamcode.locomotion.hardware.MotorEncodersSetup;
 
 @Autonomous(name = "Test Autonomous", group = "Autonomous")
@@ -30,12 +31,24 @@ public class InitialAutoTests extends LinearOpMode {
     }
 
     public void straightToTheHub(){
-        robot.moveRobot(200, 200,0,0, 1);
+        if(ObjectsDetected.Dir) {
+            robot.moveRobot(200, 200,0,0, 1);
+        }
+        else robot.moveRobot(0, 0, 200, 200, 1);
         sleep(5000);
+        switch (ObjectsDetected.DuckBarcode){
+            case 1:
+                break;
+            case 2:
+                assert true;
+                break;
+            case 3:
+                assert false;
+                break;
+            default:
+        }
         pointToCarousel();
     }
-
-    // TODO: Call method to identify the duck position and place the freight in the correct shipping level
 
     public void pointToCarousel(){
         robot.moveRobot(50, 50,-50,-50, 1);

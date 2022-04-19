@@ -119,7 +119,7 @@ public class TensorFlowObjectDetectionWebcam extends LinearOpMode {
                                     break;
                                 case "Marker":
                                     telemetry.addData("Duck Location: ", "Marker");
-                                    objects.markerBarCode();
+                                    objects.markerBarCode(recognition.getRight(), recognition.getLeft());
                                     break;
                                 default:
                                     telemetry.addData("Object", "Nothing Detected");

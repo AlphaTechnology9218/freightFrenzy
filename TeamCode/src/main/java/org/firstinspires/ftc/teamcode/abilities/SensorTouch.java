@@ -1,8 +1,10 @@
 package org.firstinspires.ftc.teamcode.abilities;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 
+@Disabled
 public class SensorTouch extends LinearOpMode {
     public boolean isPressed;
     DigitalChannel digitalTouch;

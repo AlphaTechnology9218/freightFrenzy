@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.locomotion.hardware.ClawEncoders;
 
 @TeleOp(name = "Controle da Garra", group = "Controles")
 
-public class ClawControl extends OpMode {
+public class BasicClawControl extends OpMode {
     private Servo rightS, leftS;
     public boolean atvM, atvS;
 

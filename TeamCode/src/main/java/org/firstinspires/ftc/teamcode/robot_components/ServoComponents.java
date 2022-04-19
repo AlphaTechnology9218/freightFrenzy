@@ -12,9 +12,7 @@ public class ServoComponents extends OpMode {
     public List<Servo> completeServos = new ArrayList<>();
 
     @Override
-    public void init() {
-        setupServos();
-    }
+    public void init() { setupServos(); }
 
     @Override
     public void loop() {

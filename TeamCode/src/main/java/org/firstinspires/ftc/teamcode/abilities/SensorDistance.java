@@ -1,11 +1,13 @@
 package org.firstinspires.ftc.teamcode.abilities;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
+@Disabled
 public class SensorDistance extends OpMode{
-    private com.qualcomm.robotcore.hardware.DistanceSensor distSensor;
+    private DistanceSensor distSensor;
     public double valueDist;
     /*************************************************************************
     * distSensor - distance sensor                                           *
@@ -13,7 +15,9 @@ public class SensorDistance extends OpMode{
     * ************************************************************************/
 
     @Override
-    public void init() { distSensor = hardwareMap.get(DistanceSensor.class, "sensorDist"); }
+    public void init() { 
+        distSensor = hardwareMap.get(DistanceSensor.class, "Distance Sensor"); 
+    }
 
     @Override
     public void loop() { captureDistance(); }

@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.abilities.SleepRobot;
 import org.firstinspires.ftc.teamcode.robot_components.ServoComponents;
 
 @TeleOp(name = "Complete Claw Control", group = "Controllers")
-public class CompleteClaw extends OpMode {
+public class CompleteClawTeleOperate extends OpMode {
     protected boolean act1, act2, act3, act4 = true;
 
     static final double POS1 = 0.5;

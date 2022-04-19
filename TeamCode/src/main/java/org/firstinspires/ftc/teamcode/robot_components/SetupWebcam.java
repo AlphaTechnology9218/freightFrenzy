@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.computer_vision.opencv;
+package org.firstinspires.ftc.teamcode.robot_components;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -16,6 +16,8 @@ public class SetupWebcam extends LinearOpMode {
     public WebcamName robotWebcam = hardwareMap.get(WebcamName.class, "Robot Webcam");
     public OpenCvCamera camera = OpenCvCameraFactory.getInstance().createWebcam(robotWebcam,
             cameraMonitorViewId);
+
+    private boolean atv = true;
     /*********************************************************************************************
      * cameraMonitorViewId - live camera preview to display on the Robot Controller screen       *
      * robotWebcam - robot webcam                                                                *
@@ -39,12 +41,10 @@ public class SetupWebcam extends LinearOpMode {
                 camera.startStreaming(1280, 720, OpenCvCameraRotation.UPRIGHT);
             }
             @Override
-            public void onError(int errorCode)
-            {
-                telemetry.addData("Status:", "An error occurred with OpenCV!");
+            public void onError(int errorCode) {
+                telemetry.addData("Status: ", "An error occurred with OpenCV!");
             }
         });
-
         if (opModeIsActive()) {
             telemetry.addData("Status: ", "Op Mode is Activated");
             while (opModeIsActive()) {
@@ -53,12 +53,15 @@ public class SetupWebcam extends LinearOpMode {
             telemetry.update();
         }
     }
-
     public void stopWebcamView() {
-        if (gamepad2.y) {
+        if (gamepad2.y && atv) {
             camera.pauseViewport();
-        } else if (gamepad2.a) {
+            sleep(200);
+            atv = false;
+        } else if (gamepad2.a && !atv) {
             camera.resumeViewport();
+            sleep(200);
+            atv = true;
         }
     }
 }

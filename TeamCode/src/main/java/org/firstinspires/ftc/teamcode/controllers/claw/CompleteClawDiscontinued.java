@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode.controllers.claw;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.robot_components.ServoComponents;
 
-public class CompleteClawControl extends LinearOpMode {
+@Disabled
+public class CompleteClawDiscontinued extends LinearOpMode {
 
     static final double INCREMENT_S1 = 0.01; // amount to slew servo each CYCLE_MS cycle
     static final double MAX_POS_S1   =  1.0; // Maximum rotational position
@@ -23,9 +25,9 @@ public class CompleteClawControl extends LinearOpMode {
     static final double MIN_POS_S4   =  0.0;
 
     double position1 = (MAX_POS_S1 - MIN_POS_S1) / 2; // Start at halfway position
-    double position2 = (MAX_POS_S2 - MIN_POS_S2) / 2; // Start at halfway position
-    double position3 = (MAX_POS_S3 - MIN_POS_S3) / 2; // Start at halfway position
-    double position4 = (MAX_POS_S4 - MIN_POS_S4) / 2; // Start at halfway position
+    double position2 = (MAX_POS_S2 - MIN_POS_S2) / 2;
+    double position3 = (MAX_POS_S3 - MIN_POS_S3) / 2;
+    double position4 = (MAX_POS_S4 - MIN_POS_S4) / 2;
 
     boolean rampUp  = false;
     boolean rampUp1 = false;
@@ -56,25 +58,18 @@ public class CompleteClawControl extends LinearOpMode {
             telemetry.addData(">", "Press Stop to end test." );
             telemetry.update();
 
-            if (rampUp1) {
-                controlSlew(position1, INCREMENT_S1, MAX_POS_S1, MIN_POS_S1);
-            } else if (rampUp2) {
-                controlSlew(position2, INCREMENT_S2, MAX_POS_S2, MIN_POS_S2);
-            } else if (rampUp3) {
-                controlSlew(position3, INCREMENT_S3, MAX_POS_S3, MIN_POS_S3);
-            } else if (rampUp4) {
-                controlSlew(position4, INCREMENT_S4, MAX_POS_S4, MIN_POS_S4);
-            }
+            if (rampUp1 && gamepad2.y) controlSlew(rampUp1, position1, INCREMENT_S1, MAX_POS_S1, MIN_POS_S1);
+            if (rampUp2) controlSlew(rampUp2, position2, INCREMENT_S2, MAX_POS_S2, MIN_POS_S2);
+            if (rampUp3) controlSlew(rampUp3, position3, INCREMENT_S3, MAX_POS_S3, MIN_POS_S3);
+            if (rampUp4) controlSlew(rampUp4, position4, INCREMENT_S4, MAX_POS_S4, MIN_POS_S4);
         }
     }
     // Start each servo to init position
     protected void initialControl() {
-        if (!rampUp && gamepad2.right_bumper) {
             servo.completeServos.get(0).setPosition(position1);
             servo.completeServos.get(1).setPosition(position2);
             servo.completeServos.get(2).setPosition(position3);
             servo.completeServos.get(3).setPosition(position4);
-        }
     }
     // Control each claw component according to gamepad control
     protected void mainClawControl() {
@@ -111,14 +106,16 @@ public class CompleteClawControl extends LinearOpMode {
      * @param MIN_POS   - minimum servo position
      * @param MAX_POS   - maximum servo position
      */
-    protected void controlSlew(double position, double INCREMENT, double MAX_POS,
+    protected void controlSlew(boolean rampUp, double position, double INCREMENT, double MAX_POS,
                                double MIN_POS) {
-        position += INCREMENT;
-        if (position <= MAX_POS) {
-            position = MAX_POS;
-            rampUp = false;
+        if (rampUp) {
+            position += INCREMENT;
+            if (position >= MAX_POS) {
+                position = MAX_POS;
+                rampUp = false;
+            }
         }
-        if (!rampUp) {
+        else {
             position -= INCREMENT;
             if (position <= MIN_POS) {
                 position = MIN_POS;

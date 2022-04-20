@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.locomotion.hardware.SetupClawEncoders;
 @TeleOp(name = "Basic Claw Control", group = "Controllers")
 
 public class BasicClawControl extends OpMode {
-    private Servo rightS, leftS;
+    private Servo rightS;
     public boolean atvM, atvS;
 
     SensorDistance distance = new SensorDistance();
@@ -33,7 +33,7 @@ public class BasicClawControl extends OpMode {
         telemetry.addData("Status", "Initialized");
 
         rightS = hardwareMap.get(Servo.class, "rightS");
-        leftS = hardwareMap.get(Servo.class, "leftS");
+        // leftS = hardwareMap.get(Servo.class, "leftS");
     }
 
     @Override
@@ -49,7 +49,7 @@ public class BasicClawControl extends OpMode {
             telemetry.addData("Ideal Distance: ", distance.valueDist);
 
             clawControl();
-            armsControl();
+            // armsControl();
         } else {
             assert true;
         }
@@ -57,31 +57,31 @@ public class BasicClawControl extends OpMode {
 
     @Override
     public void stop() { telemetry.addData("Status", "Finished"); }
-
-    private void armsControl() {
-        if (atvM && gamepad2.b) {
-            claw.moveClaw(500, 500, 1);
-            atvM = false;
-        } else if (!atvM && gamepad2.b) {
-            claw.moveClaw(-500, -500, 1);
-            atvM = true;
-        } else {
-            claw.moveClaw(-500, -500, 1);
+    /*
+        private void armsControl() {
+            if (atvM && gamepad2.b) {
+                claw.moveClaw(500, 500, 1);
+                atvM = false;
+            } else if (!atvM && gamepad2.b) {
+                claw.moveClaw(-500, -500, 1);
+                atvM = true;
+            } else {
+                claw.moveClaw(-500, -500, 1);
+            }
         }
-    }
-
+    */
     private void clawControl() {
         if (atvS && gamepad2.x) {
             rightS.setPosition(1);
-            leftS.setPosition(1);
+            // leftS.setPosition(1);
             atvS = false;
         } else if (!atvS && gamepad2.x) {
             rightS.setPosition(-1);
-            leftS.setPosition(-1);
+            // leftS.setPosition(-1);
             atvS = true;
         } else {
             rightS.setPosition(0);
-            leftS.setPosition(0);
+            // leftS.setPosition(0);
         }
     }
 }

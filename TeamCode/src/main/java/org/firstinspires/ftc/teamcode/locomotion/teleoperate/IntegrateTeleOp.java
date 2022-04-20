@@ -1,21 +1,19 @@
 package org.firstinspires.ftc.teamcode.locomotion.teleoperate;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous
 @TeleOp(name = "Integrated TeleOp", group = "Tele Operate")
 public class IntegrateTeleOp extends OpMode {
     public DcMotor mFL, mBL, mFR, mBR;
-    /**************************************************************************
+    /**************************
      * mFL - front left motor                                                 *
      * mBL - back left motor                                                  *
      * mFR - front right motor                                                *
      * mBR - back right motor                                                 *
-     **************************************************************************/
+     **************************/
     private final ElapsedTime runtime = new ElapsedTime();
 
     @Override
@@ -49,7 +47,6 @@ public class IntegrateTeleOp extends OpMode {
 
         telemetry.update();
     }
-
 
     private void axisXY() {
         motorPower(-gamepad1.left_stick_x, gamepad1.left_stick_x, gamepad1.left_stick_x, -gamepad1.left_stick_x);

@@ -8,13 +8,13 @@ public class DisplayResults extends LinearOpMode {
     @Override
     public void runOpMode() {
         BasicBlueBoxDetection parameter = new BasicBlueBoxDetection();
-        telemetry("Lower Result: ", parameter.lowerValue);
-        telemetry("Upper Result: ", parameter.upperValue);
+
+        waitForStart();
+
+        telemetry.addData("Lower Value: ", parameter.lowerValue);
+        telemetry.addData("Upper Value: ", parameter.upperValue);
+        telemetry.addData("Seeing Box: ", parameter.seeingBox);
 
         telemetry.update();
     }
-
-    private void telemetry(String s, double lowerValue) {
-    }
-
 }

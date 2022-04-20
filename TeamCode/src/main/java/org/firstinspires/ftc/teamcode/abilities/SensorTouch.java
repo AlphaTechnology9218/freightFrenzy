@@ -10,21 +10,24 @@ public class SensorTouch extends LinearOpMode {
     DigitalChannel digitalTouch;
 
     @Override
-    public void runOpMode() throws InterruptedException {
+    public void runOpMode() {
         digitalTouch = hardwareMap.get(DigitalChannel.class, "Digital Sensor");
         digitalTouch.setMode(DigitalChannel.Mode.INPUT);
 
         waitForStart();
 
         while(opModeIsActive()) {
-            if (digitalTouch.getState()) {
-                telemetry.addData("Digital Touch: ", "Is not pressed");
-                isPressed = false;
-            } else {
-                telemetry.addData("Digital Touch: ", "Is pressed");
-                isPressed = true;
-            }
+            controlSensorTouch();
             telemetry.update();
+        }
+    }
+    public void controlSensorTouch() {
+        if (digitalTouch.getState()) {
+            telemetry.addData("Digital Touch: ", "Is not pressed");
+            isPressed = false;
+        } else {
+            telemetry.addData("Digital Touch: ", "Is pressed");
+            isPressed = true;
         }
     }
 }

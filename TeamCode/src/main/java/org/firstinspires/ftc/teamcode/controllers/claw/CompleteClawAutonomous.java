@@ -3,7 +3,21 @@ package org.firstinspires.ftc.teamcode.controllers.claw;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.abilities.SensorTouch;
 import org.firstinspires.ftc.teamcode.robot_components.ServoComponents;
+
+/*****************************************************************
+ * Autonomous Control step-by-step:                              *
+ *                                                               *
+ * 1. Down claw                                                  *
+ * 2. Open claw                                                  *
+ * 3. Close claw                                                 *
+ * 4. Up claw                                                    *
+ * 5. Down claw                                                  *
+ * 6. Open claw                                                  *
+ * 7. Close claw                                                 *
+ * 8. Up claw                                                    *
+ *****************************************************************/
 
 public class CompleteClawAutonomous extends LinearOpMode {
 
@@ -31,22 +45,10 @@ public class CompleteClawAutonomous extends LinearOpMode {
 
     Servo s1, s2, s3, s4;
     ServoComponents servo = new ServoComponents();
+    SensorTouch sensor = new SensorTouch();
 
     @Override
     public void runOpMode() {
-        /*
-         * Autonomous Control step-by-step:
-         *
-         * 1. Down claw
-         * 2. Open claw
-         * 3. Close claw
-         * 4. Up claw
-         * 5. Down claw
-         * 6. Open claw
-         * 7. Close claw
-         * 8. Up claw
-         * */
-
         servo.init();
         setStartPos();
         setupServos();
@@ -63,7 +65,8 @@ public class CompleteClawAutonomous extends LinearOpMode {
             s3.setPosition(MAX_POS_3); // 4. Up claw
             position3 += INCREMENT_3;
         }
-        if (position1 <= MIN_POS_1 && position3 >= MAX_POS_3) {
+        // Claw will be able to close if the sensor touch is pressed
+        if (position1 <= MIN_POS_1 && position3 >= MAX_POS_3 && sensor.isPressed) {
             s4.setPosition(MIN_POS_4); // 5. Down claw
             position4 -= INCREMENT_4;
         }

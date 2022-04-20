@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_boxCV;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
@@ -8,6 +10,7 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvPipeline;
 
+@Autonomous(name = "Blue Box Detection", group = "Computer Vision")
 public class BasicBlueBoxDetection extends OpenCvPipeline {
     Mat mat = new Mat();
     Mat lowerMat;

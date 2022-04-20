@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.robot_components;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.openftc.easyopencv.OpenCvCamera;
@@ -7,17 +8,19 @@ import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 
+@Autonomous(name = "Setup Cellphone Camera", group = "Robot Components")
 public class SetupCellphone extends LinearOpMode {
-    int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
-            "cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-
+    int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier
+            ("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+    
     public OpenCvCamera camera = OpenCvCameraFactory.getInstance().createInternalCamera
             (OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
 
-    private boolean atv = true;
+    private boolean act = true;
 
     @Override
     public void runOpMode() {
+        waitForStart();
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {
@@ -46,14 +49,14 @@ public class SetupCellphone extends LinearOpMode {
         }
     }
     public void stopCellphoneView() {
-        if (gamepad2.y && atv) {
+        if (gamepad2.y && act) {
             camera.pauseViewport();
             sleep(200);
-            atv = false;
-        } else if (gamepad2.a && !atv) {
+            act = false;
+        } else if (gamepad2.a && !act) {
             camera.resumeViewport();
             sleep(200);
-            atv = true;
+            act = true;
         }
     }
 }

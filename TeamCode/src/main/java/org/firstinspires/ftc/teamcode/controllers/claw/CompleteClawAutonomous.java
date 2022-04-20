@@ -65,7 +65,9 @@ public class CompleteClawAutonomous extends LinearOpMode {
             servo.s3.setPosition(MAX_POS_3); // 4. Up claw
             position3 += INCREMENT_3;
         }
-        // Claw will be able to close if the sensor touch is pressed
+        sleep(2000); // Wait the robot go to Shipping Hub.
+
+        // Claw will be able to close if the sensor touch is pressed.
         if (position1 <= MIN_POS_1 && position3 >= MAX_POS_3 && sensor.isPressed) {
             servo.s4.setPosition(MIN_POS_4); // 5. Down claw
             position4 -= INCREMENT_4;

@@ -3,10 +3,8 @@ package org.firstinspires.ftc.teamcode.computer_vision.tensorflow;
 public class ObjectsDetected {
 
 public static int DuckBarcode; // The level where the duck should be placed in the HUB
-public static boolean Dir; // The direction the HUB is
 
     public void duckObject() {
-
     }
     public void ballObject() {
     }
@@ -25,12 +23,6 @@ public static boolean Dir; // The direction the HUB is
             DuckBarcode = 1;
         }
     }
-    public void HubDirection(float x, float y){
-        //TODO: Discover the correct x and y axis values and make the robot follow his direction
-        // accordingly
-    }
-
-
     // TODO: Program robot's movement to take duck object and put the freight in the correct
     //  Shipping Level.
 }

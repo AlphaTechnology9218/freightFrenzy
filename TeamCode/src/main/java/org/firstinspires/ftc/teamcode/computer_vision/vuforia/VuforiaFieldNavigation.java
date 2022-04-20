@@ -12,6 +12,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
+import org.firstinspires.ftc.teamcode.abilities.Localization;
 import org.firstinspires.ftc.teamcode.computer_vision.tensorflow.ObjectsDetected;
 
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class VuforiaFieldNavigation extends LinearOpMode {
     private static final float halfTile       = 12 * mmPerInch;
     private static final float oneAndHalfTile = 36 * mmPerInch;
 
-    private OpenGLMatrix lastLocation = null;
+    protected OpenGLMatrix lastLocation = null;
     private VuforiaLocalizer vuforia  = null;
     private VuforiaTrackables targets = null;
 
@@ -51,14 +52,8 @@ public class VuforiaFieldNavigation extends LinearOpMode {
     private float phoneYRotate    = 0;
     private float phoneZRotate    = 0;
 
-    ObjectsDetected dir = new ObjectsDetected();
-
-    float lx, ly;
-
     @Override
     public void runOpMode() {
-
-        dir.HubDirection(lx, ly);
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier
                 ("CameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
@@ -140,8 +135,8 @@ public class VuforiaFieldNavigation extends LinearOpMode {
      * Identify a target by naming it, and setting its position and orientation on the field
      * @param targetIndex - index of the target image
      * @param targetName - name of the target image
-     * @param dx, dy, dz - Target offsets in x,y,z axes
-     * @param rx, ry, rz - Target rotations in x,y,z axes
+     * @param dx,dy,dz - Target offsets in x,y,z axes
+     * @param rx,ry,rz - Target rotations in x,y,z axes
      */
     void identifyTarget(int targetIndex, String targetName, float dx, float dy, float dz, float rx,
                         float ry, float rz) {
@@ -149,6 +144,5 @@ public class VuforiaFieldNavigation extends LinearOpMode {
         aTarget.setName(targetName);
         aTarget.setLocation(OpenGLMatrix.translation(dx, dy, dz)
                 .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, rx, ry, rz)));
-        lx = dx; ly = dy;
     }
 }

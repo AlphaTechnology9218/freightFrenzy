@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.computer_vision.vuforia;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
@@ -12,8 +11,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
-import org.firstinspires.ftc.teamcode.abilities.Localization;
-import org.firstinspires.ftc.teamcode.computer_vision.tensorflow.ObjectsDetected;
+//import org.firstinspires.ftc.teamcode.abilities.Localization;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +65,7 @@ public class VuforiaFieldNavigation extends LinearOpMode {
 
         targets = this.vuforia.loadTrackablesFromAsset("FreightFrenzy");
 
-        List<VuforiaTrackable> allTrackables = new ArrayList<>();
+        List<VuforiaTrackable> allTrackables = new ArrayList<VuforiaTrackable>();
         allTrackables.addAll(targets);
 
         identifyTarget(0, "Blue Storage",       -halfField,  oneAndHalfTile, mmTargetHeight, 90, 0, 90);

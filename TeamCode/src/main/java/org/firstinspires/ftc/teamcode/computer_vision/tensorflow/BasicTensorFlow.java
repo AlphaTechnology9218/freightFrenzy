@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.computer_vision.tensorflow;
 
 import android.annotation.SuppressLint;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import java.util.List;
@@ -11,8 +13,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.Came
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 
-@TeleOp(name = "Base do Tensor Flow", group = "Computer Vision")
-public class BaseTensorFlow extends LinearOpMode {
+@Disabled
+@Autonomous(name = "Base do Tensor Flow", group = "Computer Vision")
+public class BasicTensorFlow extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "FreightFrenzy_BCDM.tflite";
     private static final String[] LABELS = {
             "Ball",

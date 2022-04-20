@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 @Autonomous(name = "Claw Encoders", group = "Hardware Configuration")
 @Disabled
-public class ClawEncoders extends LinearOpMode {
+public class SetupClawEncoders extends LinearOpMode {
     private DcMotor mRA, mLA;
     public int pRA, pLA;
     /**************************************************************************

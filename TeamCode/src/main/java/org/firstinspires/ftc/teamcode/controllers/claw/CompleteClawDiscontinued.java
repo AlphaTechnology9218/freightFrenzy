@@ -2,10 +2,12 @@ package org.firstinspires.ftc.teamcode.controllers.claw;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.robot_components.ServoComponents;
 
 @Disabled
+@TeleOp(name = "Complete Claw Control (Discontinued)", group = "Controllers")
 public class CompleteClawDiscontinued extends LinearOpMode {
 
     static final double INCREMENT_S1 = 0.01; // amount to slew servo each CYCLE_MS cycle
@@ -39,7 +41,7 @@ public class CompleteClawDiscontinued extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        servo.setupServos();
+        servo.mapServos();
         initialControl();
 
         waitForStart();

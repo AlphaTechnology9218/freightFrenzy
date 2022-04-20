@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.controllers.claw;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -19,6 +20,7 @@ import org.firstinspires.ftc.teamcode.robot_components.ServoComponents;
  * 8. Up claw                                                    *
  *****************************************************************/
 
+@Autonomous(name = "Autonomous Claw Control", group = "Controllers")
 public class CompleteClawAutonomous extends LinearOpMode {
 
     static final double START_POS_1 = 0.5;
@@ -43,52 +45,44 @@ public class CompleteClawAutonomous extends LinearOpMode {
 
     double position1, position2, position3, position4;
 
-    Servo s1, s2, s3, s4;
     ServoComponents servo = new ServoComponents();
     SensorTouch sensor = new SensorTouch();
 
     @Override
     public void runOpMode() {
         servo.init();
-        setStartPos();
-        setupServos();
+        startPosition();
 
-        s3.setPosition(MIN_POS_3);     // 1. Down claw
+        servo.s3.setPosition(MIN_POS_3);     // 1. Down claw
         position3 -= INCREMENT_3;
         if (position3 <= MIN_POS_3) {
-            s1.setPosition(MAX_POS_1); // 2. Open claw
+            servo.s1.setPosition(MAX_POS_1); // 2. Open claw
             position1 += INCREMENT_1;
         }
         if (position1 >= MAX_POS_1) {
-            s1.setPosition(MIN_POS_1); // 3. Close claw
+            servo.s1.setPosition(MIN_POS_1); // 3. Close claw
             position1 -= INCREMENT_1;
-            s3.setPosition(MAX_POS_3); // 4. Up claw
+            servo.s3.setPosition(MAX_POS_3); // 4. Up claw
             position3 += INCREMENT_3;
         }
         // Claw will be able to close if the sensor touch is pressed
         if (position1 <= MIN_POS_1 && position3 >= MAX_POS_3 && sensor.isPressed) {
-            s4.setPosition(MIN_POS_4); // 5. Down claw
+            servo.s4.setPosition(MIN_POS_4); // 5. Down claw
             position4 -= INCREMENT_4;
         }
         if (position4 <= MIN_POS_4) {
-            s1.setPosition(MAX_POS_1); // 6. Open claw
+            servo.s1.setPosition(MAX_POS_1); // 6. Open claw
             position1 += INCREMENT_1;
         }
         if (position1 >= MAX_POS_1) {
-            s1.setPosition(MIN_POS_1); // 7. Close claw
-            s4.setPosition(MIN_POS_4); // 8. Up claw
+            servo.s1.setPosition(MIN_POS_1); // 7. Close claw
+            servo.s4.setPosition(MIN_POS_4); // 8. Up claw
         }
     }
-    void setStartPos() {
-        s1.setPosition(START_POS_1);
-        s2.setPosition(START_POS_2);
-        s3.setPosition(START_POS_3);
-        s4.setPosition(START_POS_4);
-    }
-    void setupServos() {
-        s1 = servo.completeServos.get(0); // main claw control
-        s2 = servo.completeServos.get(1); // claw point control
-        s3 = servo.completeServos.get(2); // main arm control
-        s4 = servo.completeServos.get(3); // support control
+    void startPosition() {
+        servo.s1.setPosition(START_POS_1);
+        servo.s2.setPosition(START_POS_2);
+        servo.s3.setPosition(START_POS_3);
+        servo.s4.setPosition(START_POS_4);
     }
 }

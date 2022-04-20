@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.computer_vision.vuforia;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -22,7 +23,7 @@ import static org.firstinspires.ftc.robotcore.external.navigation.AxesOrder.YZX;
 import static org.firstinspires.ftc.robotcore.external.navigation.AxesReference.EXTRINSIC;
 import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection.BACK;
 
-@TeleOp(name = "Vuforia Navigation using RC Phone Camera", group = "Computer Vision")
+@Autonomous(name = "Vuforia Navigation Phone Camera", group = "Computer Vision")
 public class VuforiaFieldNavigation extends LinearOpMode {
     private static final VuforiaLocalizer.CameraDirection CAMERA_CHOICE = BACK;
     private static final boolean PHONE_IS_PORTRAIT = false;

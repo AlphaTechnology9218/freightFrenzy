@@ -42,7 +42,5 @@ public class HardwareTeleOp extends OpMode {
     }
 
     @Override
-    public void loop() {
-
-    }
+    public void loop() { assert true; }
 }

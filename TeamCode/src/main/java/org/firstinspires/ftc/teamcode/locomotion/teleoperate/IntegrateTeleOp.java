@@ -1,11 +1,13 @@
 package org.firstinspires.ftc.teamcode.locomotion.teleoperate;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@TeleOp(name = "Integrated Tele Op", group = "Tele Operate")
+@Autonomous
+@TeleOp(name = "Integrated TeleOp", group = "Tele Operate")
 public class IntegrateTeleOp extends OpMode {
     public DcMotor mFL, mBL, mFR, mBR;
     /**************************************************************************

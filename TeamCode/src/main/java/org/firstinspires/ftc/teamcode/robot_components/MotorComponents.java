@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.robot_components;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -10,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Disabled
+@Autonomous(name = "Motor Components", group = "Robot Components")
 public class MotorComponents extends OpMode {
     public DcMotor mFL, mBL, mFR, mBR, objectMotor;
     /**************************************************************************
@@ -26,8 +28,7 @@ public class MotorComponents extends OpMode {
     }
 
     @Override
-    public void loop() {
-    }
+    public void loop() { assert true; }
 
     /**
      * @param powLF - front left motor power

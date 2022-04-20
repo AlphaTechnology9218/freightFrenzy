@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.computer_vision.tensorflow;
 
 import android.annotation.SuppressLint;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -14,8 +15,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
 
-@TeleOp(name = "TensorFlow Object Detection Webcam", group = "Computer Vision")
-@Disabled
+@Autonomous(name = "TensorFlow Object Detection Webcam", group = "Computer Vision")
 public class TensorFlowObjectDetectionWebcam extends LinearOpMode {
     /* Note: This sample uses the all-objects Tensor Flow model (FreightFrenzy_BCDM.tflite), which contains
      * the following 4 detectable objects

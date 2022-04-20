@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.abilities.SleepRobot;
 import org.firstinspires.ftc.teamcode.robot_components.ServoComponents;
 
-@TeleOp(name = "Complete Claw Control", group = "Controllers")
+@TeleOp(name = "TeleOperate Claw Control", group = "Controllers")
 public class CompleteClawTeleOperate extends OpMode {
     protected boolean act1, act2, act3, act4 = true;
 
@@ -19,7 +19,7 @@ public class CompleteClawTeleOperate extends OpMode {
     SleepRobot sleep = new SleepRobot();
 
     @Override
-    public void init() { startPosition(); }
+    public void init() { startPosition(); servo.init(); }
 
     @Override
     public void loop() {
@@ -29,12 +29,11 @@ public class CompleteClawTeleOperate extends OpMode {
         supportControl();
     }
     protected void startPosition() {
-        servo.completeServos.get(0).setPosition(POS1);
-        servo.completeServos.get(1).setPosition(POS2);
-        servo.completeServos.get(2).setPosition(POS3);
-        servo.completeServos.get(3).setPosition(POS4);
+        servo.s1.setPosition(POS1);
+        servo.s2.setPosition(POS2);
+        servo.s3.setPosition(POS3);
+        servo.s4.setPosition(POS4);
     }
-
     protected void mainClawControl() {
         if (act1 && gamepad2.y) {
             servo.completeServos.get(0).setPosition(1);

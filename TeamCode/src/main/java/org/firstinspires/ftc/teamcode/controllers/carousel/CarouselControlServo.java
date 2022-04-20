@@ -8,38 +8,32 @@ import org.firstinspires.ftc.teamcode.abilities.SleepRobot;
 @TeleOp(name = "Servo Carousel Control", group = "Controllers")
 public class CarouselControlServo extends OpMode {
     private Servo servoDuck;
-    public boolean atv;
+    public boolean act;
     /**************************************************************************
     * servoDuck - servo to take down the ducks                                *
-    * atv - activate the servo                                                *
+    * act - activate the servo                                                *
     ***************************************************************************/
+    SleepRobot sleep = new SleepRobot();
+
     @Override
     public void init() {
-        telemetry.addData("Status", "Initialized");
+        telemetry.addData("Status: ", "Initialized");
         servoDuck = hardwareMap.get(Servo.class, "servoDuck");
     }
 
     @Override
-    public void start() {
-        atv = true;
-    }
+    public void start() { act = true; }
 
     @Override
-    public void loop() {
-        takeDownDuck();
-    }
+    public void loop() { takeDownDuck(); }
 
     @Override
-    public void stop() {
-        telemetry.addData("Status", "Finished");
-    }
+    public void stop() { telemetry.addData("Status", "Finished"); }
 
     private void takeDownDuck() {
-        SleepRobot sleep = new SleepRobot();
-
-        if (gamepad2.y && atv) {
+        if (gamepad2.y && act) {
             servoDuck.setPosition(1);
-            atv = false;
+            act = false;
             sleep.robotSleeping(200);
          } else if (gamepad2.y) {
             servoDuck.setPosition(0);

@@ -7,8 +7,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.robot_components.MotorComponents;
 
-@Autonomous(name = "Locomotion Encoders", group = "Hardware Configuration")
 @Disabled
+@Autonomous(name = "Locomotion Encoders", group = "Hardware Configuration")
 public class MotorEncodersSetup extends LinearOpMode {
     MotorComponents motor = new MotorComponents();
     private int pFL, pBL, pFR, pBR;
@@ -55,8 +55,6 @@ public class MotorEncodersSetup extends LinearOpMode {
         motor.mBR.setPower(vel);
 
         while (opModeIsActive() && motor.mFL.isBusy() && motor.mBL.isBusy() && motor.mFR.isBusy()
-                && motor.mBR.isBusy()) {
-            idle();
-        }
+                && motor.mBR.isBusy()) { idle(); }
     }
 }

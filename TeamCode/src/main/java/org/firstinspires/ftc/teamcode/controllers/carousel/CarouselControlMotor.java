@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.abilities.SleepRobot;
 @TeleOp(name = "Motor Carousel Control", group = "Controllers")
 
 public class CarouselControlMotor extends OpMode {
-    private DcMotor leftDuck, rightDuck;
+    public DcMotor leftDuck, rightDuck;
     public boolean atv;
     /**************************************************************************
      * leftDuck, rightDuck - motors to take down the ducks                    *

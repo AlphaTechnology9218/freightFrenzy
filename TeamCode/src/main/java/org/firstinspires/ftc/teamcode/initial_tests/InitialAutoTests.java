@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.teamcode.abilities.Localization;
 import org.firstinspires.ftc.teamcode.computer_vision.tensorflow.ObjectsDetected;
 import org.firstinspires.ftc.teamcode.controllers.carousel.CarouselControlMotor;
+import org.firstinspires.ftc.teamcode.controllers.claw.CompleteClawAutonomous;
 import org.firstinspires.ftc.teamcode.locomotion.hardware.MotorEncodersSetup;
 
 @Autonomous(name = "Test Autonomous", group = "Autonomous")
@@ -13,6 +14,7 @@ public class InitialAutoTests extends LinearOpMode {
     MotorEncodersSetup robot = new MotorEncodersSetup(); // access robot components configuration
     CarouselControlMotor carousel = new CarouselControlMotor();
     Localization GPS = new Localization();
+    CompleteClawAutonomous claw = new CompleteClawAutonomous();
 
     boolean Dir; // The direction the HUB is
     boolean BotSide; // The alliance the robot belongs.
@@ -51,17 +53,13 @@ public class InitialAutoTests extends LinearOpMode {
         }
         else robot.moveRobot(0, 0, 200, 200, 1);
         sleep(5000);
+
         switch (ObjectsDetected.DuckBarcode){
             case 1:
-                //TODO:Program the claw to place the duck in the first level
-                break;
-            case 2:
-                //TODO:Program the claw to place the duck in the second level
-                assert true;
-                break;
             case 3:
-                //TODO:Program the claw to place the duck in the third level
-                assert false;
+            case 2:
+                claw.runOpMode();
+                //TODO: Adjust the claw to place the duck in the second level
                 break;
             default:
         }
@@ -69,8 +67,6 @@ public class InitialAutoTests extends LinearOpMode {
     }
 
     public void pointToCarousel() {
-
-
         robot.moveRobot(50, 50,-50,-50, 1);
         sleep(5000);
         goingToCarousel();
@@ -89,11 +85,12 @@ public class InitialAutoTests extends LinearOpMode {
         straightToTheDeposit();
     }
 
-    public void straightToTheDeposit() {robot.moveRobot(100, 100,100,100, 1);}
+    public void straightToTheDeposit() {
+        robot.moveRobot(100, 100,100,100, 1);
+    }
 
-    public void HubDirection(){
+    public void HubDirection() {
 
-        // TODO: Discover the correct x and y axis values and make the robot follow his direction
-        //  accordingly
+        // TODO: Discover the correct x and y axis values and make the robot follow his direction accordingly
     }
 }

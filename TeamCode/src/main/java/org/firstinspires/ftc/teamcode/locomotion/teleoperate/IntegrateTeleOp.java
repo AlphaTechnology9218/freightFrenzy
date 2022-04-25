@@ -71,7 +71,7 @@ public class IntegrateTeleOp extends OpMode {
     // reverse round
     private void round() {
         if (gamepad1.left_bumper) {
-            motorPower(-1, -1, -1, -1);
+            motorPower(-1, -1, 1, 1);
         }
         if (gamepad1.right_bumper) {
             motorPower(1, 1, -1, -1);

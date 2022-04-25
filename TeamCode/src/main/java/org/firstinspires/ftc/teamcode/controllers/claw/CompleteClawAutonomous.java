@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.controllers.claw;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.abilities.SensorTouch;
 import org.firstinspires.ftc.teamcode.robot_components.ServoComponents;

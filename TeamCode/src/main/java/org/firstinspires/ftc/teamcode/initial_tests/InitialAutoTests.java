@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.controllers.carousel.CarouselControlMotor;
 import org.firstinspires.ftc.teamcode.controllers.claw.CompleteClawAutonomous;
 import org.firstinspires.ftc.teamcode.locomotion.hardware.MotorEncodersSetup;
 
-@Autonomous(name = "Test Autonomous", group = "Autonomous")
+@Autonomous(name = "Test Autonomous", group = "Tests")
 public class InitialAutoTests extends LinearOpMode {
     MotorEncodersSetup robot = new MotorEncodersSetup(); // access robot components configuration
     CarouselControlMotor carousel = new CarouselControlMotor();
@@ -30,9 +30,7 @@ public class InitialAutoTests extends LinearOpMode {
         if (opModeIsActive()) {
             while (opModeIsActive()) {
                 straightToTheHub();
-            }
-            telemetry.update();
-        }
+            } telemetry.update(); }
     }
 
     /* Dir logic
@@ -90,7 +88,6 @@ public class InitialAutoTests extends LinearOpMode {
     }
 
     public void HubDirection() {
-
         // TODO: Discover the correct x and y axis values and make the robot follow his direction accordingly
     }
 }

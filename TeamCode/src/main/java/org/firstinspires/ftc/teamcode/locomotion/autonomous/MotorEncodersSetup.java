@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.locomotion.hardware;
+package org.firstinspires.ftc.teamcode.locomotion.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -12,12 +12,12 @@ import org.firstinspires.ftc.teamcode.robot_components.MotorComponents;
 public class MotorEncodersSetup extends LinearOpMode {
     MotorComponents motor = new MotorComponents();
     private int pFL, pBL, pFR, pBR;
-     /*************************************************************************
+    /*************************
      * pFL - front left motor position                                        *
      * pBL - back left motor position                                         *
      * pFR - front right motor position                                       *
      * pBR - back right motor position                                        *
-     **************************************************************************/
+     **************************/
 
     @Override
     public void runOpMode() {

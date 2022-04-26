@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.Servo;
 
 /***********************
- * Autonomous Control step-by-step:                              *
+ * Autonomous Carousel Control step-by-step:                     *
  *                                                               *
  * 1. Start duck                                                 *
  * 2. Down duck                                                  *
@@ -15,12 +15,18 @@ import com.qualcomm.robotcore.hardware.Servo;
 @Autonomous(name = "Autonomous Claw Control", group = "Controllers")
 public class AutonomousCarouselControl extends LinearOpMode {
     private Servo servoDuck;
+    public double position;
 
     static final double INCREMENT = 0.01;
     static final double MAX_POS = 1;
     static final double MIN_POS = 0;
-
-    double position;
+    /*********************
+     * servoDuck - servo component                               *
+     * INCREMENT - amount to slew servo each cycle               *
+     * MAX_POS - maximum rotational position                     *
+     * MIN_POS - minimum rotational position                     *
+     * position - current servo position                         *
+     * ********************/
 
     @Override
     public void runOpMode() {

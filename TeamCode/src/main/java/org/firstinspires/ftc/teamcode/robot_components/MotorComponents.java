@@ -14,12 +14,13 @@ import java.util.List;
 @Autonomous(name = "Motor Components", group = "Robot Components")
 public class MotorComponents extends OpMode {
     public DcMotor mFL, mBL, mFR, mBR, objectMotor;
-    /**************************************************************************
+    /**************************
      * mFL - front left motor                                                 *
      * mBL - back left motor                                                  *
      * mFR - front right motor                                                *
      * mBR - back right motor                                                 *
-     * ************************************************************************/
+     * objectMotor - used in list to store robot components                   *
+     * ************************/
 
     @Override
     public void init() {

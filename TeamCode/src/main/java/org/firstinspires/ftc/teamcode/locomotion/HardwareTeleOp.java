@@ -34,7 +34,7 @@ public class HardwareTeleOp extends OpMode {
      * @param powRF - front right motor power
      * @param powRB - back right motor power
      */
-    void motorPower(float powLF, float powLB, float powRF, float powRB) {
+    public void motorPower(float powLF, float powLB, float powRF, float powRB) {
         mFL.setPower(powLF);
         mBL.setPower(powLB);
         mFR.setPower(powRF);

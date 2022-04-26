@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.abilities.SensorTouch;
 import org.firstinspires.ftc.teamcode.robot_components.ServoComponents;
 
-/*****************************************************************
+/***********************
  * Autonomous Control step-by-step:                              *
  *                                                               *
  * 1. Down claw                                                  *
@@ -17,7 +17,7 @@ import org.firstinspires.ftc.teamcode.robot_components.ServoComponents;
  * 6. Open claw                                                  *
  * 7. Close claw                                                 *
  * 8. Up claw                                                    *
- *****************************************************************/
+ ***********************/
 
 @Autonomous(name = "Autonomous Claw Control", group = "Controllers")
 public class CompleteClawAutonomous extends LinearOpMode {
@@ -42,10 +42,20 @@ public class CompleteClawAutonomous extends LinearOpMode {
     static final double MAX_POS_4 = 1;
     static final double MIN_POS_4 = 0;
 
-    double position1, position2, position3, position4;
+    public double position1, position2, position3, position4;
 
     ServoComponents servo = new ServoComponents();
     SensorTouch sensor = new SensorTouch();
+
+    /***********************
+     * START_POS - initial position for each servo                   *
+     * INCREMENT - amount to slew servo each cycle                   *
+     * MAX_POS   - maximum rotational position                       *
+     * MIN_POS   - minimum rotational position                       *
+     * position  - current servo position                            *
+     * servo     - robot servo components                            *
+     * sensor    - robot sensor component                            *
+     ***********************/
 
     @Override
     public void runOpMode() {

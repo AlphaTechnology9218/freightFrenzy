@@ -17,13 +17,14 @@ public class SetupWebcam extends LinearOpMode {
     public WebcamName robotWebcam = hardwareMap.get(WebcamName.class, "Robot Webcam");
     public OpenCvCamera camera = OpenCvCameraFactory.getInstance().createWebcam(robotWebcam,
             cameraMonitorViewId);
-
     private boolean act = true;
-    /*********************************************************************************************
+
+    /*******************************
      * cameraMonitorViewId - live camera preview to display on the Robot Controller screen       *
      * robotWebcam - robot webcam                                                                *
      * camera - create a supported camera                                                        *
-     *********************************************************************************************/
+     * act - active and detective the camera                                                     *
+     *******************************/
 
     @Override
     public void runOpMode() {

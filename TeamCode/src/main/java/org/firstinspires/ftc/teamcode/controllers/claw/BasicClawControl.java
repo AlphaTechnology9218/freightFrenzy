@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.abilities.SensorDistance;
-import org.firstinspires.ftc.teamcode.locomotion.hardware.SetupClawEncoders;
+import org.firstinspires.ftc.teamcode.locomotion.autonomous.SetupClawEncoders;
 
 @Disabled
 @TeleOp(name = "Basic Claw Control", group = "Controllers")
@@ -18,7 +18,7 @@ public class BasicClawControl extends OpMode {
     // TODO: Review the necessity of Distance Sensors -> we do not have at FabLab
 
     SetupClawEncoders claw = new SetupClawEncoders();
-    /**************************************************************************
+    /**************************
      * rightS - right servo                                                   *
      * leftS - left servo                                                     *
      * atvM - servo activation                                                *
@@ -26,7 +26,7 @@ public class BasicClawControl extends OpMode {
      *                                                                        *
      * Distsensor - object to access distance sensor                          *
      * claw - object to robot claw object                                     *
-     **************************************************************************/
+     **************************/
 
     @Override
     public void init() {

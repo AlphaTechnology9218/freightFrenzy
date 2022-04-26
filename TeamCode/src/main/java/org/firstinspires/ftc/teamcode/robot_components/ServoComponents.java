@@ -14,6 +14,11 @@ import java.util.List;
 public class ServoComponents extends OpMode {
     public Servo s1, s2, s3, s4, objectServo;
     public List<Servo> completeServos = new ArrayList<>();
+    /**************************
+     * s1, s2, s3, s4 - robot servo components                                *
+     * objectMotor - used in list to store robot components                   *
+     * completeServos - complete list of named servos                         *
+     * ************************/
 
     @Override
     public void init() { mapServos(); setupServos(); }

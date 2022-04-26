@@ -10,13 +10,18 @@ import org.firstinspires.ftc.teamcode.robot_components.ServoComponents;
 public class CompleteClawTeleOperate extends OpMode {
     protected boolean act1, act2, act3, act4 = true;
 
-    static final double POS1 = 0.5;
-    static final double POS2 = 0.5;
-    static final double POS3 = 0.5;
-    static final double POS4 = 0.5;
+    static final double START_POS_1 = 0.5;
+    static final double START_POS_2 = 0.5;
+    static final double START_POS_3 = 0.5;
+    static final double START_POS_4 = 0.5;
 
     ServoComponents servo = new ServoComponents();
     SleepRobot sleep = new SleepRobot();
+    /***********************
+     * START_POS - initial position for each servo                   *
+     * servo     - robot servo components                            *
+     * sensor    - robot sensor component                            *
+     ***********************/
 
     @Override
     public void init() {
@@ -32,10 +37,10 @@ public class CompleteClawTeleOperate extends OpMode {
         supportControl();
     }
     protected void startPosition() {
-        servo.s1.setPosition(POS1);
-        servo.s2.setPosition(POS2);
-        servo.s3.setPosition(POS3);
-        servo.s4.setPosition(POS4);
+        servo.s1.setPosition(START_POS_1);
+        servo.s2.setPosition(START_POS_2);
+        servo.s3.setPosition(START_POS_3);
+        servo.s4.setPosition(START_POS_4);
     }
     protected void mainClawControl() {
         if (act1 && gamepad2.y) {

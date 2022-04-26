@@ -19,7 +19,10 @@ public class CompleteClawTeleOperate extends OpMode {
     SleepRobot sleep = new SleepRobot();
 
     @Override
-    public void init() { startPosition(); servo.init(); }
+    public void init() {
+        startPosition();
+        servo.init();
+    }
 
     @Override
     public void loop() {

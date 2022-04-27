@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.abilities.Localization;
 import org.firstinspires.ftc.teamcode.computer_vision.tensorflow.ObjectsDetected;
 import org.firstinspires.ftc.teamcode.controllers.carousel.CarouselControlMotor;
 import org.firstinspires.ftc.teamcode.controllers.claw.CompleteClawAutonomous;
-import org.firstinspires.ftc.teamcode.locomotion.hardware.MotorEncodersSetup;
+import org.firstinspires.ftc.teamcode.locomotion.autonomous.MotorEncodersSetup;
 
 @Autonomous(name = "Test Autonomous", group = "Tests")
 public class InitialAutoTests extends LinearOpMode {
@@ -73,7 +73,7 @@ public class InitialAutoTests extends LinearOpMode {
     public void goingToCarousel() {
         robot.moveRobot(500, 500,500,500, 1);
         sleep(5000);
-        carousel.rightDuck.setPower(1);
+        //carousel.rightDuck.setPower(1);
         walkingSideways();
     }
 

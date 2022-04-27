@@ -61,7 +61,7 @@ public class BasicTeleOp extends OpMode {
     }
 
     private void axisZ() {
-        motors.motorPower(0, gamepad1.left_trigger,0, gamepad1.right_trigger);
+        motors.motorPower(0, gamepad1.left_trigger,gamepad1.left_trigger,0 );
         motors.motorPower(gamepad1.right_trigger, 0, 0, gamepad1.right_trigger);
     }
 

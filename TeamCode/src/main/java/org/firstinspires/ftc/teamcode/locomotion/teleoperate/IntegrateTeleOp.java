@@ -79,7 +79,7 @@ public class IntegrateTeleOp extends OpMode {
     }
 
     private void axisZ() {
-        motorPower(0, gamepad1.left_trigger, gamepad1.right_trigger, 0);
+        motorPower(0, gamepad1.left_trigger,gamepad1.left_trigger,0 );
         motorPower(gamepad1.right_trigger, 0, 0, gamepad1.right_trigger);
     }
 

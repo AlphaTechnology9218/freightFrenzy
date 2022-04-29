@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.controllers.carousel.CarouselControlMotor;
+import org.firstinspires.ftc.teamcode.controllers.carousel.CarouselControl;
 
 @TeleOp(name = "Integrated TeleOp", group = "Tele Operate")
 public class IntegrateTeleOp extends OpMode {
@@ -17,7 +17,7 @@ public class IntegrateTeleOp extends OpMode {
      * mBR - back right motor                                                 *
      **************************************************************************/
     private final ElapsedTime runtime = new ElapsedTime();
-    CarouselControlMotor duckDown = new CarouselControlMotor();
+    CarouselControl duckDown = new CarouselControl();
 
     @Override
     public void init() {

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.locomotion;
+package org.firstinspires.ftc.teamcode.locomotion.teleoperate;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -6,7 +6,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 @TeleOp(name = "TeleOp Robot Components", group = "Tele Operate")
 public class HardwareTeleOp extends OpMode {
-
     public DcMotor mFL, mBL, mFR, mBR;
     /**************************************************************************
      * mFL - front left motor                                                 *

@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.teamcode.abilities.SleepRobot;
 
 @TeleOp(name = "Motor Carousel Control", group = "Controllers")
-public class CarouselControlMotor extends OpMode {
+public class CarouselControl extends OpMode {
     public DcMotor mDD;
     public boolean act = true;
     /*****************************************************************

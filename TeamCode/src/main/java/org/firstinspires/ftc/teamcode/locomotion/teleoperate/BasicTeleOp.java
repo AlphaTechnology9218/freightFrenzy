@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.locomotion;
+package org.firstinspires.ftc.teamcode.locomotion.teleoperate;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -31,12 +31,12 @@ public class BasicTeleOp extends OpMode {
         telemetry.update();
     }
 
-    private void axisXY() {
+    public void axisXY() {
         motors.motorPower(-gamepad1.left_stick_x, gamepad1.left_stick_x, gamepad1.left_stick_x, -gamepad1.left_stick_x);
         motors.motorPower(-gamepad1.left_stick_y, -gamepad1.left_stick_y, -gamepad1.left_stick_y, -gamepad1.left_stick_y);
     }
 
-    private void axisXYAdjusts() {
+    public void axisXYAdjusts() {
         if (gamepad1.dpad_up) {
             motors.motorPower(0.75f, 0.75f, 0.75f, 0.75f);
         }
@@ -51,7 +51,7 @@ public class BasicTeleOp extends OpMode {
         }
     }
 
-    private void round() {
+    public void round() {
         if (gamepad1.left_bumper) {
             motors.motorPower(1, 1, -1, -1);
         }
@@ -60,12 +60,12 @@ public class BasicTeleOp extends OpMode {
         }
     }
 
-    private void axisZ() {
+    public void axisZ() {
         motors.motorPower(0, gamepad1.left_trigger,gamepad1.left_trigger,0 );
         motors.motorPower(gamepad1.right_trigger, 0, 0, gamepad1.right_trigger);
     }
 
-    private void roundX() {
+    public void roundX() {
         if (gamepad1.b) {
             motors.motorPower(1,1,0,0);
         }

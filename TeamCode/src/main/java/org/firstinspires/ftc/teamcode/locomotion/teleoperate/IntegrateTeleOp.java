@@ -5,16 +5,19 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.controllers.carousel.CarouselControlMotor;
+
 @TeleOp(name = "Integrated TeleOp", group = "Tele Operate")
 public class IntegrateTeleOp extends OpMode {
     public DcMotor mFL, mBL, mFR, mBR;
-    /**************************
+    /**************************************************************************
      * mFL - front left motor                                                 *
      * mBL - back left motor                                                  *
      * mFR - front right motor                                                *
      * mBR - back right motor                                                 *
-     **************************/
+     **************************************************************************/
     private final ElapsedTime runtime = new ElapsedTime();
+    CarouselControlMotor duckDown = new CarouselControlMotor();
 
     @Override
     public void init() {
@@ -42,8 +45,10 @@ public class IntegrateTeleOp extends OpMode {
         axisXY();
         axisXYAdjusts();
         round();
-        axisZ();
+        diagonal();
         roundX();
+
+        duckDown.takeDownDuck();
 
         telemetry.update();
     }
@@ -78,7 +83,7 @@ public class IntegrateTeleOp extends OpMode {
         }
     }
 
-    private void axisZ() {
+    private void diagonal() {
         motorPower(0, gamepad1.left_trigger,gamepad1.left_trigger,0 );
         motorPower(gamepad1.right_trigger, 0, 0, gamepad1.right_trigger);
     }

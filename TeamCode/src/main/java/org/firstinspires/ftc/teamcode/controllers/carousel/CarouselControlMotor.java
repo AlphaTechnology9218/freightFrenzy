@@ -8,20 +8,19 @@ import org.firstinspires.ftc.teamcode.abilities.SleepRobot;
 @TeleOp(name = "Motor Carousel Control", group = "Controllers")
 public class CarouselControlMotor extends OpMode {
     public DcMotor mDD;
-    public boolean act;
-    /***********************
+    public boolean act = true;
+    /*****************************************************************
      * mDD - motor to take down the duck                             *
      * act - activate the motor                                      *
-     ***********************/
+     *****************************************************************/
 
     @Override
     public void init() {
         telemetry.addData("Status", "Initialized");
-        mDD = hardwareMap.get(DcMotor.class, "Duck Motor");
-    }
 
-    @Override
-    public void start() { act = true; }
+        mDD = hardwareMap.get(DcMotor.class, "Duck Motor");
+        mDD.setDirection(DcMotor.Direction.REVERSE); // Round the motor in the correct direction
+    }
 
     @Override
     public void loop() { takeDownDuck(); }
@@ -29,17 +28,17 @@ public class CarouselControlMotor extends OpMode {
     @Override
     public void stop() { telemetry.addData("Status", "Finished"); }
 
-    private void takeDownDuck() {
+    public void takeDownDuck() {
         SleepRobot sleep = new SleepRobot();
 
-        if (gamepad2.y && act) {
+        if (gamepad1.y && act) {
             mDD.setPower(1); // Down Duck
             act = false;
-            sleep.robotSleeping(200);
-        } else if (gamepad2.y) {
+            sleep.robotSleeping(500);
+        } else if (gamepad1.y) {
             mDD.setPower(0);
             act = true;
-            sleep.robotSleeping(200);
+            sleep.robotSleeping(500);
         }
     }
 }

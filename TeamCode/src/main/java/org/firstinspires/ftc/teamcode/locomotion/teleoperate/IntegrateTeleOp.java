@@ -17,11 +17,10 @@ public class IntegrateTeleOp extends OpMode {
      * mBR - back right motor                                                 *
      **************************************************************************/
     private final ElapsedTime runtime = new ElapsedTime();
-    CarouselControl duckDown = new CarouselControl();
 
     @Override
     public void init() {
-        telemetry.addData("Status", "TeleOp Iniciado");
+        telemetry.addData("Status", "TeleOp Initialized");
 
         // change robot's components names
         mFL = hardwareMap.get(DcMotor.class, "mFL");
@@ -48,13 +47,11 @@ public class IntegrateTeleOp extends OpMode {
         diagonal();
         roundX();
 
-        duckDown.takeDownDuck();
-
         telemetry.update();
     }
 
     private void axisXY() {
-        motorPower(-gamepad1.left_stick_x, gamepad1.left_stick_x, gamepad1.left_stick_x, -gamepad1.left_stick_x);
+        motorPower(gamepad1.left_stick_x, -gamepad1.left_stick_x, -gamepad1.left_stick_x, gamepad1.left_stick_x);
         motorPower(-gamepad1.left_stick_y, -gamepad1.left_stick_y, -gamepad1.left_stick_y, -gamepad1.left_stick_y);
     }
 

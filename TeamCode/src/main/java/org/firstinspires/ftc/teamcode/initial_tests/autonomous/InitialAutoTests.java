@@ -28,6 +28,8 @@ public class InitialAutoTests extends LinearOpMode {
         waitForStart();
 
         if (opModeIsActive()) {
+            HubDirection();
+
             while (opModeIsActive()) {
                 straightToTheHub();
             } telemetry.update(); }

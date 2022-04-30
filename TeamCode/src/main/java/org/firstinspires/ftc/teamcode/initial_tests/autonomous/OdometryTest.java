@@ -1,22 +1,19 @@
 package org.firstinspires.ftc.teamcode.initial_tests.autonomous;
 
+import com.acmerobotics.roadrunner.control.PIDCoefficients;
+import com.acmerobotics.roadrunner.control.PIDFController;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import org.firstinspires.ftc.teamcode.odometry.control.DriveConstants;
 
-@TeleOp(name = "Odometry Test", group = "Autonomous Tests")
+@TeleOp(name = "Odometers Test", group = "Autonomous Tests")
 public class OdometryTest extends LinearOpMode {
-    static DriveConstants con = new DriveConstants();
     DcMotorEx motor;
     double currentVelocity;
     double maxVelocity = 0.0;
 
-
-
-    static final double P = con.F * 0.1;
-    static final double I = 0.1 * P;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -29,9 +26,29 @@ public class OdometryTest extends LinearOpMode {
                 maxVelocity = currentVelocity;
             }
 
+            simpleTest();
+
             telemetry.addData("current velocity", currentVelocity);
             telemetry.addData("maximum velocity", maxVelocity);
             telemetry.update();
         }
+    }
+
+    void straightFowardTest(){
+
+    }
+
+    void splineTest(){
+
+    }
+
+    void simpleTest(){
+        PIDCoefficients coeficients = new PIDCoefficients(DriveConstants.MOTOR_VELO_PID.p,
+                DriveConstants.MOTOR_VELO_PID.i, DriveConstants.MOTOR_VELO_PID.d);
+        PIDFController control = new PIDFController(coeficients);
+        if(gamepad1.a){
+            control.setTargetPosition(150);
+        }
+
     }
 }

@@ -57,7 +57,7 @@ public class InitialAutoTests extends LinearOpMode {
             case 3:
             case 2:
                 claw.runOpMode();
-                //TODO: Adjust the claw to place the duck in the second level
+                //TODO: Adjust the claw to place the duck in the correct levels
                 break;
             default:
         }
@@ -88,6 +88,16 @@ public class InitialAutoTests extends LinearOpMode {
     }
 
     public void HubDirection() {
-        // TODO: Discover the correct x and y axis values and make the robot follow his direction accordingly
+        double refX = 0;
+        double refY = 0;
+
+        if(GPS.LX < refX){
+            BotSide = true;
+            Dir = !(GPS.LY < refY);
+        }
+        else{
+            BotSide = false;
+            Dir = GPS.LY < refY;
+        }
     }
 }

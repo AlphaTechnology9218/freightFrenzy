@@ -49,6 +49,5 @@ public class OdometryTest extends LinearOpMode {
         if(gamepad1.a){
             control.setTargetPosition(150);
         }
-
     }
 }

@@ -43,9 +43,9 @@ public class OdometryTest extends LinearOpMode {
     }
 
     void simpleTest(){
-        PIDCoefficients coeficients = new PIDCoefficients(DriveConstants.MOTOR_VELO_PID.p,
+        PIDCoefficients coefficients = new PIDCoefficients(DriveConstants.MOTOR_VELO_PID.p,
                 DriveConstants.MOTOR_VELO_PID.i, DriveConstants.MOTOR_VELO_PID.d);
-        PIDFController control = new PIDFController(coeficients);
+        PIDFController control = new PIDFController(coefficients);
         if(gamepad1.a){
             control.setTargetPosition(150);
         }

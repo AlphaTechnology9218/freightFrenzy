@@ -3,23 +3,29 @@ package org.firstinspires.ftc.teamcode.locomotion.teleoperate;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 @TeleOp(name = "TeleOp Robot Components", group = "Tele Operate")
 public class HardwareTeleOp extends OpMode {
-    public DcMotor mFL, mBL, mFR, mBR;
-    /**************************************************************************
+    public DcMotor mFL;
+    public DcMotor mBL;
+    public DcMotor mFR;
+    public DcMotor mBR;
+    /**************************
      * mFL - front left motor                                                 *
      * mBL - back left motor                                                  *
      * mFR - front right motor                                                *
      * mBR - back right motor                                                 *
-     **************************************************************************/
+     **************************/
 
-    @Override
-    public void init() {
-        mFL = hardwareMap.get(DcMotor.class, "motorFL");
-        mBL = hardwareMap.get(DcMotor.class, "motorBL");
-        mFR = hardwareMap.get(DcMotor.class, "motorFR");
-        mBR = hardwareMap.get(DcMotor.class, "motorBR");
+    public void init(HardwareMap ahwMap) {
+        HardwareMap hwMap =  null;
+        hwMap = ahwMap;
+
+        mFL = ahwMap.get(DcMotor.class, "motorFL");
+        mBL = ahwMap.get(DcMotor.class, "motorBL");
+        mFR = ahwMap.get(DcMotor.class, "motorFR");
+        mBR = ahwMap.get(DcMotor.class, "motorBR");
 
         mFL.setDirection(DcMotor.Direction.REVERSE);
         mBL.setDirection(DcMotor.Direction.REVERSE);
@@ -28,6 +34,8 @@ public class HardwareTeleOp extends OpMode {
     }
 
     /**
+     * Set power for each robot motor
+     *
      * @param powLF - front left motor power
      * @param powLB - back left motor power
      * @param powRF - front right motor power
@@ -41,5 +49,11 @@ public class HardwareTeleOp extends OpMode {
     }
 
     @Override
-    public void loop() { assert true; }
+    public void init() {
+    }
+
+    @Override
+    public void loop() {
+
+    }
 }

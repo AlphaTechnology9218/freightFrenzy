@@ -3,16 +3,15 @@ package org.firstinspires.ftc.teamcode.locomotion.teleoperate;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.Hardware;
 
 @TeleOp(name = "TeleOp Base Controllers", group = "Tele Operate")
-public class BasicTeleOp extends OpMode {
+public class BasicTeleOp extends HardwareTeleOp {
     private final ElapsedTime runtime = new ElapsedTime();
     HardwareTeleOp motors = new HardwareTeleOp(); // access robot components
 
     @Override
     public void init() {
-        telemetry.addData("Status", "TeleOp Initialized");
-        motors.init();
     }
 
     @Override
@@ -72,10 +71,5 @@ public class BasicTeleOp extends OpMode {
         if (gamepad1.x) {
             motors.motorPower(0,0,1,1);
         }
-    }
-
-    @Override
-    public void stop() {
-        telemetry.addData("Status", "TeleOp Finished");
     }
 }

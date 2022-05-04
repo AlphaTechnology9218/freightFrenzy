@@ -21,7 +21,7 @@ public class DriveConstants {
 
         public static double kV = 1.0 / rpmToVelocity(MAX_RPM);
         public static double kA = 0;
-        public static double kStatic = 0; // not change!
+        public static double kStatic = 0; // don't change!
 
         public static double MAX_VEL = 18.543736; // 80% of max velocity
         public static double MAX_ACCEL = 18.543736;

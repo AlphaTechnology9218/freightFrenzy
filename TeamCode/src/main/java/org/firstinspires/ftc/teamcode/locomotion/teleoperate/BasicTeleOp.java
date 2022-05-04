@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name = "TeleOp Base Controllers", group = "Tele Operate")
-public class BasicTeleOp extends HardwareTeleOp {
+public class BasicTeleOp extends OpMode {
     private final ElapsedTime runtime = new ElapsedTime();
     HardwareTeleOp motors = new HardwareTeleOp(); // access robot components
 

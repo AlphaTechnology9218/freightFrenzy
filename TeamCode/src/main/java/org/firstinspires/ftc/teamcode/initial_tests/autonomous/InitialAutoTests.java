@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.initial_tests.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
 import org.firstinspires.ftc.teamcode.abilities.Localization;
 import org.firstinspires.ftc.teamcode.computer_vision.tensorflow.ObjectsDetected;
 import org.firstinspires.ftc.teamcode.controllers.carousel.CarouselControl;
@@ -8,10 +10,11 @@ import org.firstinspires.ftc.teamcode.controllers.claw.CompleteClawAutonomous;
 import org.firstinspires.ftc.teamcode.locomotion.autonomous.MotorEncodersSetup;
 
 @Autonomous(name = "Initial Autonomous Test", group = "Autonomous Tests")
-public class InitialAutoTests extends MotorEncodersSetup {
+public class InitialAutoTests extends LinearOpMode {
     CarouselControl carousel = new CarouselControl();
     Localization GPS = new Localization();
     CompleteClawAutonomous claw = new CompleteClawAutonomous();
+    MotorEncodersSetup robot = new MotorEncodersSetup();
 
     boolean Dir; // The direction the HUB is
     boolean BotSide; // The alliance the robot belongs.
@@ -39,14 +42,14 @@ public class InitialAutoTests extends MotorEncodersSetup {
      *  false == robot belongs to red alliance
      */
     public void moveStorageUnit(){
-        moveRobot(500, 500,500,500, 1);
+        robot.moveRobot(500, 500,500,500, 1);
     }
 
     public void straightToTheHub(){
         if(Dir) {
-            moveRobot(200, 200,0,0, 1);
+            robot.moveRobot(200, 200,0,0, 1);
         }
-        else moveRobot(0, 0, 200, 200, 1);
+        else robot.moveRobot(0, 0, 200, 200, 1);
         sleep(5000);
 
         switch (ObjectsDetected.DuckBarcode){
@@ -62,26 +65,26 @@ public class InitialAutoTests extends MotorEncodersSetup {
     }
 
     public void pointToCarousel() {
-        moveRobot(50, 50,-50,-50, 1);
+        robot.moveRobot(50, 50,-50,-50, 1);
         sleep(5000);
         goingToCarousel();
     }
 
     public void goingToCarousel() {
-        moveRobot(500, 500,500,500, 1);
+        robot.moveRobot(500, 500,500,500, 1);
         sleep(5000);
         carousel.mDD.setPower(1);
         walkingSideways();
     }
 
     public void walkingSideways() {
-        moveRobot(-100, 100,100,-100, 1);
+        robot.moveRobot(-100, 100,100,-100, 1);
         sleep(5000);
         straightToTheDeposit();
     }
 
     public void straightToTheDeposit() {
-        moveRobot(100, 100,100,100, 1);
+        robot.moveRobot(100, 100,100,100, 1);
     }
 
     public void HubDirection() {

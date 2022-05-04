@@ -11,7 +11,6 @@ import org.firstinspires.ftc.teamcode.odometry.control.SampleMecanumDrive;
 @TeleOp(name = "Odometers Test", group = "Autonomous Tests")
 public class OdometryTest extends LinearOpMode {
     DcMotorEx motor;
-    //SampleMecanumDrive drive = new SampleMecanumDrive;
     double currentVelocity;
     double maxVelocity = 0.0;
 

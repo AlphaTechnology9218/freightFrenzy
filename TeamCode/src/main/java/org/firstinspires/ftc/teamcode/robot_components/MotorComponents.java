@@ -3,16 +3,13 @@ package org.firstinspires.ftc.teamcode.robot_components;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
-
 import java.util.Arrays;
 import java.util.List;
 
 @Disabled
 @Autonomous(name = "Motor Components", group = "Robot Components")
-public class MotorComponents extends OpMode {
+public class MotorComponents extends LinearOpMode {
     public DcMotor mFL, mBL, mFR, mBR, objectMotor;
     /**************************
      * mFL - front left motor                                                 *
@@ -21,15 +18,10 @@ public class MotorComponents extends OpMode {
      * mBR - back right motor                                                 *
      * objectMotor - used in list to store robot components                   *
      * ************************/
-
-    @Override
-    public void init() {
+    public void runOpMode() throws InterruptedException {
         renameMotor();
         resetEncoders();
     }
-
-    @Override
-    public void loop() { assert true; }
 
     /**
      * @param powLF - front left motor power
@@ -52,15 +44,15 @@ public class MotorComponents extends OpMode {
     }
 
     public void renameMotor() {
+
         List<DcMotor> motorComponents = Arrays.asList(mFL, mBL, mFR, mBR);
         for (int i = 0; i< motorComponents.size(); i++) {
             objectMotor = motorComponents.get(i);
-            objectMotor = hardwareMap.get(DcMotor.class, "motor " + motorComponents.get(i));
+            objectMotor = hardwareMap.dcMotor.get("motor " + motorComponents.get(i));
         }
         mFL.setDirection(DcMotor.Direction.REVERSE);
         mBL.setDirection(DcMotor.Direction.REVERSE);
         mFR.setDirection(DcMotor.Direction.FORWARD);
         mBR.setDirection(DcMotor.Direction.FORWARD);
     }
-
 }

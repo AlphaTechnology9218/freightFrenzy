@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.locomotion.teleoperate;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Hardware;
 
 @TeleOp(name = "TeleOp Base Controllers", group = "Tele Operate")
 public class BasicTeleOp extends HardwareTeleOp {

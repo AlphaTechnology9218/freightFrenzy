@@ -3,14 +3,12 @@ package org.firstinspires.ftc.teamcode.locomotion.teleoperate;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Hardware;
 
 import org.firstinspires.ftc.teamcode.controllers.carousel.CarouselControl;
 
 @TeleOp(name = "Integrated TeleOp", group = "Controllers")
-public class IntegrateTeleOp extends OpMode {
+public class IntegrateTeleOp extends BasicTeleOp {
     public DcMotor mFL, mBL, mFR, mBR;
     /**************************
      * mFL - front left motor                                                 *
@@ -98,19 +96,6 @@ public class IntegrateTeleOp extends OpMode {
         if (gamepad1.x) {
             motorPower(0,0,1,1);
         }
-    }
-
-    /**
-     * @param powFL - front left motor power
-     * @param powBL - back left motor power
-     * @param powFR - front right motor power
-     * @param powBR - back right motor power
-     */
-    void motorPower(float powFL, float powBL, float powFR, float powBR) {
-        mFL.setPower(powFL);
-        mBL.setPower(powBL);
-        mFR.setPower(powFR);
-        mBR.setPower(powBR);
     }
 
     @Override

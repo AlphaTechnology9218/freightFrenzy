@@ -1,22 +1,19 @@
 package org.firstinspires.ftc.teamcode.controllers.claw.basics;
-
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Servo;
-
 import org.firstinspires.ftc.teamcode.abilities.SleepRobot;
-
+import org.firstinspires.ftc.teamcode.robot_components.ServoComponents;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 public class ClawTeleOp extends OpMode {
     public Servo mCC, cPC, mAC, spC;
-
     protected boolean act1, act2, act3, act4 = true;
-
     static final double START_POS_1 = 0.5;
     static final double START_POS_2 = 0.5;
     static final double START_POS_3 = 0.5;
     static final double START_POS_4 = 0.5;
-
     SleepRobot sleep = new SleepRobot();
-
     /*****************************************************************
      * START_POS - initial position for each servo                   *
      * mCC - Main Claw Control                                       *
@@ -24,7 +21,6 @@ public class ClawTeleOp extends OpMode {
      * mAC - Main Arm Control                                        *
      * spC - Support Control                                         *
      *****************************************************************/
-
     @Override
     public void init() {
         mCC = hardwareMap.get(Servo.class, "servo mCC");
@@ -32,7 +28,6 @@ public class ClawTeleOp extends OpMode {
         mAC = hardwareMap.get(Servo.class, "servo mAC");
         spC = hardwareMap.get(Servo.class, "servo spC");
     }
-
     @Override
     public void loop() {
         startPosition();
@@ -41,7 +36,6 @@ public class ClawTeleOp extends OpMode {
         mainClawControl();
         clawPointControl();
     }
-
     public void startPosition() {
         mCC.setPosition(START_POS_1);
         cPC.setPosition(START_POS_2);

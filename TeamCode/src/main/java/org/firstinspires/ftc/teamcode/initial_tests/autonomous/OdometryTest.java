@@ -1,7 +1,11 @@
 package org.firstinspires.ftc.teamcode.initial_tests.autonomous;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.roadrunner.control.PIDCoefficients;
 import com.acmerobotics.roadrunner.control.PIDFController;
+import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -10,43 +14,31 @@ import org.firstinspires.ftc.teamcode.odometry.control.SampleMecanumDrive;
 
 @TeleOp(name = "Odometers Test", group = "Autonomous Tests")
 public class OdometryTest extends LinearOpMode {
-    DcMotorEx motor;
-    double currentVelocity;
-    double maxVelocity = 0.0;
-
+    public static double Distance = 60;
 
     @Override
     public void runOpMode() throws InterruptedException {
+
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+
+        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+
+        Trajectory trajectory = drive.trajectoryBuilder(new Pose2d())
+                .forward(Distance)
+                .build();
+
         waitForStart();
-        while (opModeIsActive()) {
-            currentVelocity = motor.getVelocity();
 
-            if (currentVelocity > maxVelocity) {
-                maxVelocity = currentVelocity;
-            }
+        if (isStopRequested()) return;
 
-            simpleTest();
+        drive.followTrajectory(trajectory);
 
-            telemetry.addData("current velocity", currentVelocity);
-            telemetry.addData("maximum velocity", maxVelocity);
-            telemetry.update();
-        }
-    }
+        Pose2d poseEstimate = drive.getPoseEstimate();
+        telemetry.addData("finalX", poseEstimate.getX());
+        telemetry.addData("finalY", poseEstimate.getY());
+        telemetry.addData("finalHeading", poseEstimate.getHeading());
+        telemetry.update();
 
-    void straightFowardTest(){
-
-    }
-
-    void splineTest(){
-
-    }
-
-    void simpleTest(){
-        PIDCoefficients coefficients = new PIDCoefficients(DriveConstants.MOTOR_VELO_PID.p,
-                DriveConstants.MOTOR_VELO_PID.i, DriveConstants.MOTOR_VELO_PID.d);
-        PIDFController control = new PIDFController(coefficients);
-        if(gamepad1.a){
-            control.setTargetPosition(150);
-        }
+        while (!isStopRequested() && opModeIsActive());
     }
 }

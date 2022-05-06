@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @TeleOp(name = "TeleOp Base Controllers", group = "Tele Operate")
 public class BasicTeleOp extends OpMode {
     private final ElapsedTime runtime = new ElapsedTime();
-    HardwareTeleOp motors = new HardwareTeleOp();
+    HardwareTeleOp motors = new HardwareTeleOp(hardwareMap);
 
     @Override
     public void init() {

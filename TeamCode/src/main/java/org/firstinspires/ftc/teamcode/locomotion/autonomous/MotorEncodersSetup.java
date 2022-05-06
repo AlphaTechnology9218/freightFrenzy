@@ -8,8 +8,9 @@ import org.firstinspires.ftc.teamcode.robot_components.MotorComponents;
 
 @Disabled
 @Autonomous(name = "Locomotion Encoders", group = "Hardware Configuration")
-public class MotorEncodersSetup extends LinearOpMode {
-    MotorComponents motor = new MotorComponents();
+public class MotorEncodersSetup extends LinearOpMode{
+    MotorComponents motor = new MotorComponents(hardwareMap);
+
     private int pFL, pBL, pFR, pBR;
     /**************************************************************************
      * pFL - front left motor position                                        *
@@ -17,12 +18,10 @@ public class MotorEncodersSetup extends LinearOpMode {
      * pFR - front right motor position                                       *
      * pBR - back right motor position                                        *
      **************************************************************************/
-
     @Override
     public void runOpMode() {
 
     }
-
     /**
      * Move robot using encoders while motors aren't busy
      * @param tLF - left front target
@@ -32,7 +31,6 @@ public class MotorEncodersSetup extends LinearOpMode {
      * @param vel - velocity
      */
     public void moveRobot(int tLF, int tBL, int tRF, int tBR, double vel) {
-        motor.renameMotor();
         motor.resetEncoders();
 
         pBR += tRF;

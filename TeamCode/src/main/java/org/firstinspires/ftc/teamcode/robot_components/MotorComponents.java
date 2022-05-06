@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,7 +21,6 @@ public class MotorComponents extends LinearOpMode {
      * objectMotor - used in list to store robot components                   *
      * ************************/
     public void runOpMode() throws InterruptedException {
-        renameMotor();
         resetEncoders();
     }
 
@@ -43,7 +44,7 @@ public class MotorComponents extends LinearOpMode {
         mBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
-    public void renameMotor() {
+    public MotorComponents(HardwareMap hardwareMap) {
 
         List<DcMotor> motorComponents = Arrays.asList(mFL, mBL, mFR, mBR);
         for (int i = 0; i< motorComponents.size(); i++) {

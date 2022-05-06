@@ -17,21 +17,18 @@ public class HardwareTeleOp extends OpMode {
      * mFR - front right motor                                                *
      * mBR - back right motor                                                 *
      **************************************************************************/
+public HardwareTeleOp(HardwareMap hardwareMap){
 
-    public void init(HardwareMap ahwMap) {
-        HardwareMap hwMap =  null;
-        hwMap = ahwMap;
+    mFL = hardwareMap.get(DcMotor.class, "motorFL");
+    mBL = hardwareMap.get(DcMotor.class, "motorBL");
+    mFR = hardwareMap.get(DcMotor.class, "motorFR");
+    mBR = hardwareMap.get(DcMotor.class, "motorBR");
 
-        mFL = ahwMap.get(DcMotor.class, "motorFL");
-        mBL = ahwMap.get(DcMotor.class, "motorBL");
-        mFR = ahwMap.get(DcMotor.class, "motorFR");
-        mBR = ahwMap.get(DcMotor.class, "motorBR");
-
-        mFL.setDirection(DcMotor.Direction.REVERSE);
-        mBL.setDirection(DcMotor.Direction.REVERSE);
-        mFR.setDirection(DcMotor.Direction.FORWARD);
-        mBR.setDirection(DcMotor.Direction.FORWARD);
-    }
+    mFL.setDirection(DcMotor.Direction.REVERSE);
+    mBL.setDirection(DcMotor.Direction.REVERSE);
+    mFR.setDirection(DcMotor.Direction.FORWARD);
+    mBR.setDirection(DcMotor.Direction.FORWARD);
+}
 
     /**
      * Set power for each robot motor

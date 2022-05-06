@@ -4,7 +4,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
-
 import org.firstinspires.ftc.teamcode.robot_components.MotorComponents;
 
 @Disabled
@@ -21,8 +20,7 @@ public class MotorEncodersSetup extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        motor.renameMotor();
-        motor.resetEncoders();
+
     }
 
     /**
@@ -34,6 +32,9 @@ public class MotorEncodersSetup extends LinearOpMode {
      * @param vel - velocity
      */
     public void moveRobot(int tLF, int tBL, int tRF, int tBR, double vel) {
+        motor.renameMotor();
+        motor.resetEncoders();
+
         pBR += tRF;
         pBL += tLF;
         pFR += tBR;

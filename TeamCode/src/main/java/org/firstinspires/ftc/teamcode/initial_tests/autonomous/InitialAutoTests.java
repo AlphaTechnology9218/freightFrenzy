@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.initial_tests.autonomous;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.abilities.Localization;
 import org.firstinspires.ftc.teamcode.computer_vision.tensorflow.ObjectsDetected;
@@ -11,18 +11,16 @@ import org.firstinspires.ftc.teamcode.locomotion.autonomous.MotorEncodersSetup;
 
 @Autonomous(name = "Initial Autonomous Test", group = "Autonomous Tests")
 public class InitialAutoTests extends LinearOpMode {
-    MotorEncodersSetup robot = new MotorEncodersSetup(); // access robot components configuration
     CarouselControl carousel = new CarouselControl();
     Localization GPS = new Localization();
     CompleteClawAutonomous claw = new CompleteClawAutonomous();
+    MotorEncodersSetup robot = new MotorEncodersSetup();
 
     boolean Dir; // The direction the HUB is
     boolean BotSide; // The alliance the robot belongs.
 
     @Override
     public void runOpMode() {
-        robot.runOpMode();
-
         telemetry.addData(">", "Press Play to Begin");
         telemetry.update();
         waitForStart();

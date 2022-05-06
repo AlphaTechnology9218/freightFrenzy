@@ -11,12 +11,12 @@ public class HardwareTeleOp extends OpMode {
     public DcMotor mBL;
     public DcMotor mFR;
     public DcMotor mBR;
-    /**************************
+    /**************************************************************************
      * mFL - front left motor                                                 *
      * mBL - back left motor                                                  *
      * mFR - front right motor                                                *
      * mBR - back right motor                                                 *
-     **************************/
+     **************************************************************************/
 
     public void init(HardwareMap ahwMap) {
         HardwareMap hwMap =  null;

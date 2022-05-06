@@ -11,12 +11,12 @@ import org.firstinspires.ftc.teamcode.controllers.carousel.CarouselControl;
 @TeleOp(name = "Integrated TeleOp", group = "Controllers")
 public class IntegrateTeleOp extends BasicTeleOp {
     public DcMotor mFL, mBL, mFR, mBR;
-    /**************************
+    /**************************************************************************
      * mFL - front left motor                                                 *
      * mBL - back left motor                                                  *
      * mFR - front right motor                                                *
      * mBR - back right motor                                                 *
-     **************************/
+     **************************************************************************/
     private final ElapsedTime runtime = new ElapsedTime();
     CarouselControl carousel = new CarouselControl();
     HardwareTeleOp motors = new HardwareTeleOp(); // access robot components

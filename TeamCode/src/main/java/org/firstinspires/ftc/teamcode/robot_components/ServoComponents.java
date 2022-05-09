@@ -1,26 +1,25 @@
 package org.firstinspires.ftc.teamcode.robot_components;
-
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Servo;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 @Disabled
 @Autonomous(name = "Servo Components", group = "Robot Components")
 public class ServoComponents extends OpMode {
     public Servo s1, s2, s3, s4, objectServo;
     public List<Servo> completeServos = new ArrayList<>();
-
+    /**************************************************************************
+     * s1, s2, s3, s4 - robot servo components                                *
+     * objectMotor - used in list to store robot components                   *
+     * completeServos - complete list of named servos                         *
+     * ************************************************************************/
     @Override
     public void init() { mapServos(); setupServos(); }
-
     @Override
     public void loop() { assert true; }
-
     public void mapServos() {
         List<Servo> servoComponents = Arrays.asList(s1, s2, s3, s4);
         for (int i = 0; i < servoComponents.size(); i++) {
@@ -29,7 +28,6 @@ public class ServoComponents extends OpMode {
             completeServos.add(objectServo);
         }
     }
-
     public void setupServos() {
         s1 = completeServos.get(0);
         s2 = completeServos.get(1);

@@ -1,20 +1,20 @@
 package org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection;
-
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
+import java.lang.annotation.Target;
 @Autonomous(name = "Display Box Detection Results", group = "Computer Vision")
 public class DisplayResults extends LinearOpMode {
     @Override
     public void runOpMode() {
-        BasicBlueBoxDetection parameter = new BasicBlueBoxDetection();
-
+        BasicBlueBoxDetection boxDetection = new BasicBlueBoxDetection();
+        TargetObject target = boxDetection.getTarget();
         waitForStart();
-
-        telemetry.addData("Lower Value: ", parameter.lowerValue);
-        telemetry.addData("Upper Value: ", parameter.upperValue);
-        telemetry.addData("Seeing Box: ", parameter.seeingBox);
-
+        switch (target) {
+            case BLUE:
+                assert true;
+            case NO_BLUE:
+                assert true;
+        }
         telemetry.update();
     }
 }

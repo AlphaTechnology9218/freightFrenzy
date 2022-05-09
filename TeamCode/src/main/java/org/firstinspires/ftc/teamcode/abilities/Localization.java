@@ -23,6 +23,7 @@ public class Localization extends VuforiaFieldNavigation {
             LX = coordinates[0];
             LY = coordinates[1];
             RR = Orientation.getOrientation(lastLocation, EXTRINSIC, XYZ, DEGREES).thirdAngle;
+            //TODO: Change the order of the axis if the localization test presents a problem
         }
     }
 }

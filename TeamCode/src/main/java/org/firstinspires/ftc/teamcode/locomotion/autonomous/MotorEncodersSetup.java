@@ -1,30 +1,27 @@
-package org.firstinspires.ftc.teamcode.locomotion.hardware;
+package org.firstinspires.ftc.teamcode.locomotion.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
-
 import org.firstinspires.ftc.teamcode.robot_components.MotorComponents;
 
 @Disabled
 @Autonomous(name = "Locomotion Encoders", group = "Hardware Configuration")
-public class MotorEncodersSetup extends LinearOpMode {
-    MotorComponents motor = new MotorComponents();
+public class MotorEncodersSetup extends LinearOpMode{
+    MotorComponents motor = new MotorComponents(hardwareMap);
+
     private int pFL, pBL, pFR, pBR;
-     /*************************************************************************
+    /**************************************************************************
      * pFL - front left motor position                                        *
      * pBL - back left motor position                                         *
      * pFR - front right motor position                                       *
      * pBR - back right motor position                                        *
      **************************************************************************/
-
     @Override
     public void runOpMode() {
-        motor.renameMotor();
-        motor.resetEncoders();
-    }
 
+    }
     /**
      * Move robot using encoders while motors aren't busy
      * @param tLF - left front target
@@ -34,6 +31,8 @@ public class MotorEncodersSetup extends LinearOpMode {
      * @param vel - velocity
      */
     public void moveRobot(int tLF, int tBL, int tRF, int tBR, double vel) {
+        motor.resetEncoders();
+
         pBR += tRF;
         pBL += tLF;
         pFR += tBR;

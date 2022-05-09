@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.locomotion.hardware;
+package org.firstinspires.ftc.teamcode.locomotion.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -10,12 +10,12 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class SetupClawEncoders extends LinearOpMode {
     private DcMotor mRA, mLA;
     public int pRA, pLA;
-    /**************************************************************************
+    /**************************
      * mRA - right arm motor                                                  *
      * mLA - left arm motor                                                   *
      * pRA - right motor position                                             *
      * pLA - left motor position                                              *
-     **************************************************************************/
+     **************************/
 
     @Override
     public void runOpMode() {

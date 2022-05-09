@@ -10,6 +10,10 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 public class SensorTouch extends LinearOpMode {
     public boolean isPressed;
     DigitalChannel digitalTouch;
+    /*************************
+     * digitalTouch - digital touch sensor                                   *
+     * isPressed - indicates if sensor is pressed                            *
+     * *************************/
 
     @Override
     public void runOpMode() {
@@ -23,6 +27,7 @@ public class SensorTouch extends LinearOpMode {
             telemetry.update();
         }
     }
+    /* It is HIGH if the button is unpressed. It pulls LOW if the button is pressed. */
     public void controlSensorTouch() {
         if (digitalTouch.getState()) {
             telemetry.addData("Digital Touch: ", "Is not pressed");

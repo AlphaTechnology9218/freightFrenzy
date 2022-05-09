@@ -5,20 +5,21 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@TeleOp(name = "Integrated TeleOp", group = "Tele Operate")
+@TeleOp(name = "Integrated TeleOp", group = "Controllers")
 public class IntegrateTeleOp extends OpMode {
     public DcMotor mFL, mBL, mFR, mBR;
-    /**************************
+    /**************************************************************************
      * mFL - front left motor                                                 *
      * mBL - back left motor                                                  *
      * mFR - front right motor                                                *
      * mBR - back right motor                                                 *
-     **************************/
+     **************************************************************************/
     private final ElapsedTime runtime = new ElapsedTime();
 
     @Override
     public void init() {
-        telemetry.addData("Status", "TeleOp Iniciado");
+        //carousel.init();
+        telemetry.addData("Status", "TeleOp Initialized");
 
         // change robot's components names
         mFL = hardwareMap.get(DcMotor.class, "mFL");
@@ -42,18 +43,18 @@ public class IntegrateTeleOp extends OpMode {
         axisXY();
         axisXYAdjusts();
         round();
-        axisZ();
+        diagonal();
         roundX();
 
         telemetry.update();
     }
 
-    private void axisXY() {
+    public void axisXY() {
         motorPower(-gamepad1.left_stick_x, gamepad1.left_stick_x, gamepad1.left_stick_x, -gamepad1.left_stick_x);
         motorPower(-gamepad1.left_stick_y, -gamepad1.left_stick_y, -gamepad1.left_stick_y, -gamepad1.left_stick_y);
     }
 
-    private void axisXYAdjusts() {
+    public void axisXYAdjusts() {
         if (gamepad1.dpad_up) {
             motorPower(0.75f, 0.75f, 0.75f, 0.75f);
         }
@@ -69,7 +70,7 @@ public class IntegrateTeleOp extends OpMode {
     }
 
     // reverse round
-    private void round() {
+    public void round() {
         if (gamepad1.left_bumper) {
             motorPower(-1, -1, 1, 1);
         }
@@ -78,12 +79,12 @@ public class IntegrateTeleOp extends OpMode {
         }
     }
 
-    private void axisZ() {
-        motorPower(0, gamepad1.left_trigger, gamepad1.right_trigger, 0);
+    public void diagonal() {
+        motorPower(0, gamepad1.left_trigger,gamepad1.left_trigger,0);
         motorPower(gamepad1.right_trigger, 0, 0, gamepad1.right_trigger);
     }
 
-    private void roundX() {
+    public void roundX() {
         if (gamepad1.b) {
             motorPower(1,1,0,0);
         }
@@ -92,17 +93,11 @@ public class IntegrateTeleOp extends OpMode {
         }
     }
 
-    /**
-     * @param powFL - front left motor power
-     * @param powBL - back left motor power
-     * @param powFR - front right motor power
-     * @param powBR - back right motor power
-     */
-    void motorPower(float powFL, float powBL, float powFR, float powBR) {
-        mFL.setPower(powFL);
-        mBL.setPower(powBL);
-        mFR.setPower(powFR);
-        mBR.setPower(powBR);
+    public void motorPower(float powLF, float powLB, float powRF, float powRB) {
+        mFL.setPower(powLF);
+        mBL.setPower(powLB);
+        mFR.setPower(powRF);
+        mBR.setPower(powRB);
     }
 
     @Override

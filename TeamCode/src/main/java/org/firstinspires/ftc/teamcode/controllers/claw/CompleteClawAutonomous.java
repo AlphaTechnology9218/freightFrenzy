@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.abilities.SensorTouch;
-import org.firstinspires.ftc.teamcode.robot_components.ServoComponents;
+import org.firstinspires.ftc.teamcode.robot_components.ServoComponentsComplexClaw;
 
 /***********************
  * Autonomous Control step-by-step:                              *
@@ -44,7 +44,7 @@ public class CompleteClawAutonomous extends LinearOpMode {
 
     public double position1, position2, position3, position4;
 
-    ServoComponents servo = new ServoComponents();
+    ServoComponentsComplexClaw servo = new ServoComponentsComplexClaw();
     SensorTouch sensor = new SensorTouch();
 
     /***********************

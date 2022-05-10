@@ -1,59 +1,46 @@
 package org.firstinspires.ftc.teamcode.robot_components;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import java.util.Arrays;
-import java.util.List;
-
-@Disabled
-@Autonomous(name = "Motor Components", group = "Robot Components")
-public class MotorComponents extends LinearOpMode {
-    public DcMotor mFL, mBL, mFR, mBR, objectMotor;
-    /**************************
+public class MotorComponents extends OpMode {
+    public DcMotor mFL, mBL, mFR, mBR, mDDR, mDDL;
+    /**************************************************************************
      * mFL - front left motor                                                 *
      * mBL - back left motor                                                  *
      * mFR - front right motor                                                *
      * mBR - back right motor                                                 *
-     * objectMotor - used in list to store robot components                   *
-     * ************************/
-    public void runOpMode() throws InterruptedException {
-        resetEncoders();
-    }
+     * mDDR - motors to take the duck down right                              *
+     * mDDL - motors to take the duck down left                               *
+     * ************************************************************************/
 
-    /**
-     * @param powLF - front left motor power
-     * @param powLB - back left motor power
-     * @param powRF - front right motor power
-     * @param powRB - back right motor power
-     */
-    public void motorPower(float powLF, float powLB, float powRF, float powRB) {
-        mFL.setPower(powLF);
-        mBL.setPower(powLB);
-        mFR.setPower(powRF);
-        mBR.setPower(powRB);
-    }
+    public void init(HardwareMap hardwareMap) {
+        /* Motors for robot's locomotion */
+        mFL = hardwareMap.get(DcMotor.class, "motorFL");
+        mBL = hardwareMap.get(DcMotor.class, "motorBL");
+        mFR = hardwareMap.get(DcMotor.class, "motorFR");
+        mBR = hardwareMap.get(DcMotor.class, "motorBR");
 
-    public void resetEncoders() {
-        mFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        mBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        mFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        mBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-    }
-
-    public MotorComponents(HardwareMap hardwareMap) {
-
-        List<DcMotor> motorComponents = Arrays.asList(mFL, mBL, mFR, mBR);
-        for (int i = 0; i< motorComponents.size(); i++) {
-            objectMotor = motorComponents.get(i);
-            objectMotor = hardwareMap.dcMotor.get("motor " + motorComponents.get(i));
-        }
         mFL.setDirection(DcMotor.Direction.REVERSE);
         mBL.setDirection(DcMotor.Direction.REVERSE);
         mFR.setDirection(DcMotor.Direction.FORWARD);
         mBR.setDirection(DcMotor.Direction.FORWARD);
+
+        /* Motors for duck down control*/
+        mDDR = hardwareMap.get(DcMotor.class, "motorDDR");
+        mDDL = hardwareMap.get(DcMotor.class, "motorDDL");
+
+        mDDR.setDirection(DcMotor.Direction.REVERSE);
+        mDDL.setDirection(DcMotor.Direction.REVERSE);
+    }
+
+    @Override
+    public void init() {
+    }
+
+    @Override
+    public void loop() {
     }
 }

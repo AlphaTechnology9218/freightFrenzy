@@ -1,37 +1,32 @@
 package org.firstinspires.ftc.teamcode.robot_components;
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-@Disabled
-@Autonomous(name = "Servo Components", group = "Robot Components")
+
 public class ServoComponents extends OpMode {
-    public Servo s1, s2, s3, s4, objectServo;
-    public List<Servo> completeServos = new ArrayList<>();
+    private Servo sOC, sUD;
     /**************************************************************************
-     * s1, s2, s3, s4 - robot servo components                                *
-     * objectMotor - used in list to store robot components                   *
-     * completeServos - complete list of named servos                         *
+     * mFL - front left motor                                                 *
+     * mBL - back left motor                                                  *
+     * mFR - front right motor                                                *
+     * mBR - back right motor                                                 *
+     * mDDR - motors to take the duck down right                              *
+     * mDDL - motors to take the duck down left                               *
      * ************************************************************************/
-    @Override
-    public void init() { mapServos(); setupServos(); }
-    @Override
-    public void loop() { assert true; }
-    public void mapServos() {
-        List<Servo> servoComponents = Arrays.asList(s1, s2, s3, s4);
-        for (int i = 0; i < servoComponents.size(); i++) {
-            objectServo = servoComponents.get(i);
-            objectServo = hardwareMap.get(Servo.class, "servo " + servoComponents.get(i));
-            completeServos.add(objectServo);
-        }
+
+    public void init(HardwareMap hardwareMap) {
+        sOC = hardwareMap.get(Servo.class, "sOC");
+        sUD = hardwareMap.get(Servo.class, "sUD");
     }
-    public void setupServos() {
-        s1 = completeServos.get(0);
-        s2 = completeServos.get(1);
-        s3 = completeServos.get(2);
-        s4 = completeServos.get(3);
+
+    @Override
+    public void init() {
+        sOC.setDirection(Servo.Direction.FORWARD);
+        sUD.setDirection(Servo.Direction.FORWARD);
+    }
+
+    @Override
+    public void loop() {
     }
 }

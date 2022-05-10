@@ -10,10 +10,10 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 public class SensorTouch extends LinearOpMode {
     public boolean isPressed;
     DigitalChannel digitalTouch;
-    /*************************
+    /*************************************************************************
      * digitalTouch - digital touch sensor                                   *
      * isPressed - indicates if sensor is pressed                            *
-     * *************************/
+     * ***********************************************************************/
 
     @Override
     public void runOpMode() {

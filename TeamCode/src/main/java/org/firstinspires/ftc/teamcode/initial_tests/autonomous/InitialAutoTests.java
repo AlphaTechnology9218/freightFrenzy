@@ -6,9 +6,11 @@ import org.firstinspires.ftc.teamcode.computer_vision.tensorflow.ObjectsDetected
 import org.firstinspires.ftc.teamcode.controllers.carousel.CarouselControl;
 import org.firstinspires.ftc.teamcode.controllers.claw.CompleteClawAutonomous;
 import org.firstinspires.ftc.teamcode.locomotion.autonomous.MotorEncodersSetup;
+import org.firstinspires.ftc.teamcode.robot_components.MotorComponents;
+
 @Autonomous(name = "Initial Autonomous Test", group = "Autonomous Tests")
 public class InitialAutoTests extends LinearOpMode {
-    CarouselControl carousel = new CarouselControl();
+    MotorComponents motor = new MotorComponents();
     Localization GPS = new Localization();
     CompleteClawAutonomous claw = new CompleteClawAutonomous();
     MotorEncodersSetup robot = new MotorEncodersSetup();
@@ -17,6 +19,7 @@ public class InitialAutoTests extends LinearOpMode {
     //TODO: Add box comments for the variables
     @Override
     public void runOpMode() {
+        motor.init(hardwareMap);
         telemetry.addData(">", "Press Play to Begin");
         telemetry.update();
         waitForStart();
@@ -63,7 +66,8 @@ public class InitialAutoTests extends LinearOpMode {
     public void goingToCarousel() {
         robot.moveRobot(500, 500,500,500, 1);
         sleep(5000);
-        carousel.mDD.setPower(1);
+        motor.mDDR.setPower(1);
+        motor.mDDR.setPower(1);
         walkingSideways();
     }
     public void walkingSideways() {

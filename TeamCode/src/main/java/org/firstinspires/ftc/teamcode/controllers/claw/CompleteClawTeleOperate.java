@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.abilities.SleepRobot;
-import org.firstinspires.ftc.teamcode.robot_components.ServoComponents;
+import org.firstinspires.ftc.teamcode.robot_components.ServoComponentsComplexClaw;
 
 @TeleOp(name = "TeleOperate Claw Control", group = "Controllers")
 public class CompleteClawTeleOperate extends OpMode {
@@ -15,7 +15,7 @@ public class CompleteClawTeleOperate extends OpMode {
     static final double START_POS_3 = 0.5;
     static final double START_POS_4 = 0.5;
 
-    ServoComponents servo = new ServoComponents();
+    ServoComponentsComplexClaw servo = new ServoComponentsComplexClaw();
     SleepRobot sleep = new SleepRobot();
     /*****************************************************************
      * START_POS - initial position for each servo                   *

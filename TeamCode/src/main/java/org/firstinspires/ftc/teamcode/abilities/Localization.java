@@ -24,7 +24,8 @@ public class Localization extends VuforiaFieldNavigation {
             LY = coordinates[1];
             RR = Orientation.getOrientation(lastLocation, EXTRINSIC, XYZ, DEGREES).thirdAngle;
             //TODO: Change the order of the axis if the localization test presents a problem
+            telemetry.addData("Angle", RR);
+            telemetry.update();
         }
     }
 }
-

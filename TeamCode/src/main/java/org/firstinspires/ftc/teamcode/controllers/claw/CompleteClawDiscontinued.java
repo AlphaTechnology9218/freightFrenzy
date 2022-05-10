@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.robot_components.ServoComponents;
+import org.firstinspires.ftc.teamcode.robot_components.ServoComponentsComplexClaw;
 
 @Disabled
 @TeleOp(name = "Complete Claw Control (Discontinued)", group = "Controllers")
@@ -37,7 +37,7 @@ public class CompleteClawDiscontinued extends LinearOpMode {
     boolean rampUp3 = false;
     boolean rampUp4 = false;
 
-    ServoComponents servo = new ServoComponents();
+    ServoComponentsComplexClaw servo = new ServoComponentsComplexClaw();
 
     @Override
     public void runOpMode() {

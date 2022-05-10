@@ -1,15 +1,14 @@
 package org.firstinspires.ftc.teamcode.initial_tests.tele_operate;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
+
 import org.firstinspires.ftc.teamcode.controllers.carousel.CarouselControl;
 import org.firstinspires.ftc.teamcode.controllers.claw.CompleteClawTeleOperate;
 import org.firstinspires.ftc.teamcode.locomotion.teleoperate.BasicTeleOp;
-import org.firstinspires.ftc.teamcode.locomotion.teleoperate.IntegrateTeleOp;
+
 @TeleOp(name = "Locomotion and Duck Control", group = "TeleOp Tests")
 public class LocomotionDuckControl extends OpMode {
-    IntegrateTeleOp locomotion   = new IntegrateTeleOp();
+    BasicTeleOp locomotion  = new BasicTeleOp();
     CarouselControl carousel     = new CarouselControl();
     CompleteClawTeleOperate claw = new CompleteClawTeleOperate();
     @Override

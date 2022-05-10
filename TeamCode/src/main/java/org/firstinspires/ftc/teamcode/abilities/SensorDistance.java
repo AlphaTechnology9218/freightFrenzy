@@ -11,10 +11,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 public class SensorDistance extends OpMode{
     private DistanceSensor distSensor;
     public double valueDist;
-    /*************************
+    /**************************************************************************
      * distSensor - distance sensor                                           *
      * valueDist - distance value                                             *
-     * ************************/
+     * ************************************************************************/
 
     @Override
     public void init() {

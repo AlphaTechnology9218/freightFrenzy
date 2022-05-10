@@ -8,9 +8,8 @@ import org.firstinspires.ftc.teamcode.robot_components.MotorComponents;
 
 @Disabled
 @Autonomous(name = "Locomotion Encoders", group = "Hardware Configuration")
-public class MotorEncodersSetup extends LinearOpMode{
-    MotorComponents motor = new MotorComponents(hardwareMap);
-
+public class MotorEncodersSetup extends LinearOpMode {
+    MotorComponents motors = new MotorComponents();
     private int pFL, pBL, pFR, pBR;
     /**************************************************************************
      * pFL - front left motor position                                        *
@@ -18,10 +17,10 @@ public class MotorEncodersSetup extends LinearOpMode{
      * pFR - front right motor position                                       *
      * pBR - back right motor position                                        *
      **************************************************************************/
-    @Override
-    public void runOpMode() {
 
-    }
+    @Override
+    public void runOpMode() { motors.init(hardwareMap); }
+
     /**
      * Move robot using encoders while motors aren't busy
      * @param tLF - left front target
@@ -31,29 +30,32 @@ public class MotorEncodersSetup extends LinearOpMode{
      * @param vel - velocity
      */
     public void moveRobot(int tLF, int tBL, int tRF, int tBR, double vel) {
-        motor.resetEncoders();
+        motors.mFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motors.mBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motors.mFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motors.mBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         pBR += tRF;
         pBL += tLF;
         pFR += tBR;
         pFL += tBL;
 
-        motor.mFL.setTargetPosition(pFL);
-        motor.mBL.setTargetPosition(pBL);
-        motor.mFR.setTargetPosition(pFR);
-        motor.mBR.setTargetPosition(pBR);
+        motors.mFL.setTargetPosition(pFL);
+        motors.mBL.setTargetPosition(pBL);
+        motors.mFR.setTargetPosition(pFR);
+        motors.mBR.setTargetPosition(pBR);
 
-        motor.mFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motor.mBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motor.mFR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motor.mBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motors.mFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motors.mBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motors.mFR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motors.mBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        motor.mFL.setPower(vel);
-        motor.mBL.setPower(vel);
-        motor.mFR.setPower(vel);
-        motor.mBR.setPower(vel);
+        motors.mFL.setPower(vel);
+        motors.mBL.setPower(vel);
+        motors.mFR.setPower(vel);
+        motors.mBR.setPower(vel);
 
-        while (opModeIsActive() && motor.mFL.isBusy() && motor.mBL.isBusy() && motor.mFR.isBusy()
-                && motor.mBR.isBusy()) { idle(); }
+        while (opModeIsActive() && motors.mFL.isBusy() && motors.mBL.isBusy() && motors.mFR.isBusy()
+                && motors.mBR.isBusy()) { idle(); }
     }
 }

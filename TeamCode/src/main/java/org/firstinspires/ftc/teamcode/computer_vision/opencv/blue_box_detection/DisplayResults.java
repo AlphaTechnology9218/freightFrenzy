@@ -6,9 +6,12 @@ import java.lang.annotation.Target;
 public class DisplayResults extends LinearOpMode {
     @Override
     public void runOpMode() {
-        BasicBlueBoxDetection boxDetection = new BasicBlueBoxDetection();
-        TargetObject target = boxDetection.getTarget();
+        BasicBlueBoxDetection boxDetection = new BasicBlueBoxDetection(hardwareMap, telemetry);
+
         waitForStart();
+
+        TargetObject target = boxDetection.getTarget();
+
         switch (target) {
             case BLUE:
                 assert true;

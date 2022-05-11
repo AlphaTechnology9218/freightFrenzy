@@ -1,9 +1,12 @@
 package org.firstinspires.ftc.teamcode.abilities;
 
+import androidx.annotation.NonNull;
+
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
@@ -30,20 +33,17 @@ public class SensorIMU extends LinearOpMode {
     public Orientation angles;
     public float degree;
 
-    @Override
-    public void runOpMode() {
+    public void init(HardwareMap hardwareMap){
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
-        MotorComponents motors = new MotorComponents();
-        TeleOpLocomotion move = new TeleOpLocomotion();
-
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
 
         imu = hardwareMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
 
+    }
+    public void runOpMode() {
         waitForStart();
-        motors.init();
-
+        init(hardwareMap);
         while (opModeIsActive()) {
             angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
             degree = angles.firstAngle;
@@ -58,12 +58,6 @@ public class SensorIMU extends LinearOpMode {
             telemetry.addData("Roll", angles.thirdAngle);
 
             telemetry.update();
-
-            if(degree > 0){
-                move.motorPower(-0.14f, -0.5f, 0.12f, 0.5f);
-            } else if (degree < 0){
-                move.motorPower(0.14f, 0.5f, -0.12f, -0.5f);
-            }
         }
     }
 }

@@ -18,6 +18,7 @@ public class TeleOpSchoolProject extends OpMode {
      **************************************************************************/
     private final ElapsedTime runtime = new ElapsedTime();
     MotorComponents motors = new MotorComponents();
+    TeleOpLocomotion move = new TeleOpLocomotion();
 
     @Override
     public void init() {
@@ -41,47 +42,41 @@ public class TeleOpSchoolProject extends OpMode {
     }
 
     public void axisXY() {
-        motorPower(gamepad1.left_stick_x, gamepad1.left_stick_x, gamepad1.left_stick_x , gamepad1.left_stick_x);
-        motorPower(-gamepad1.left_stick_y * 0.6f, -gamepad1.left_stick_y, -gamepad1.left_stick_y* 0.7f, -gamepad1.left_stick_y);
+        move.motorPower(gamepad1.left_stick_x, gamepad1.left_stick_x, gamepad1.left_stick_x , gamepad1.left_stick_x);
+        move.motorPower(-gamepad1.left_stick_y * 0.6f, -gamepad1.left_stick_y, -gamepad1.left_stick_y* 0.7f, -gamepad1.left_stick_y);
     }
 
     public void axisXYAdjusts() {
         if (gamepad1.dpad_up) {
-            motorPower(0.75f, 0.75f, 0.75f, 0.75f);
+            move.motorPower(0.75f, 0.75f, 0.75f, 0.75f);
         }
         if (gamepad1.dpad_down) {
-            motorPower(-0.75f, -0.75f, -0.75f, -0.75f);
+            move.motorPower(-0.75f, -0.75f, -0.75f, -0.75f);
         }
         if (gamepad1.dpad_right) {
-            motorPower(0.75f, -0.75f, -0.75f, 0.75f);
+            move.motorPower(0.75f, -0.75f, -0.75f, 0.75f);
         }
         if (gamepad1.dpad_left) {
-            motorPower(-0.75f, 0.75f, 0.75f, -0.75f);
+            move.motorPower(-0.75f, 0.75f, 0.75f, -0.75f);
         }
     }
 
     // reverse round
     public void round() {
         if (gamepad1.left_bumper) {
-            motorPower(-0.6f, -1, 0.7f, 1);
+            move.motorPower(-0.6f, -1, 0.7f, 1);
         }
         if (gamepad1.right_bumper) {
-            motorPower(0.6f, 1, -0.7f, -1);
+            move.motorPower(0.6f, 1, -0.7f, -1);
         }
     }
     public void roundX() {
         if (gamepad1.b) {
-            motorPower(0.6f,1,0,0);
+            move.motorPower(0.6f,1,0,0);
         }
         if (gamepad1.x) {
-            motorPower(0,0,0.7f,1);
+            move.motorPower(0,0,0.7f,1);
         }
-    }
-    public void motorPower(float powLF, float powLB, float powRF, float powRB) {
-        mFL.setPower(powLF);
-        mBL.setPower(powLB);
-        mFR.setPower(powRF);
-        mBR.setPower(powRB);
     }
 
     @Override

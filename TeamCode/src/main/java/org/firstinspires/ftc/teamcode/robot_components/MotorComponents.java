@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class MotorComponents extends OpMode {
+public class MotorComponents {
     public DcMotor mFL, mBL, mFR, mBR, mDDR, mDDL;
     /**************************************************************************
      * mFL - front left motor                                                 *
@@ -34,13 +34,5 @@ public class MotorComponents extends OpMode {
 
         mDDR.setDirection(DcMotor.Direction.REVERSE);
         mDDL.setDirection(DcMotor.Direction.REVERSE);
-    }
-
-    @Override
-    public void init() {
-    }
-
-    @Override
-    public void loop() {
     }
 }

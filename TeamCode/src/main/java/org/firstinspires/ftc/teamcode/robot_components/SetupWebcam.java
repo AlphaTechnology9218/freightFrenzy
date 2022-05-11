@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.robot_components;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.openftc.easyopencv.OpenCvCamera;
@@ -10,20 +11,24 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 
 @Autonomous(name = "OpenCV Setup Webcam", group = "Robot Components")
 public class SetupWebcam extends LinearOpMode {
-    int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
-            "cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-
-    public WebcamName robotWebcam = hardwareMap.get(WebcamName.class, "Robot Webcam");
-    public OpenCvCamera camera = OpenCvCameraFactory.getInstance().createWebcam(robotWebcam,
-            cameraMonitorViewId);
-    private boolean act = true;
-
+    public WebcamName robotWebcam;
+    public OpenCvCamera camera;
+    public int cameraMonitorViewId;
+    public boolean act = true;
     /*********************************************************************************************
      * cameraMonitorViewId - live camera preview to display on the Robot Controller screen       *
      * robotWebcam - robot webcam                                                                *
      * camera - create a supported camera                                                        *
      * act - active and detective the camera                                                     *
      *********************************************************************************************/
+
+    public void init(HardwareMap hardwareMap) {
+        cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
+                "cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+
+        robotWebcam = hardwareMap.get(WebcamName.class, "Robot Webcam");
+        camera = OpenCvCameraFactory.getInstance().createWebcam(robotWebcam, cameraMonitorViewId);
+    }
 
     @Override
     public void runOpMode() {

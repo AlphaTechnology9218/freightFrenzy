@@ -9,11 +9,7 @@ import org.openftc.easyopencv.OpenCvInternalCamera;
 
 @Autonomous(name = "OpenCV Setup Camera", group = "Robot Components")
 public class SetupCellphone extends LinearOpMode {
-    int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier
-            ("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-
-    public OpenCvCamera camera = OpenCvCameraFactory.getInstance().createInternalCamera
-            (OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
+    OpenCvCamera camera;
     private boolean act = true;
     /**********************************************************************************************
      * cameraMonitorViewId - live camera preview to display on the Robot Controller screen        *
@@ -23,6 +19,12 @@ public class SetupCellphone extends LinearOpMode {
 
     @Override
     public void runOpMode() {
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier
+                ("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+
+        camera = OpenCvCameraFactory.getInstance().createInternalCamera
+                (OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
+
         waitForStart();
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override

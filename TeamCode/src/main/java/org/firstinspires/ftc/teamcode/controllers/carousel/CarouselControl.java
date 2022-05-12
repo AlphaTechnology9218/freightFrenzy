@@ -28,8 +28,8 @@ public class CarouselControl extends OpMode {
 
         if (gamepad1.y && act) {
             // Down Duck
-            motors.mDDR.setPower(0.5);
-            motors.mDDL.setPower(0.5);
+            motors.mDDR.setPower(0.8);
+            motors.mDDL.setPower(0.8);
             act = false;
             sleep.robotSleeping(500);
         } else if (gamepad1.y) {

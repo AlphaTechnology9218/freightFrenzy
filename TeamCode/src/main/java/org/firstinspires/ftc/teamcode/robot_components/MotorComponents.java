@@ -1,8 +1,6 @@
 package org.firstinspires.ftc.teamcode.robot_components;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class MotorComponents {
@@ -34,5 +32,12 @@ public class MotorComponents {
 
         mDDR.setDirection(DcMotor.Direction.REVERSE);
         mDDL.setDirection(DcMotor.Direction.REVERSE);
+    }
+
+    public void motorPower(float powLF, float powLB, float powRF, float powRB) {
+        mFL.setPower(powLF);
+        mBL.setPower(powLB);
+        mFR.setPower(powRF);
+        mBR.setPower(powRB);
     }
 }

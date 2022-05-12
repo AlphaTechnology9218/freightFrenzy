@@ -52,8 +52,8 @@ public class MotorEncodersSetup extends LinearOpMode {
 
     public void moveRobot(int tFL, int tBL, int tFR, int tBR, double vel) {
 
-        pBR -= tBR;
-        pBL -= tBL;
+        pBR += tBR;
+        pBL += tBL;
         pFR += tFR;
         pFL += tFL;
 

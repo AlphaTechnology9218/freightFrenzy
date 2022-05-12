@@ -13,7 +13,6 @@ public class InitialAutoTests extends LinearOpMode {
     Localization GPS = new Localization();
     CompleteClawAutonomous claw = new CompleteClawAutonomous();
     MotorEncodersSetup robot = new MotorEncodersSetup();
-    MotorComponents motor = new MotorComponents();
     boolean Dir; // The direction the HUB is
     boolean BotSide; // The alliance the robot belongs.
     //TODO: Add box comments for the variables
@@ -25,8 +24,10 @@ public class InitialAutoTests extends LinearOpMode {
         waitForStart();
         if (opModeIsActive()) {
             HubDirection();
+            robot.setupEncoders();
             while (opModeIsActive()) {
                 moveStorageUnit();
+                telemetry.addData("Status", "Op Mode Running");
             } telemetry.update();
         }
     }
@@ -66,8 +67,8 @@ public class InitialAutoTests extends LinearOpMode {
     public void goingToCarousel() {
         robot.moveRobot(500, 500,500,500, 1);
         sleep(5000);
-        motor.mDDR.setPower(1);
-        motor.mDDR.setPower(1);
+        //motor.mDDR.setPower(1);
+        //motor.mDDR.setPower(1);
         walkingSideways();
     }
     public void walkingSideways() {

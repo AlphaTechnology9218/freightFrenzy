@@ -34,10 +34,10 @@ public class MotorComponents {
         mDDL.setDirection(DcMotor.Direction.REVERSE);
     }
 
-    public void motorPower(float powLF, float powLB, float powRF, float powRB) {
-        mFL.setPower(powLF);
-        mBL.setPower(powLB);
-        mFR.setPower(powRF);
-        mBR.setPower(powRB);
+    public void motorPower(float powFL, float powBL, float powFR, float powBR) {
+        mFL.setPower(powFL);
+        mBL.setPower(powBL);
+        mFR.setPower(powFR);
+        mBR.setPower(powBR);
     }
 }

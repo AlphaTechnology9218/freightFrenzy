@@ -28,10 +28,10 @@ public class MotorEncodersSetup extends LinearOpMode {
         mFR = hardwareMap.get(DcMotor.class, "motorFR");
         mBR = hardwareMap.get(DcMotor.class, "motorBR");
 
-        mFL.setDirection(DcMotor.Direction.REVERSE);
-        mBL.setDirection(DcMotor.Direction.REVERSE);
-        mFR.setDirection(DcMotor.Direction.FORWARD);
-        mBR.setDirection(DcMotor.Direction.FORWARD);
+        mFL.setDirection(DcMotor.Direction.FORWARD);
+        mBL.setDirection(DcMotor.Direction.FORWARD);
+        mFR.setDirection(DcMotor.Direction.REVERSE);
+        mBR.setDirection(DcMotor.Direction.REVERSE);
     }
 
     public void setupEncoders(){

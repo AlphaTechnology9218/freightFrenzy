@@ -19,9 +19,9 @@ public class TestRoundIMU extends LinearOpMode {
         while(opModeIsActive()){
             sense.runOpMode();
             if(sense.degree > 5){
-                motors.moveRobot(5,5,5,5,0.5);
+                motors.moveRobot(50,50,50,50,0.5);
             } else if (sense.degree < -5){
-                motors.moveRobot(5,5,5,5,0.5);
+                motors.moveRobot(50,50,50,50,0.5);
             }
         }
     }

@@ -31,8 +31,10 @@ public class BasicTeleOp extends OpMode {
     }
 
     public void axisXY() {
-        motors.motorPower(-gamepad1.left_stick_x, gamepad1.left_stick_x, gamepad1.left_stick_x, -gamepad1.left_stick_x);
-        motors.motorPower(-gamepad1.left_stick_y, -gamepad1.left_stick_y, -gamepad1.left_stick_y, -gamepad1.left_stick_y);
+        motors.motorPower(-gamepad1.left_stick_x, gamepad1.left_stick_x, gamepad1.left_stick_x,
+                -gamepad1.left_stick_x);
+        motors.motorPower(-gamepad1.left_stick_y, -gamepad1.left_stick_y, -gamepad1.left_stick_y,
+                -gamepad1.left_stick_y);
     }
 
     public void axisXYAdjusts() {

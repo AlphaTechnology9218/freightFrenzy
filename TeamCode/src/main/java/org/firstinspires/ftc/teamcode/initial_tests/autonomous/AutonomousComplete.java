@@ -1,16 +1,13 @@
-package org.firstinspires.ftc.teamcode.locomotion.autonomous;
+package org.firstinspires.ftc.teamcode.initial_tests.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.robot_components.MotorComponents;
+@Autonomous(name = "Autonomous complete Test", group = "Autonomous Tests")
+public class AutonomousComplete extends LinearOpMode {
 
-@Disabled
-@Autonomous(name = "Locomotion Encoders", group = "Hardware Configuration")
-public class MotorEncodersSetup extends LinearOpMode {
     private int pFL, pBL, pFR, pBR;
     /**************************************************************************
      * pFL - front left motor position                                        *
@@ -20,7 +17,8 @@ public class MotorEncodersSetup extends LinearOpMode {
      **************************************************************************/
     private DcMotor mFL, mBL, mFR, mBR;
 
-    public void runOpMode(HardwareMap hardwareMap) {
+    @Override
+    public void runOpMode() {
         /* Motors for robot's locomotion */
         mFL = hardwareMap.get(DcMotor.class, "motorFL");
         mBL = hardwareMap.get(DcMotor.class, "motorBL");
@@ -31,6 +29,11 @@ public class MotorEncodersSetup extends LinearOpMode {
         mBL.setDirection(DcMotor.Direction.REVERSE);
         mFR.setDirection(DcMotor.Direction.FORWARD);
         mBR.setDirection(DcMotor.Direction.FORWARD);
+
+        while(opModeIsActive()){
+            moveRobot(500, 500,500,500, 1);
+        }
+
     }
 
     public void moveRobot(int tLF, int tBL, int tRF, int tBR, double vel) {
@@ -61,10 +64,5 @@ public class MotorEncodersSetup extends LinearOpMode {
 
         while (opModeIsActive() && mFL.isBusy() && mBL.isBusy() && mFR.isBusy()
                 && mBR.isBusy()) { idle(); }
-    }
-
-    @Override
-    public void runOpMode() {
-
     }
 }

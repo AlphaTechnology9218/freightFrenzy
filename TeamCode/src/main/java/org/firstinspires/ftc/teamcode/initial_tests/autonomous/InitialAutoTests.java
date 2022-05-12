@@ -10,23 +10,23 @@ import org.firstinspires.ftc.teamcode.robot_components.MotorComponents;
 
 @Autonomous(name = "Initial Autonomous Test", group = "Autonomous Tests")
 public class InitialAutoTests extends LinearOpMode {
-    MotorComponents motor = new MotorComponents();
     Localization GPS = new Localization();
     CompleteClawAutonomous claw = new CompleteClawAutonomous();
     MotorEncodersSetup robot = new MotorEncodersSetup();
+    MotorComponents motor = new MotorComponents();
     boolean Dir; // The direction the HUB is
     boolean BotSide; // The alliance the robot belongs.
     //TODO: Add box comments for the variables
     @Override
     public void runOpMode() {
-        motor.init(hardwareMap);
+        robot.runOpMode(hardwareMap);
         telemetry.addData(">", "Press Play to Begin");
         telemetry.update();
         waitForStart();
         if (opModeIsActive()) {
             HubDirection();
             while (opModeIsActive()) {
-                straightToTheHub();
+                moveStorageUnit();
             } telemetry.update();
         }
     }

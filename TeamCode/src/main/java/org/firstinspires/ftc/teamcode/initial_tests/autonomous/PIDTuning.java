@@ -24,7 +24,7 @@ import java.util.List;
 
 @Autonomous(name = "PID Sync", group = "Odometry Tests")
 public class PIDTuning extends LinearOpMode {
-    public static double DISTANCE = 60; // in
+    public static double DISTANCE = 40; // in
 
     enum Mode {
         DRIVER_MODE,

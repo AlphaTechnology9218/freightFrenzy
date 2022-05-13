@@ -13,9 +13,16 @@ public class InitialAutoTests extends LinearOpMode {
     Localization GPS = new Localization();
     CompleteClawAutonomous claw = new CompleteClawAutonomous();
     MotorEncodersSetup robot = new MotorEncodersSetup();
-    boolean Dir; // The direction the HUB is
-    boolean BotSide; // The alliance the robot belongs.
-    //TODO: Add box comments for the variables
+    boolean Dir;
+    boolean BotSide;
+    /* Dir logic // The direction the HUB is
+     *  true == Hub is to the right
+     *  false == Hub is to the left
+     *
+     * BotSide logic // The alliance the robot belongs.
+     *  true == robot belongs to blue alliance
+     *  false == robot belongs to red alliance
+     */
     @Override
     public void runOpMode() {
         robot.runOpMode(hardwareMap);
@@ -31,14 +38,7 @@ public class InitialAutoTests extends LinearOpMode {
             } telemetry.update();
         }
     }
-    /* Dir logic
-     *  true == Hub is to the right
-     *  false == Hub is to the left
-     *
-     * BotSide logic
-     *  true == robot belongs to blue alliance
-     *  false == robot belongs to red alliance
-     */
+
     public void moveStorageUnit(){
         robot.moveRobot(500, 500,500,500, 1);
     }

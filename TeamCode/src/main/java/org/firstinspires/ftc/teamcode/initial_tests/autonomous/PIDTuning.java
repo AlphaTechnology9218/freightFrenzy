@@ -103,7 +103,7 @@ public class PIDTuning extends LinearOpMode {
                     for (int i = 0; i < velocities.size(); i++) {
                         telemetry.addData("measuredVelocity" + i, velocities.get(i));
                         telemetry.addData(
-                                "error" + i,
+                                "error" + i,"%.3f",
                                 motionState.getV() - velocities.get(i)
                         );
                     }

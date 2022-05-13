@@ -10,7 +10,6 @@ public class Turning90Degrees extends LinearOpMode {
         @Override
         public void runOpMode() throws InterruptedException {
             SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
-
             waitForStart();
 
             if (isStopRequested()) return;

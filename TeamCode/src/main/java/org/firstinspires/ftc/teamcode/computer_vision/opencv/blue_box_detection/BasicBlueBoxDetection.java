@@ -1,7 +1,10 @@
 package org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.robot_components.SetupCellphone;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
@@ -22,57 +25,58 @@ import org.openftc.easyopencv.OpenCvPipeline;
  */
 
 @Autonomous(name = "Blue Box Detection", group = "Computer Vision")
-public class BasicBlueBoxDetection extends OpenCvPipeline {
-    public boolean seeing;
+class DetectionResults extends OpMode {
+    SetupCellphone camera = new SetupCellphone();
+
+    @Override
+    public void init() {
+        camera.init(hardwareMap);
+    }
+
+    @Override
+    public void loop() {
+
+    }
+}
+
+class BasicBlueBoxDetection extends OpenCvPipeline {
+    Telemetry telemetry;
 
     Mat mat = new Mat();
     Mat lowerMat;
     Mat upperMat;
 
-    Rect lowerROI = new Rect(new Point(100, 100), new Point(200, 150)); // low rectangle
-    Rect upperROI = new Rect(new Point(100, 150), new Point(200, 200)); // up rectangle
+    Scalar lowerBound = new Scalar(220.0 / 2, 100, 100); // lower HSV scale for blue
+    Scalar upperBound = new Scalar(260.0 / 2, 200, 200); // upper HSV scale for blue
 
     double lowerValue;
     double upperValue;
 
-    final double THRESHOLD = 1; // Adjust in the future
-
     @Override
     public Mat processFrame(Mat input) {
-        // Threshold | Color blue - 240°
+        if (mat.empty()) return input;
+
+        /* Threshold | Color blue - 240° */
         Imgproc.cvtColor(mat, input, Imgproc.COLOR_RGBA2RGB); // input RGBA to mat RGB
         Imgproc.cvtColor(mat, mat, Imgproc.COLOR_RGB2HSV);    // input RGB to mat HSV
 
-        if (mat.empty()) {
-            seeing = false;
-            return input;
-        }
+        telemetry.addLine("Pipeline is running");
 
-        Scalar lowerBound = new Scalar(220.0 / 2, 100, 100); // lower HSV scale for blue
-        Scalar upperBound = new Scalar(260.0 / 2, 200, 200); // upper HSV scale for blue
-        Core.inRange(mat, lowerBound, upperBound, mat);
+        /* Set lower and upper rectangle */
+        Rect lowerROI = new Rect(new Point(100, 100), new Point(200, 150));
+        Rect upperROI = new Rect(new Point(100, 150), new Point(200, 200));
 
-        // Divide | 2 Rectangles
         lowerMat = mat.submat(lowerROI);
         upperMat = mat.submat(upperROI);
 
-        // Average
+        Core.inRange(mat, lowerBound, upperBound, mat);
+
         lowerValue = Math.round(Core.mean(lowerMat).val[2] / 255);
         upperValue = Math.round(Core.mean(upperMat).val[2] / 255);
 
         upperMat.release();
         lowerMat.release();
         mat.release();
-
-        // Compare
-        // TODO: address a function to the robot based in the percentage of the average
-
-        if (upperValue > THRESHOLD) {
-            seeing = true;
-        }
-        else if (lowerValue > THRESHOLD) {
-            seeing = false;
-        }
 
         return null;
     }

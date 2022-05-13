@@ -3,7 +3,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.controllers.carousel.CarouselControl;
-import org.firstinspires.ftc.teamcode.controllers.claw.CompleteClawTeleOperate;
+import org.firstinspires.ftc.teamcode.controllers.claw.complete.CompleteClawTeleOperate;
 import org.firstinspires.ftc.teamcode.locomotion.teleoperate.BasicTeleOp;
 
 @TeleOp(name = "Locomotion and Duck Control", group = "TeleOp Tests")

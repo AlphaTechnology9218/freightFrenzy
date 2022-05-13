@@ -1,14 +1,17 @@
 package org.firstinspires.ftc.teamcode.robot_components;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import org.firstinspires.ftc.teamcode.abilities.SleepRobot;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 
 @Autonomous(name = "OpenCV Setup Camera", group = "Robot Components")
-public class SetupCellphone extends LinearOpMode {
+public class SetupCellphone extends OpMode {
     OpenCvCamera camera;
     private boolean act = true;
     /**********************************************************************************************
@@ -17,15 +20,12 @@ public class SetupCellphone extends LinearOpMode {
      * act - active and detective the camera                                                      *
      **********************************************************************************************/
 
-    @Override
-    public void runOpMode() {
+    public void init(HardwareMap hardwareMap) {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier
                 ("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-
         camera = OpenCvCameraFactory.getInstance().createInternalCamera
                 (OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
 
-        waitForStart();
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {
@@ -45,20 +45,23 @@ public class SetupCellphone extends LinearOpMode {
                 telemetry.addData("Status", "An error occurred with OpenCV!");
             }
         });
-        if (opModeIsActive()) {
-            telemetry.addData("Status", "Op Mode is Activated");
-            while (opModeIsActive()) stopCellphoneView();
-            telemetry.update();
-        }
     }
+
+    @Override
+    public void init() { telemetry.addData("Status", "OpMode is activated"); }
+
+    @Override
+    public void loop() { stopCellphoneView(); }
+
     public void stopCellphoneView() {
-        if (gamepad2.y && act) {
+        SleepRobot sleep = new SleepRobot();
+        if (gamepad1.y && act) {
             camera.pauseViewport();
-            sleep(200);
+            sleep.robotSleeping(500);
             act = false;
-        } else if (gamepad2.a && !act) {
+        } else if (gamepad1.y) {
             camera.resumeViewport();
-            sleep(200);
+            sleep.robotSleeping(500);
             act = true;
         }
     }

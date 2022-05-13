@@ -13,8 +13,8 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import org.firstinspires.ftc.teamcode.odometry.control.DriveConstants;
 import org.firstinspires.ftc.teamcode.odometry.control.SampleMecanumDrive;
 
-@Autonomous(name = "StraightFoward Test", group = "Autonomous Tests")
-public class OdometryTest extends LinearOpMode {
+@Autonomous(name = "StraightFoward Test", group = "Odometry Tests")
+public class StraightOdometry extends LinearOpMode {
     public static double Distance = 60;
 
     @Override

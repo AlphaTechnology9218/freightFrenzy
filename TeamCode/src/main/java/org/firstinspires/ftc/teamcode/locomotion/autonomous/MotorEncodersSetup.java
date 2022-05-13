@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.robot_components.MotorComponents;
@@ -27,22 +28,34 @@ public class MotorEncodersSetup extends LinearOpMode {
         mFR = hardwareMap.get(DcMotor.class, "motorFR");
         mBR = hardwareMap.get(DcMotor.class, "motorBR");
 
-        mFL.setDirection(DcMotor.Direction.REVERSE);
-        mBL.setDirection(DcMotor.Direction.REVERSE);
-        mFR.setDirection(DcMotor.Direction.FORWARD);
-        mBR.setDirection(DcMotor.Direction.FORWARD);
+        mFL.setDirection(DcMotor.Direction.FORWARD);
+        mBL.setDirection(DcMotor.Direction.FORWARD);
+        mFR.setDirection(DcMotor.Direction.REVERSE);
+        mBR.setDirection(DcMotor.Direction.REVERSE);
     }
 
-    public void moveRobot(int tLF, int tBL, int tRF, int tBR, double vel) {
+    public void setupEncoders(){
         mFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         mBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         mFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         mBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
+
+    /**
+     * Move robot using encoders while motors aren't busy
+     * @param tFL - front left target
+     * @param tBL - back left target
+     * @param tFR - front right target
+     * @param tBR - back right target
+     * @param vel - velocity
+     */
+
+    public void moveRobot(int tFL, int tBL, int tFR, int tBR, double vel) {
 
         pBR += tBR;
         pBL += tBL;
-        pFR += tRF;
-        pFL += tLF;
+        pFR += tFR;
+        pFL += tFL;
 
         mFL.setTargetPosition(pFL);
         mBL.setTargetPosition(pBL);

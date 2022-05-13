@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.robot_components;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -23,16 +22,23 @@ public class MotorComponents {
         mFR = hardwareMap.get(DcMotor.class, "motorFR");
         mBR = hardwareMap.get(DcMotor.class, "motorBR");
 
-        mFL.setDirection(DcMotor.Direction.REVERSE);
-        mBL.setDirection(DcMotor.Direction.REVERSE);
-        mFR.setDirection(DcMotor.Direction.FORWARD);
-        mBR.setDirection(DcMotor.Direction.FORWARD);
+        mFL.setDirection(DcMotor.Direction.FORWARD);
+        mBL.setDirection(DcMotor.Direction.FORWARD);
+        mFR.setDirection(DcMotor.Direction.REVERSE);
+        mBR.setDirection(DcMotor.Direction.REVERSE);
 
         /* Motors for duck down control*/
         mDDR = hardwareMap.get(DcMotor.class, "motorDDR");
         mDDL = hardwareMap.get(DcMotor.class, "motorDDL");
 
-        mDDR.setDirection(DcMotor.Direction.REVERSE);
-        mDDL.setDirection(DcMotor.Direction.REVERSE);
+        mDDR.setDirection(DcMotor.Direction.FORWARD);
+        mDDL.setDirection(DcMotor.Direction.FORWARD);
+    }
+
+    public void motorPower(float powFL, float powBL, float powFR, float powBR) {
+        mFL.setPower(powFL);
+        mBL.setPower(powBL);
+        mFR.setPower(powFR);
+        mBR.setPower(powBR);
     }
 }

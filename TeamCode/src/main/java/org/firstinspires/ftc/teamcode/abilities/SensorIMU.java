@@ -34,7 +34,6 @@ public class SensorIMU extends LinearOpMode {
 
         imu = hardwareMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
-
     }
     public void runOpMode() {
         waitForStart();

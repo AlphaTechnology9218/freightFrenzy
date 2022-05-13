@@ -31,8 +31,8 @@ public class MotorComponents {
         mDDR = hardwareMap.get(DcMotor.class, "motorDDR");
         mDDL = hardwareMap.get(DcMotor.class, "motorDDL");
 
-        mDDR.setDirection(DcMotor.Direction.REVERSE);
-        mDDL.setDirection(DcMotor.Direction.REVERSE);
+        mDDR.setDirection(DcMotor.Direction.FORWARD);
+        mDDL.setDirection(DcMotor.Direction.FORWARD);
     }
 
     public void motorPower(float powFL, float powBL, float powFR, float powBR) {

@@ -46,9 +46,9 @@ public class TestRoundIMU extends OpMode {
 
         telemetry.update();
         if(angles.firstAngle > 5){
-            motors.motorPower(-0.2f,-0.2f,0.2f,0.2f);
+            motors.motorPower(-0.4f,-0.4f,0.4f,0.4f);
         } else if (angles.firstAngle < -5){
-            motors.motorPower(0.2f,0.2f,-0.2f,-0.2f);
+            motors.motorPower(0.4f,0.4f,-0.4f,-0.4f);
         } else {
             motors.motorPower(0,0,0,0);
         }

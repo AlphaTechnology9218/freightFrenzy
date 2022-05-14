@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.abilities.SleepRobot;
+import org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection.BasicBlueBoxDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
@@ -25,6 +26,8 @@ public class SetupCellphone extends OpMode {
                 ("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createInternalCamera
                 (OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
+
+        camera.setPipeline(new BasicBlueBoxDetection());
 
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
@@ -52,6 +55,8 @@ public class SetupCellphone extends OpMode {
 
     @Override
     public void loop() { stopCellphoneView(); }
+
+    public void stopCamera() { camera.closeCameraDeviceAsync(() -> {}); }
 
     public void stopCellphoneView() {
         SleepRobot sleep = new SleepRobot();

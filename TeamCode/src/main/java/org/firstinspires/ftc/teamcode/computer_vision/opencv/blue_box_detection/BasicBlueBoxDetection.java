@@ -29,55 +29,69 @@ class DetectionResults extends OpMode {
     SetupCellphone camera = new SetupCellphone();
 
     @Override
-    public void init() {
-        camera.init(hardwareMap);
-    }
+    public void init() { camera.init(hardwareMap); } // Initialize the cellphone camera
 
     @Override
-    public void loop() {
-
-    }
+    public void loop() { }
 }
 
-class BasicBlueBoxDetection extends OpenCvPipeline {
-    Telemetry telemetry;
-
+public class BasicBlueBoxDetection extends OpenCvPipeline {
     Mat mat = new Mat();
-    Mat lowerMat;
-    Mat upperMat;
+    Mat leftMat;
+    Mat rightMat;
 
-    Scalar lowerBound = new Scalar(220.0 / 2, 100, 100); // lower HSV scale for blue
-    Scalar upperBound = new Scalar(260.0 / 2, 200, 200); // upper HSV scale for blue
+    Rect leftROI = new Rect(new Point(1, 1), new Point(159, 240));
+    Rect rightROI = new Rect(new Point(160, 1), new Point(320, 240));
 
-    double lowerValue;
-    double upperValue;
+    Telemetry telemetry;
+    TargetPosition targetPosition;
+
+    double leftValue;
+    double rightValue;
 
     @Override
     public Mat processFrame(Mat input) {
         if (mat.empty()) return input;
 
+        telemetry.addLine("Pipeline is running");
+
         /* Threshold | Color blue - 240° */
         Imgproc.cvtColor(mat, input, Imgproc.COLOR_RGBA2RGB); // input RGBA to mat RGB
         Imgproc.cvtColor(mat, mat, Imgproc.COLOR_RGB2HSV);    // input RGB to mat HSV
 
-        telemetry.addLine("Pipeline is running");
+        Scalar leftBound = new Scalar(220.0 / 2, 100, 100);   // left HSV scale for blue
+        Scalar rightBound = new Scalar(260.0 / 2, 255, 255);  // right HSV scale for blue
 
-        /* Set lower and upper rectangle */
-        Rect lowerROI = new Rect(new Point(100, 100), new Point(200, 150));
-        Rect upperROI = new Rect(new Point(100, 150), new Point(200, 200));
+        Core.inRange(mat, leftBound, rightBound, mat);
 
-        lowerMat = mat.submat(lowerROI);
-        upperMat = mat.submat(upperROI);
+        /* Divide */
+        leftMat = mat.submat(leftROI);
+        rightMat = mat.submat(rightROI);
 
-        Core.inRange(mat, lowerBound, upperBound, mat);
+        /* Average of the value channel from HSV */
+        leftValue = Math.round(Core.mean(leftMat).val[2] / 255);
+        rightValue = Math.round(Core.mean(rightMat).val[2] / 255);
 
-        lowerValue = Math.round(Core.mean(lowerMat).val[2] / 255);
-        upperValue = Math.round(Core.mean(upperMat).val[2] / 255);
-
-        upperMat.release();
-        lowerMat.release();
+        rightMat.release();
+        leftMat.release();
         mat.release();
 
+        /* Compare */
+        final double THRESHOLD = 10; // adjust in the future
+        if (leftValue > THRESHOLD) {
+            telemetry.addLine("The Blue Box in on the left");
+            targetPosition = TargetPosition.LEFT;
+        } else if (rightValue > THRESHOLD) {
+            telemetry.addLine("The Blue Box is on the right");
+            targetPosition = TargetPosition.RIGHT;
+        } else {
+            telemetry.addLine("There is no Blue Box detected");
+            targetPosition = TargetPosition.CENTER;
+        }
         return null;
+    }
+
+    public TargetPosition getTargetPosition() {
+        return targetPosition;
     }
 }

@@ -18,8 +18,6 @@ public class BasicClawControl extends OpMode {
     private final ElapsedTime runtime = new ElapsedTime();
     private double servoPosition;
 
-    private double currentTime = runtime.now(TimeUnit.SECONDS);
-
     @Override
     public void init() {
         telemetry.addData("Status", "Initialized");

@@ -1,16 +1,20 @@
 package org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.robot_components.SetupCellphone;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
+import org.openftc.easyopencv.OpenCvCamera;
+import org.openftc.easyopencv.OpenCvCameraFactory;
+import org.openftc.easyopencv.OpenCvCameraRotation;
+import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
 /***********************************************************************************
@@ -24,25 +28,64 @@ import org.openftc.easyopencv.OpenCvPipeline;
  */
 
 @Autonomous(name = "Blue Box Detection", group = "Computer Vision")
-public class BasicBlueBoxDetection extends OpenCvPipeline {
-    Mat mat = new Mat();
-    Mat leftMat;
-    Mat rightMat;
-
-    Rect leftROI = new Rect(new Point(1, 1), new Point(159, 240));
-    Rect rightROI = new Rect(new Point(160, 1), new Point(320, 240));
-
-    Telemetry telemetry;
-    TargetPosition targetPosition;
-
-    double leftValue;
-    double rightValue;
+public class BasicBlueBoxDetection extends LinearOpMode {
+    OpenCvCamera camera;
 
     @Override
-    public Mat processFrame(Mat input) {
-        if (mat.empty()) return input;
+    public void runOpMode() {
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier
+                ("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        camera = OpenCvCameraFactory.getInstance().createInternalCamera
+                (OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
 
-        telemetry.addLine("Pipeline is running");
+        BlueBoxVision boxDetection = new BlueBoxVision();
+        camera.setPipeline(boxDetection);
+
+        camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
+            @Override
+            public void onOpened() {
+                camera.setViewportRenderer(OpenCvCamera.ViewportRenderer.GPU_ACCELERATED);
+                camera.setViewportRenderingPolicy(OpenCvCamera.ViewportRenderingPolicy.OPTIMIZE_VIEW);
+                /*
+                 * Commonly Supported Resolutions:
+                 * 320x240
+                 * 640x480
+                 * 1280x720
+                 * 1920x1080
+                 * */
+                camera.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
+            }
+            @Override
+            public void onError(int errorCode) {
+                telemetry.addData("Status", "An error occurred with OpenCV!");
+            }
+        });
+
+        waitForStart();
+        while (opModeIsActive()) {
+            telemetry.addData("Status", boxDetection.leftValue);
+            telemetry.addData("Status", boxDetection.rightValue);
+            telemetry.update();
+        }
+    }
+
+    class BlueBoxVision extends OpenCvPipeline {
+        Mat mat = new Mat();
+        Mat leftMat;
+        Mat rightMat;
+
+        Rect leftROI = new Rect(new Point(1, 1), new Point(159, 240));
+        Rect rightROI = new Rect(new Point(160, 1), new Point(320, 240));
+
+        Telemetry telemetry;
+        TargetPosition targetPosition;
+
+        double leftValue;
+        double rightValue;
+
+        @Override
+        public Mat processFrame(Mat input) {
+            // if (mat.empty()) return input;
 
         /* Threshold | Color blue - 240° */
         Imgproc.cvtColor(mat, input, Imgproc.COLOR_RGBA2RGB); // input RGBA to mat RGB
@@ -79,5 +122,6 @@ public class BasicBlueBoxDetection extends OpenCvPipeline {
             targetPosition = TargetPosition.CENTER;
         }
         return null;
+    }
     }
 }

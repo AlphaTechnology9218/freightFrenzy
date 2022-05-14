@@ -27,9 +27,6 @@ public class SetupCellphone extends OpMode {
         camera = OpenCvCameraFactory.getInstance().createInternalCamera
                 (OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
 
-        BasicBlueBoxDetection boxDetection = new BasicBlueBoxDetection();
-        camera.setPipeline(boxDetection);
-
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {

@@ -71,9 +71,6 @@ public class MotorEncodersSetup extends LinearOpMode {
         mBL.setPower(vel);
         mFR.setPower(vel);
         mBR.setPower(vel);
-
-        while (opModeIsActive() && mFL.isBusy() && mBL.isBusy() && mFR.isBusy()
-                && mBR.isBusy()) { idle(); }
     }
 
     @Override

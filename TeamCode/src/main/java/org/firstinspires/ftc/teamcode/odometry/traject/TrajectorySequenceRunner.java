@@ -212,7 +212,8 @@ public class TrajectorySequenceRunner {
                     fieldOverlay.setStrokeWidth(1);
                     fieldOverlay.setStroke(COLOR_INACTIVE_TRAJECTORY);
 
-                    DashboardUtil.drawSampledPath(fieldOverlay, ((TrajectorySegment) segment).getTrajectory().getPath());
+                    DashboardUtil.drawSampledPath(fieldOverlay, ((TrajectorySegment) segment)
+                            .getTrajectory().getPath());
                 } else if (segment instanceof TurnSegment) {
                     Pose2d pose = segment.getStartPose();
 

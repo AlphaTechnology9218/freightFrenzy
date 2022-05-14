@@ -31,21 +31,15 @@ public class InitialAutoTests extends LinearOpMode {
             HubDirection();
             robot.setupEncoders();
             while (opModeIsActive()) {
-                moveStorageUnit();
+                straightToTheHub();
                 telemetry.addData("Status", "Op Mode Running");
             } telemetry.update();
         }
     }
 
-    public void moveStorageUnit(){
-        robot.moveRobot(500, 500,500,500, 1);
-    }
     public void straightToTheHub(){
-        if(Dir) {
-            robot.moveRobot(200, 200,0,0, 1);
-        }
-        else robot.moveRobot(0, 0, 200, 200, 1);
-        sleep(5000);
+        robot.moveRobot(0, 0,200,200, 1);
+        sleep(25);
         switch (ObjectsDetected.DuckBarcode){
             case 1:
             case 3:
@@ -59,19 +53,19 @@ public class InitialAutoTests extends LinearOpMode {
     }
     public void pointToCarousel() {
         robot.moveRobot(50, 50,-50,-50, 1);
-        sleep(5000);
+        sleep(20);
         goingToCarousel();
     }
     public void goingToCarousel() {
         robot.moveRobot(500, 500,500,500, 1);
-        sleep(5000);
+        sleep(500);
         //motor.mDDR.setPower(1);
         //motor.mDDR.setPower(1);
         walkingSideways();
     }
     public void walkingSideways() {
         robot.moveRobot(-100, 100,100,-100, 1);
-        sleep(5000);
+        sleep(100);
         straightToTheDeposit();
     }
     public void straightToTheDeposit() {

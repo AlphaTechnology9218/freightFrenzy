@@ -25,14 +25,14 @@ public class SequenceTrajectory extends LinearOpMode {
 
         while (!isStopRequested()) {
             TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(startPose)
-                    .forward(DISTANCE)
-                    .turn(Math.toRadians(45))
-                    .forward(DISTANCE)
-                    .turn(Math.toRadians(45))
-                    .forward(DISTANCE)
-                    .turn(Math.toRadians(45))
-                    .forward(DISTANCE)
-                    .turn(Math.toRadians(45))
+                    .turn(Math.toRadians(24.5f))
+                    .forward(8)
+                    .back(3)
+                    .turn(Math.toRadians(25))
+                    .forward(48)
+                    .turn(Math.toRadians(-25))
+                    .strafeRight(10)
+                    .splineToLinearHeading(startPose, 45)
                     .build();
             drive.followTrajectorySequence(trajSeq);
         }

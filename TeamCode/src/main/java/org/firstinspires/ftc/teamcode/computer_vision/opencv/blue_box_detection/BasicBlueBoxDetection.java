@@ -11,7 +11,6 @@ import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
-
 import org.openftc.easyopencv.OpenCvPipeline;
 
 /***********************************************************************************
@@ -25,16 +24,6 @@ import org.openftc.easyopencv.OpenCvPipeline;
  */
 
 @Autonomous(name = "Blue Box Detection", group = "Computer Vision")
-class DetectionResults extends OpMode {
-    SetupCellphone camera = new SetupCellphone();
-
-    @Override
-    public void init() { camera.init(hardwareMap); } // Initialize the cellphone camera
-
-    @Override
-    public void loop() { }
-}
-
 public class BasicBlueBoxDetection extends OpenCvPipeline {
     Mat mat = new Mat();
     Mat leftMat;
@@ -78,6 +67,7 @@ public class BasicBlueBoxDetection extends OpenCvPipeline {
 
         /* Compare */
         final double THRESHOLD = 10; // adjust in the future
+
         if (leftValue > THRESHOLD) {
             telemetry.addLine("The Blue Box in on the left");
             targetPosition = TargetPosition.LEFT;
@@ -89,9 +79,5 @@ public class BasicBlueBoxDetection extends OpenCvPipeline {
             targetPosition = TargetPosition.CENTER;
         }
         return null;
-    }
-
-    public TargetPosition getTargetPosition() {
-        return targetPosition;
     }
 }

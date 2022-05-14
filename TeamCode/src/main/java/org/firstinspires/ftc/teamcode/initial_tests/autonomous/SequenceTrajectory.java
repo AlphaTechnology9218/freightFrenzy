@@ -31,7 +31,7 @@ public class SequenceTrajectory extends LinearOpMode {
                     .turn(Math.toRadians(25))
                     .forward(48)
                     .turn(Math.toRadians(-25))
-                    .strafeRight(10)
+                    .strafeLeft(10)
                     .splineToLinearHeading(startPose, 45)
                     .build();
             drive.followTrajectorySequence(trajSeq);

@@ -26,29 +26,46 @@ public class BasicTeleOp extends OpMode {
         round();
         diagonal();
         roundX();
+        straight(); // axis X and Y
 
         telemetry.update();
     }
 
     public void axisXY() {
-        motors.motorPower(-gamepad1.left_stick_x, gamepad1.left_stick_x, gamepad1.left_stick_x,
-                -gamepad1.left_stick_x);
+        motors.motorPower(gamepad1.left_stick_x, -gamepad1.left_stick_x, -gamepad1.left_stick_x,
+                gamepad1.left_stick_x);
         motors.motorPower(-gamepad1.left_stick_y, -gamepad1.left_stick_y, -gamepad1.left_stick_y,
                 -gamepad1.left_stick_y);
     }
 
     public void axisXYAdjusts() {
         if (gamepad1.dpad_up) {
-            motors.motorPower(0.75f, 0.75f, 0.75f, 0.75f);
+            motors.motorPower(0.5f, 0.5f, 0.5f, 0.5f);
         }
         if (gamepad1.dpad_down) {
-            motors.motorPower(-0.75f, -0.75f, -0.75f, -0.75f);
+            motors.motorPower(-0.5f, -0.5f, -0.5f, -0.5f);
         }
         if (gamepad1.dpad_right) {
-            motors.motorPower(0.75f, -0.75f, -0.75f, 0.75f);
+            motors.motorPower(0.5f, -0.5f, -0.5f, 0.5f);
         }
         if (gamepad1.dpad_left) {
-            motors.motorPower(-0.75f, 0.75f, 0.75f, -0.75f);
+            motors.motorPower(-0.5f, 0.5f, 0.5f, -0.5f);
+        }
+    }
+
+    public void straight() {
+        motors.motorPower(-gamepad1.left_trigger, -gamepad1.left_trigger, -gamepad1.left_trigger,
+                -gamepad1.left_trigger); // FRONT
+        motors.motorPower(gamepad1.right_trigger, gamepad1.right_trigger, gamepad1.right_trigger,
+                gamepad1.right_trigger); // BACK
+    }
+
+    public void diagonal() {
+        if (gamepad1.a) {
+            motors.motorPower(0, 1, 1, 0);
+        }
+        if (gamepad1.b) {
+            motors.motorPower(1, 0, 0, 1);
         }
     }
 
@@ -59,11 +76,6 @@ public class BasicTeleOp extends OpMode {
         if (gamepad1.right_bumper) {
             motors.motorPower(-1, -1, 1, 1);
         }
-    }
-
-    public void diagonal() {
-        motors.motorPower(0, gamepad1.left_trigger,gamepad1.left_trigger,0 );
-        motors.motorPower(gamepad1.right_trigger, 0, 0, gamepad1.right_trigger);
     }
 
     public void roundX() {

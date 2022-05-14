@@ -3,25 +3,30 @@ package org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.robot_components.SetupWebcam;
+import org.firstinspires.ftc.teamcode.robot_components.SetupCellphone;
 
-import org.openftc.easyopencv.OpenCvCamera;
-import org.openftc.easyopencv.OpenCvCameraRotation;
-
-@Autonomous(name = "Display Box Detection Results", group = "Computer Vision")
+@Autonomous(name = "OpenCV Robot Locomotion", group = "Computer Vision")
 public class LocomotionFromResult extends LinearOpMode {
     BasicBlueBoxDetection boxDetection = new BasicBlueBoxDetection();
-    public boolean result = boxDetection.seeing;
+    SetupCellphone camera = new SetupCellphone();
 
     @Override
     public void runOpMode() {
-
         waitForStart();
+        TargetPosition targetPosition = boxDetection.getTargetPosition();
+        camera.stopCamera();
+
+        switch(targetPosition) {
+            case LEFT:
+                assert true;
+            case RIGHT:
+                assert true;
+            case CENTER:
+                assert true;
+        }
+
         while (opModeIsActive()) {
-
-            if (result) assert true;
-            else telemetry.addData("Status", "No blue box detected");
-
+            telemetry.addData("Status", "Autonomous from detection running");
             telemetry.update();
         }
     }

@@ -3,10 +3,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.abilities.Localization;
 import org.firstinspires.ftc.teamcode.computer_vision.tensorflow.ObjectsDetected;
-import org.firstinspires.ftc.teamcode.controllers.carousel.CarouselControl;
-import org.firstinspires.ftc.teamcode.controllers.claw.CompleteClawAutonomous;
+import org.firstinspires.ftc.teamcode.controllers.claw.complete.CompleteClawAutonomous;
 import org.firstinspires.ftc.teamcode.locomotion.autonomous.MotorEncodersSetup;
-import org.firstinspires.ftc.teamcode.robot_components.MotorComponents;
 
 @Autonomous(name = "Initial Autonomous Test", group = "Autonomous Tests")
 public class InitialAutoTests extends LinearOpMode {

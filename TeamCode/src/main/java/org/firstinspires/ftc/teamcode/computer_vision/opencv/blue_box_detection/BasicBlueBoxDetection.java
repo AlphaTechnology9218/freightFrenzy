@@ -1,7 +1,10 @@
 package org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.robot_components.SetupCellphone;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
@@ -22,58 +25,73 @@ import org.openftc.easyopencv.OpenCvPipeline;
  */
 
 @Autonomous(name = "Blue Box Detection", group = "Computer Vision")
+class DetectionResults extends OpMode {
+    SetupCellphone camera = new SetupCellphone();
+
+    @Override
+    public void init() { camera.init(hardwareMap); } // Initialize the cellphone camera
+
+    @Override
+    public void loop() { }
+}
+
 public class BasicBlueBoxDetection extends OpenCvPipeline {
-    public boolean seeing;
-
     Mat mat = new Mat();
-    Mat lowerMat;
-    Mat upperMat;
+    Mat leftMat;
+    Mat rightMat;
 
-    Rect lowerROI = new Rect(new Point(100, 100), new Point(200, 150)); // low rectangle
-    Rect upperROI = new Rect(new Point(100, 150), new Point(200, 200)); // up rectangle
+    Rect leftROI = new Rect(new Point(1, 1), new Point(159, 240));
+    Rect rightROI = new Rect(new Point(160, 1), new Point(320, 240));
 
-    double lowerValue;
-    double upperValue;
+    Telemetry telemetry;
+    TargetPosition targetPosition;
 
-    final double THRESHOLD = 1; // Adjust in the future
+    double leftValue;
+    double rightValue;
 
     @Override
     public Mat processFrame(Mat input) {
-        // Threshold | Color blue - 240°
+        if (mat.empty()) return input;
+
+        telemetry.addLine("Pipeline is running");
+
+        /* Threshold | Color blue - 240° */
         Imgproc.cvtColor(mat, input, Imgproc.COLOR_RGBA2RGB); // input RGBA to mat RGB
         Imgproc.cvtColor(mat, mat, Imgproc.COLOR_RGB2HSV);    // input RGB to mat HSV
 
-        if (mat.empty()) {
-            seeing = false;
-            return input;
-        }
+        Scalar leftBound = new Scalar(220.0 / 2, 100, 100);   // left HSV scale for blue
+        Scalar rightBound = new Scalar(260.0 / 2, 255, 255);  // right HSV scale for blue
 
-        Scalar lowerBound = new Scalar(220.0 / 2, 100, 100); // lower HSV scale for blue
-        Scalar upperBound = new Scalar(260.0 / 2, 200, 200); // upper HSV scale for blue
-        Core.inRange(mat, lowerBound, upperBound, mat);
+        Core.inRange(mat, leftBound, rightBound, mat);
 
-        // Divide | 2 Rectangles
-        lowerMat = mat.submat(lowerROI);
-        upperMat = mat.submat(upperROI);
+        /* Divide */
+        leftMat = mat.submat(leftROI);
+        rightMat = mat.submat(rightROI);
 
-        // Average
-        lowerValue = Math.round(Core.mean(lowerMat).val[2] / 255);
-        upperValue = Math.round(Core.mean(upperMat).val[2] / 255);
+        /* Average of the value channel from HSV */
+        leftValue = Math.round(Core.mean(leftMat).val[2] / 255);
+        rightValue = Math.round(Core.mean(rightMat).val[2] / 255);
 
-        upperMat.release();
-        lowerMat.release();
+        rightMat.release();
+        leftMat.release();
         mat.release();
 
-        // Compare
-        // TODO: address a function to the robot based in the percentage of the average
-
-        if (upperValue > THRESHOLD) {
-            seeing = true;
+        /* Compare */
+        final double THRESHOLD = 10; // adjust in the future
+        if (leftValue > THRESHOLD) {
+            telemetry.addLine("The Blue Box in on the left");
+            targetPosition = TargetPosition.LEFT;
+        } else if (rightValue > THRESHOLD) {
+            telemetry.addLine("The Blue Box is on the right");
+            targetPosition = TargetPosition.RIGHT;
+        } else {
+            telemetry.addLine("There is no Blue Box detected");
+            targetPosition = TargetPosition.CENTER;
         }
-        else if (lowerValue > THRESHOLD) {
-            seeing = false;
-        }
-
         return null;
+    }
+
+    public TargetPosition getTargetPosition() {
+        return targetPosition;
     }
 }

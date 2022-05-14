@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.controllers.claw;
+package org.firstinspires.ftc.teamcode.controllers.claw.complete;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;

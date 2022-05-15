@@ -5,7 +5,9 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.abilities.SleepRobot;
+import org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection.AnotherTest;
 import org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection.BasicBlueBoxDetection;
+import org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection.OpenCVTest;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
@@ -27,11 +29,14 @@ public class SetupCellphone extends OpMode {
         camera = OpenCvCameraFactory.getInstance().createInternalCamera
                 (OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
 
+        AnotherTest myPipeline = new AnotherTest();
+        camera.setPipeline(myPipeline);
+
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {
-                camera.setViewportRenderer(OpenCvCamera.ViewportRenderer.GPU_ACCELERATED);
                 camera.setViewportRenderingPolicy(OpenCvCamera.ViewportRenderingPolicy.OPTIMIZE_VIEW);
+                camera.setViewportRenderer(OpenCvCamera.ViewportRenderer.GPU_ACCELERATED);
                 /*
                  * Commonly Supported Resolutions:
                  * 320x240

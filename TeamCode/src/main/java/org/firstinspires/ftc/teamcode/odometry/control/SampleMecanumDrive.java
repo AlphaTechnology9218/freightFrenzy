@@ -29,6 +29,7 @@ import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigu
 import org.firstinspires.ftc.teamcode.odometry.traject.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.odometry.traject.TrajectorySequenceBuilder;
 import org.firstinspires.ftc.teamcode.odometry.traject.TrajectorySequenceRunner;
+import org.firstinspires.ftc.teamcode.odometry.util.IMURoadRunner;
 import org.firstinspires.ftc.teamcode.odometry.util.LynxModuleUtil;
 
 import java.util.ArrayList;
@@ -85,14 +86,10 @@ public class SampleMecanumDrive extends MecanumDrive {
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
         }
 
-        // TODO: adjust the names of the following hardware devices to match your configuration
         imu = hardwareMap.get(BNO055IMU.class, "imu");
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
         imu.initialize(parameters);
-
-        // TODO: If the hub containing the IMU you are using is mounted so that the "REV" logo does
-
 
         mFL = hardwareMap.get(DcMotorEx.class, "motorFL");
         mBL = hardwareMap.get(DcMotorEx.class, "motorBL");

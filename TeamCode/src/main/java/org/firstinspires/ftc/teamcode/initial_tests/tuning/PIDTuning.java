@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.initial_tests.autonomous;
+package org.firstinspires.ftc.teamcode.initial_tests.tuning;
 
 import static org.firstinspires.ftc.teamcode.odometry.control.DriveConstants.MAX_ACCEL;
 import static org.firstinspires.ftc.teamcode.odometry.control.DriveConstants.MAX_VEL;

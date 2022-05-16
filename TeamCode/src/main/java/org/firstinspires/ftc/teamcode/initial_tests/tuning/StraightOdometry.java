@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.initial_tests.autonomous;
+package org.firstinspires.ftc.teamcode.initial_tests.tuning;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;

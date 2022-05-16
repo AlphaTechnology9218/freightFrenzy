@@ -2,9 +2,12 @@ package org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.computer_vision.opencv.basics.PipelineExample;
 import org.firstinspires.ftc.teamcode.computer_vision.opencv.tests.OpenCVTest;
+import org.firstinspires.ftc.teamcode.robot_components.SetupCellphone;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Rect;
@@ -19,6 +22,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 @Autonomous
 public class BlueBoxDetection extends OpMode {
     OpenCvCamera camera;
+    public int detectionResult;
 
     @Override
     public void init() {
@@ -28,6 +32,7 @@ public class BlueBoxDetection extends OpMode {
                 (OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
 
         camera.setPipeline(new BlueBoxVision());
+
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {
@@ -40,7 +45,7 @@ public class BlueBoxDetection extends OpMode {
                 telemetry.addData("Status", "An error occurred with OpenCV!");
             }
         });
-    }
+    } // Initialize the cellphone camera
 
     @Override
     public void loop() {
@@ -83,11 +88,17 @@ public class BlueBoxDetection extends OpMode {
             leftValue = leftValueAvg.val[0];
             rightValue = rightValueAvg.val[0];
 
-            double threshold = 70;
             if(leftValue > rightValue) {
                 telemetry.addLine("The object is on the right");
+                telemetry.addLine(String.valueOf(rightValue));
+                detectionResult = 0;
             } else if (rightValue > leftValue) {
                 telemetry.addLine("The object is on the left");
+                telemetry.addLine(String.valueOf(leftValue));
+                detectionResult = 1;
+            } else {
+                telemetry.addLine("There are no objects detected");
+                detectionResult = 2;
             }
 
             //TODO: Extract the light conditions from the equation

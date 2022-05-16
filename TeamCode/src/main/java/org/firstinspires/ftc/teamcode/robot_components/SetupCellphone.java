@@ -5,12 +5,15 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.abilities.SleepRobot;
+import org.firstinspires.ftc.teamcode.computer_vision.opencv.basics.PipelineExample;
 import org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection.BlueBoxDetection;
 import org.firstinspires.ftc.teamcode.computer_vision.opencv.tests.AnotherTest;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
+import org.openftc.easyopencv.OpenCvPipeline;
+import org.openftc.easyopencv.PipelineRecordingParameters;
 
 @Autonomous(name = "OpenCV Setup Camera", group = "Robot Components")
 public class SetupCellphone extends OpMode {
@@ -28,8 +31,7 @@ public class SetupCellphone extends OpMode {
         camera = OpenCvCameraFactory.getInstance().createInternalCamera
                 (OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
 
-        BlueBoxDetection blueBoxVision = new BlueBoxDetection();
-        //camera.setPipeline(blueBoxVision);
+        // camera.setPipeline();
 
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
@@ -55,7 +57,6 @@ public class SetupCellphone extends OpMode {
     @Override
     public void init() {
         telemetry.addData("Status", "OpMode is activated");
-        init(hardwareMap);
     }
 
     @Override

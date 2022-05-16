@@ -5,9 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.abilities.SleepRobot;
-import org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection.AnotherTest;
-import org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection.BasicBlueBoxDetection;
-import org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection.OpenCVTest;
+import org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection.BlueBoxDetection;
+import org.firstinspires.ftc.teamcode.computer_vision.opencv.tests.AnotherTest;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
@@ -29,8 +28,8 @@ public class SetupCellphone extends OpMode {
         camera = OpenCvCameraFactory.getInstance().createInternalCamera
                 (OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
 
-        AnotherTest myPipeline = new AnotherTest();
-        camera.setPipeline(myPipeline);
+        BlueBoxDetection blueBoxVision = new BlueBoxDetection();
+        //camera.setPipeline(blueBoxVision);
 
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override

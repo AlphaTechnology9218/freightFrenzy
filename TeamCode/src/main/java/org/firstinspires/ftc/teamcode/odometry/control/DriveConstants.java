@@ -15,8 +15,8 @@ public class DriveConstants {
         public double F = getMotorVelocityF(MAX_RPM / 60 * TICKS_PER_REV);
 
         public static double WHEEL_RADIUS = 1.4763;
-        public static double GEAR_RATIO = 1; // dead wells velocity
-        public static double TRACK_WIDTH = 15;
+        public static double GEAR_RATIO = 1.33; // dead wells velocity
+        public static double TRACK_WIDTH = 1.5;
 
         public static double kV = 1.0 / rpmToVelocity(MAX_RPM);
         public static double kA = 0;

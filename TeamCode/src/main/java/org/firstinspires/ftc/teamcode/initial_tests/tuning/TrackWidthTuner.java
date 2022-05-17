@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.odometry.control.SampleMecanumDrive;
 
 
 @Config
-@Autonomous(group = "drive")
+@Autonomous(name = "FixWidth", group = "Odometry Tests")
 public class TrackWidthTuner extends LinearOpMode {
     public static double ANGLE = 180; // deg
     public static int NUM_TRIALS = 5;

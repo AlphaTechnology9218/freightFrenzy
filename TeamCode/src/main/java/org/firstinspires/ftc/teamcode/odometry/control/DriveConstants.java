@@ -9,7 +9,7 @@ public class DriveConstants {
         public static final double MAX_RPM = 150;
 
         public static final boolean RUN_USING_ENCODER = true;
-        public static PIDFCoefficients MOTOR_VELO_PID = new PIDFCoefficients(21, 1.5, 0,
+        public static PIDFCoefficients MOTOR_VELO_PID = new PIDFCoefficients(21, 0.8, 0,
                 getMotorVelocityF(MAX_RPM / 60 * TICKS_PER_REV));
 
         public double F = getMotorVelocityF(MAX_RPM / 60 * TICKS_PER_REV);

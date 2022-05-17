@@ -16,7 +16,7 @@ public class PipelineExample extends OpenCvPipeline {
 
     @Override
     public Mat processFrame(Mat input) {
-        Imgproc.cvtColor(input, grey, Imgproc.COLOR_RGB2GRAY);
+        Imgproc.cvtColor(input, grey, Imgproc.COLOR_RGB2HSV);
         return grey;
     }
 

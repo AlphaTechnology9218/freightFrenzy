@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.computer_vision.opencv.basics;
+package org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -20,7 +20,7 @@ import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
 @Autonomous
-public class BlueBoxDetection extends OpMode {
+public class BlueBoxYCbCrChannel extends OpMode {
     OpenCvCamera camera;
     public int detectionResult;
 
@@ -53,8 +53,9 @@ public class BlueBoxDetection extends OpMode {
     }
 
     class BlueBoxVision extends OpenCvPipeline {
-        Mat YCbCr    = new Mat();
-        Mat outPut   = new Mat();
+        Mat YCbCr  = new Mat();
+        Mat outPut = new Mat();
+
         Mat leftMat;
         Mat rightMat;
 

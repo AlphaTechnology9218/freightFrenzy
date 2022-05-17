@@ -15,8 +15,8 @@ public class DriveConstants {
         public double F = getMotorVelocityF(MAX_RPM / 60 * TICKS_PER_REV);
 
         public static double WHEEL_RADIUS = 1.4763;
-        public static double GEAR_RATIO = 1;
-        public static double TRACK_WIDTH = 1.5;
+        public static double GEAR_RATIO = 1.33;
+        public static double TRACK_WIDTH = 15;
 
         public static double kV = 1.0 / rpmToVelocity(MAX_RPM);
         public static double kA = 0;
@@ -24,8 +24,8 @@ public class DriveConstants {
 
         public static double MAX_VEL = 18.651848; // 80% of max velocity
         public static double MAX_ACCEL = 18.651848;
-        public static double MAX_ANG_VEL = Math.toRadians(62.74275);
-        public static double MAX_ANG_ACCEL = Math.toRadians(62.74275);
+        public static double MAX_ANG_VEL = Math.toRadians(180);
+        public static double MAX_ANG_ACCEL = Math.toRadians(180);
 
         public static double encoderTicksToInches(double ticks) {
                 return WHEEL_RADIUS * 2 * Math.PI * GEAR_RATIO * ticks / TICKS_PER_REV;

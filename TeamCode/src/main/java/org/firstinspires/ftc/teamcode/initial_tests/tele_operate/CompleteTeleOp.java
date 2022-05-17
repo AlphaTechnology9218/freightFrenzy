@@ -82,8 +82,10 @@ public class CompleteTeleOp extends OpMode {
     }
     /* Locomotion Methods */
     private void axisXY() {
-        motorPower(-gamepad1.left_stick_x, gamepad1.left_stick_x, gamepad1.left_stick_x, -gamepad1.left_stick_x);
-        motorPower(-gamepad1.left_stick_y, -gamepad1.left_stick_y, -gamepad1.left_stick_y, -gamepad1.left_stick_y);
+        motorPower(-gamepad1.left_stick_x, gamepad1.left_stick_x, gamepad1.left_stick_x,
+                -gamepad1.left_stick_x);
+        motorPower(-gamepad1.left_stick_y, -gamepad1.left_stick_y, -gamepad1.left_stick_y,
+                -gamepad1.left_stick_y);
     }
     private void axisXYAdjusts() {
         if (gamepad1.dpad_up) {

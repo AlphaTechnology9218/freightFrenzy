@@ -29,7 +29,6 @@ import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigu
 import org.firstinspires.ftc.teamcode.odometry.traject.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.odometry.traject.TrajectorySequenceBuilder;
 import org.firstinspires.ftc.teamcode.odometry.traject.TrajectorySequenceRunner;
-import org.firstinspires.ftc.teamcode.odometry.util.IMURoadRunner;
 import org.firstinspires.ftc.teamcode.odometry.util.LynxModuleUtil;
 
 import java.util.ArrayList;
@@ -118,8 +117,6 @@ public class SampleMecanumDrive extends MecanumDrive {
         mBL.setDirection(DcMotor.Direction.FORWARD);
         mFR.setDirection(DcMotor.Direction.REVERSE);
         mBR.setDirection(DcMotor.Direction.REVERSE);
-
-        // TODO: if desired, use setLocalizer() to change the localization method
 
         trajectorySequenceRunner = new TrajectorySequenceRunner(follower, HEADING_PID);
     }

@@ -9,20 +9,20 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.odometry.control.SampleMecanumDrive;
+
 @Config
-@Autonomous(name = "StraightFoward Test", group = "Odometry Tests")
-public class StraightOdometry extends LinearOpMode {
-    public static double Distance = 60;
+@Autonomous(name = "Walking Sideways", group = "Odometry Tests")
+public class SidesTest extends LinearOpMode {
+    public static double DISTANCE = 60; // in
 
     @Override
     public void runOpMode() throws InterruptedException {
-
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
         Trajectory trajectory = drive.trajectoryBuilder(new Pose2d())
-                .forward(Distance)
+                .strafeRight(DISTANCE)
                 .build();
 
         waitForStart();
@@ -37,6 +37,6 @@ public class StraightOdometry extends LinearOpMode {
         telemetry.addData("finalHeading", poseEstimate.getHeading());
         telemetry.update();
 
-        while (!isStopRequested() && opModeIsActive());
+        while (!isStopRequested() && opModeIsActive()) ;
     }
 }

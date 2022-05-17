@@ -7,6 +7,7 @@ import static org.firstinspires.ftc.teamcode.odometry.control.DriveConstants.RUN
 import static org.firstinspires.ftc.teamcode.odometry.control.DriveConstants.kV;
 
 import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.profile.MotionProfile;
@@ -22,6 +23,7 @@ import org.firstinspires.ftc.teamcode.odometry.control.SampleMecanumDrive;
 
 import java.util.List;
 
+@Config
 @Autonomous(name = "PID Sync", group = "Odometry Tests")
 public class PIDTuning extends LinearOpMode {
     public static double DISTANCE = 40; // in

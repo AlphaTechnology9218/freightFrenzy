@@ -90,7 +90,8 @@ public class SensorMRGyro extends LinearOpMode {
     // Wait until the gyro calibration is complete
     timer.reset();
     while (!isStopRequested() && modernRoboticsI2cGyro.isCalibrating())  {
-      telemetry.addData("calibrating", "%s", Math.round(timer.seconds())%2==0 ? "|.." : "..|");
+      telemetry.addData("calibrating", "%s", Math.round(timer.seconds())%2==0 ?
+              "|.." : "..|");
       telemetry.update();
       sleep(50);
     }
@@ -125,7 +126,8 @@ public class SensorMRGyro extends LinearOpMode {
       // about all three axes. Additionally, it internally integrates the Z axis to
       // be able to report an absolute angular Z orientation.
       AngularVelocity rates = gyro.getAngularVelocity(AngleUnit.DEGREES);
-      float zAngle = gyro.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
+      float zAngle = gyro.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX,
+              AngleUnit.DEGREES).firstAngle;
 
       // Read administrative information from the gyro
       int zAxisOffset = modernRoboticsI2cGyro.getZAxisOffset();
@@ -142,7 +144,8 @@ public class SensorMRGyro extends LinearOpMode {
         .addData("rawX", formatRaw(rawX))
         .addData("rawY", formatRaw(rawY))
         .addData("rawZ", formatRaw(rawZ));
-      telemetry.addLine().addData("z offset", zAxisOffset).addData("z coeff", zAxisScalingCoefficient);
+      telemetry.addLine().addData("z offset", zAxisOffset).addData("z coeff",
+              zAxisScalingCoefficient);
       telemetry.update();
     }
   }

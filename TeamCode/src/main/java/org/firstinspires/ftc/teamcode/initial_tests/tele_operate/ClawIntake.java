@@ -27,8 +27,6 @@ public class ClawIntake extends LinearOpMode {
             telemetry.update();
         }
 
-        int target;
-        double vel;
         boolean dir = true;
         boolean full = false;
 
@@ -68,4 +66,5 @@ public class ClawIntake extends LinearOpMode {
             telemetry.update();
         }
     }
+    //https://www.ctrlaltftc.com/practical-examples/ftc-motor-control
 }

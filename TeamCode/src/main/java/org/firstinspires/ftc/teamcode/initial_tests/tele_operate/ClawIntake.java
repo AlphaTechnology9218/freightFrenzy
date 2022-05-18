@@ -50,15 +50,15 @@ public class ClawIntake extends OpMode {
 
     public void guard(){
         if(gamepad1.x){
-            claw.setTargetPosition(200);
-            claw.setPower(0.8);
+            claw.setTargetPosition(-200);
+            claw.setPower(0.3);
         }
     }
 
     public void attack(){
         if(gamepad1.b){
             claw.setTargetPosition(0);
-            claw.setPower(0.8);
+            claw.setPower(0.3);
         }
     }
 

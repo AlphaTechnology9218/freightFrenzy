@@ -15,7 +15,9 @@ public class ClawIntake extends OpMode {
         claw = hardwareMap.get(DcMotor.class, "claw");
 
         intake.setDirection(DcMotor.Direction.FORWARD);
-        claw.setDirection(DcMotor.Direction.FORWARD);
+        claw.setDirection(DcMotor.Direction.REVERSE);
+
+        claw.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     @Override
@@ -49,16 +51,18 @@ public class ClawIntake extends OpMode {
     }
 
     public void guard(){
-        if(gamepad1.x){
-            claw.setTargetPosition(-200);
-            claw.setPower(0.3);
+        if(gamepad1.x && !claw.isBusy()){
+            claw.setTargetPosition(10);
+            claw.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            claw.setPower(0.8);
         }
     }
 
     public void attack(){
-        if(gamepad1.b){
+        if(gamepad1.b && !claw.isBusy()){
             claw.setTargetPosition(0);
-            claw.setPower(0.3);
+            claw.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            claw.setPower(0.8);
         }
     }
 

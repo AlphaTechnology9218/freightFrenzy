@@ -21,7 +21,7 @@ public class ClawIntake extends LinearOpMode {
         claw.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         claw.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        while(!isStarted()){
+        while(!isStarted()) {
             position = claw.getCurrentPosition();
             telemetry.addData("position", position);
             telemetry.update();

@@ -19,13 +19,13 @@ public class Localization extends VuforiaFieldNavigation {
     public void runOpMode(){
         while(opModeIsActive()){
             float[] coordinates = lastLocation.getTranslation().getData();
-
+            //Gets translational location in the x and y axes
             LX = coordinates[0];
             LY = coordinates[1];
             RR = Orientation.getOrientation(lastLocation, EXTRINSIC, XYZ, DEGREES).thirdAngle;
-            //TODO: Change the order of the axis if the localization test presents a problem
-            telemetry.addData("Angle", RR);
-            telemetry.update();
+            //gets degree of rotation in the z axis
+            telemetry.addData("Angle", RR); //output the rotation angle
+            telemetry.update();                //show it in telemetry
         }
     }
 }

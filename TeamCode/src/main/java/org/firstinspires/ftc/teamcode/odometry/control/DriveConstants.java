@@ -13,7 +13,7 @@ public class DriveConstants {
 
         public static double WHEEL_RADIUS = 1.4763;
         public static double GEAR_RATIO = 1.33;
-        public static double TRACK_WIDTH = 15;
+        public static double TRACK_WIDTH = 10.6;
 
         public static double kV = 1.0 / rpmToVelocity(MAX_RPM);
         public static double kA = 0;

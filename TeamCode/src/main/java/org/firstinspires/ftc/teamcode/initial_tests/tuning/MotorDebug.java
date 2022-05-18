@@ -38,7 +38,6 @@ import org.firstinspires.ftc.teamcode.odometry.control.SampleMecanumDrive;
  *
  * Uncomment the @Disabled tag below to use this opmode.
  */
-@Disabled
 @Config
 @TeleOp(name = "Motor Debugging", group = "Odometry Tests")
 public class MotorDebug extends LinearOpMode {

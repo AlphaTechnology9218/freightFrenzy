@@ -1,12 +1,15 @@
 package org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.MatOfPoint2f;
+import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
@@ -20,12 +23,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Autonomous
-public class ExtractYCbCrChannel extends OpMode {
+public class ExtractYCbCrChannel extends LinearOpMode {
     OpenCvCamera camera;
-    public int detectionResult;
 
     @Override
-    public void init() {
+    public void runOpMode() throws InterruptedException {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier
                 ("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createInternalCamera
@@ -45,14 +47,11 @@ public class ExtractYCbCrChannel extends OpMode {
                 telemetry.addData("Status", "An error occurred with OpenCV!");
             }
         });
-    } // Initialize the cellphone camera
-
-    @Override
-    public void loop() {
-
     }
 
-    class BlueBoxVision extends OpenCvPipeline {
+
+    public static class BlueBoxVision extends OpenCvPipeline {
+
         Mat YCbCr  = new Mat();
         Mat outPut = new Mat();
 
@@ -64,9 +63,8 @@ public class ExtractYCbCrChannel extends OpMode {
         double rightValue;
         double centerValue;
 
-        private int width = 320;
-
         Scalar rectColor = new Scalar(255.0, 0.0, 0.0);
+        Telemetry telemetry;
 
         @Override
         public Mat processFrame(Mat input) {
@@ -102,48 +100,6 @@ public class ExtractYCbCrChannel extends OpMode {
             leftValue = leftValueAvg.val[0];
             rightValue = rightValueAvg.val[0];
             centerValue = centerValueAvg.val[0];
-
-
-
-
-            Mat thresh = new Mat();
-            Mat edges = new Mat();
-            Imgproc.Canny(thresh, edges, 100, 300);
-
-            List<MatOfPoint> contours = new ArrayList<>();
-            Mat hierarchy = new Mat();
-            Imgproc.findContours(edges, contours, hierarchy, Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
-
-            MatOfPoint2f[] contoursPoly  = new MatOfPoint2f[contours.size()];
-            Rect[] boundRect = new Rect[contours.size()];
-            for (int i = 0; i < contours.size(); i++) {
-                contoursPoly[i] = new MatOfPoint2f();
-                Imgproc.approxPolyDP(new MatOfPoint2f(contours.get(i).toArray()), contoursPoly[i], 3, true);
-                boundRect[i] = Imgproc.boundingRect(new MatOfPoint(contoursPoly[i].toArray()));
-            }
-
-            // Iterate and check whether the bounding boxes
-            // cover left and/or right side of the image
-            double left_x = 0.25 * width;
-            double right_x = 0.75 * width;
-            boolean left = false; // true if regular stone found on the left side
-            boolean right = false; // "" "" on the right side
-            for (int i = 0; i != boundRect.length; i++) {
-                if (boundRect[i].x < left_x)
-                    left = true;
-                if (boundRect[i].x + boundRect[i].width > right_x)
-                    right = true;
-
-                // draw red bounding rectangles on mat
-                // the mat has been converted to HSV so we need to use HSV as well
-                Imgproc.rectangle(YCbCr, boundRect[i], new Scalar(0.5, 76.9, 89.8));
-            }
-
-
-
-
-
-
 
             if ((leftTotal > rightTotal) && (leftTotal > centerTotal)) {
                 telemetry.addData("Status", "LEFT");

@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import org.opencv.core.Mat;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-public class BlueBoxDetectionHSV extends OpMode {
+public class HSVColorFilter extends OpMode {
 
     @Override
     public void init() {

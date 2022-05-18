@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Autonomous
-public class BlueBoxYCbCrChannel extends OpMode {
+public class ExtractYCbCrChannel extends OpMode {
     OpenCvCamera camera;
     public int detectionResult;
 

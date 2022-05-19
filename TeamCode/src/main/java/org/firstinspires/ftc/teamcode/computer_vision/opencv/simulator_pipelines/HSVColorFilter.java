@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.computer_vision.opencv.basics;
+package org.firstinspires.ftc.teamcode.computer_vision.opencv.simulator_pipelines;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -20,8 +20,12 @@ public class HSVColorFilter extends OpenCvPipeline {
         Imgproc.cvtColor(mat, mat, Imgproc.COLOR_RGB2HSV);
 
         // Lower and upper bound for BLUE
-        Scalar lowerBound = new Scalar(219.0 / 2, 30, 30);
-        Scalar upperBound = new Scalar(240.0 / 2, 255, 255);
+        // Scalar lowerBound = new Scalar(219.0 / 2, 30, 30);
+        // Scalar upperBound = new Scalar(240.0 / 2, 255, 255);
+
+        // Lower and upper bound for PINK
+        Scalar lowerBound = new Scalar(331.0 / 2, 30, 30);
+        Scalar upperBound = new Scalar(345.0 / 2, 255, 255);
 
         // Return Binary Mask
         Core.inRange(mat, lowerBound, upperBound, mat);

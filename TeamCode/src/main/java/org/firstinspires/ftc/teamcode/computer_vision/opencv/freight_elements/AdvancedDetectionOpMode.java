@@ -1,9 +1,8 @@
-package org.firstinspires.ftc.teamcode.computer_vision.opencv.freight_detection;
+package org.firstinspires.ftc.teamcode.computer_vision.opencv.freight_elements;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.computer_vision.opencv.freight_detection.AdvancedDetection;
 import org.opencv.core.Scalar;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;

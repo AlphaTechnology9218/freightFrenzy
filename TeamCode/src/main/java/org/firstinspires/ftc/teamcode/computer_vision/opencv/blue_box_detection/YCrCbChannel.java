@@ -1,15 +1,10 @@
 package org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
-import org.opencv.core.MatOfPoint;
-import org.opencv.core.MatOfPoint2f;
-import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
@@ -19,22 +14,17 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@Autonomous
-public class ExtractYCbCrChannel extends LinearOpMode {
+@Autonomous(name = "YCrCb Channel", group = "Computer Vision")
+public class YCrCbChannel extends OpMode {
     OpenCvCamera camera;
 
     @Override
-    public void runOpMode() throws InterruptedException {
+    public void init() {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier
                 ("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createInternalCamera
                 (OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
-
-        camera.setPipeline(new BlueBoxVision());
-
+        camera.setPipeline(new YCrCbVision());
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {
@@ -47,14 +37,16 @@ public class ExtractYCbCrChannel extends LinearOpMode {
                 telemetry.addData("Status", "An error occurred with OpenCV!");
             }
         });
+    } // Initialize the camera
+
+    @Override
+    public void loop() {
+
     }
 
-
-    public static class BlueBoxVision extends OpenCvPipeline {
-
-        Mat YCbCr  = new Mat();
+    class YCrCbVision extends OpenCvPipeline {
+        Mat YCrCb  = new Mat();
         Mat outPut = new Mat();
-
         Mat leftMat;
         Mat rightMat;
         Mat centerMat;
@@ -64,57 +56,51 @@ public class ExtractYCbCrChannel extends LinearOpMode {
         double centerValue;
 
         Scalar rectColor = new Scalar(255.0, 0.0, 0.0);
-        Telemetry telemetry;
 
         @Override
         public Mat processFrame(Mat input) {
+            Imgproc.cvtColor(input, YCrCb, Imgproc.COLOR_RGB2YCrCb);
+            telemetry.addLine("Pipeline is running");
 
-            Imgproc.cvtColor(input, YCbCr, Imgproc.COLOR_RGB2YCrCb);
-            telemetry.addLine("pipeline is running");
-
-            Rect leftRect = new Rect(1, 80, 80, 110);
-            Rect rightRect = new Rect(160, 80, 80, 110);
-            Rect centerRect = new Rect(80, 80, 80, 110);
+            Rect leftRect = new Rect(1, 60, 80, 120);
+            Rect centerRect = new Rect(80, 60, 80, 120);
+            Rect rightRect = new Rect(160, 60, 80, 120);
 
             input.copyTo(outPut);
             Imgproc.rectangle(outPut, leftRect, rectColor, 2);
             Imgproc.rectangle(outPut, rightRect, rectColor, 2);
             Imgproc.rectangle(outPut, centerRect, rectColor, 2);
 
-            leftMat = YCbCr.submat(leftRect);
-            rightMat = YCbCr.submat(rightRect);
-            centerMat = YCbCr.submat(centerRect);
-
-            double leftTotal   = Core.sumElems(leftMat).val[2];
-            double rightTotal  = Core.sumElems(rightMat).val[2];
-            double centerTotal = Core.sumElems(centerMat).val[2];
+            leftMat = YCrCb.submat(leftRect);
+            rightMat = YCrCb.submat(rightRect);
+            centerMat = YCrCb.submat(centerRect);
 
             Core.extractChannel(leftMat, leftMat, 1);
             Core.extractChannel(rightMat, rightMat, 1);
             Core.extractChannel(centerMat, centerMat, 1);
 
-            Scalar leftValueAvg = Core.mean(leftMat);
-            Scalar rightValueAvg = Core.mean(rightMat);
-            Scalar centerValueAvg = Core.mean(centerMat);
+            Scalar leftAvg = Core.mean(leftMat);
+            Scalar rightAvg = Core.mean(rightMat);
+            Scalar centerAvg = Core.mean(centerMat);
 
-            leftValue = leftValueAvg.val[0];
-            rightValue = rightValueAvg.val[0];
-            centerValue = centerValueAvg.val[0];
+            leftValue = Math.round(leftAvg.val[0]);
+            rightValue = Math.round(rightAvg.val[0]);
+            centerValue = Math.round(centerAvg.val[0]);
 
-            if ((leftTotal > rightTotal) && (leftTotal > centerTotal)) {
-                telemetry.addData("Status", "LEFT");
+            telemetry.addData("Left", leftValue);
+            telemetry.addData("Right", rightValue);
+            telemetry.addData("Center", centerValue);
+
+            if ((leftValue > rightValue) && (leftValue > centerValue)) {
+                telemetry.addLine("The Object is on the Left");
+            } else if ((rightValue > leftValue) && (rightValue > centerValue)) {
+                telemetry.addLine("The Object ios on the Right");
+            } else if ((centerValue > leftValue) && (centerValue > rightValue)) {
+                telemetry.addLine("The object is on the center");
+            } else {
+                telemetry.addLine("There are no objects");
             }
-            if ((rightTotal > leftTotal) && (rightTotal > centerTotal)) {
-                telemetry.addData("Status", "RIGHT");
-            }
-            if ((centerTotal > leftTotal) && (centerTotal > rightTotal)) {
-                telemetry.addData("Status", "CENTER");
-            }
-
-            //TODO: Extract the light conditions from the equation
-
-            return(outPut);
+            return (outPut);
         }
     }
 }
-

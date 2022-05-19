@@ -17,7 +17,7 @@ public class ClawIntake extends LinearOpMode {
         clawR = hardwareMap.get(DcMotor.class, "clawL");
 
         intake.setDirection(DcMotor.Direction.FORWARD);
-        clawL.setDirection(DcMotor.Direction.REVERSE);
+        clawL.setDirection(DcMotor.Direction.FORWARD);
         clawR.setDirection(DcMotor.Direction.FORWARD);
 
         clawL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -29,9 +29,15 @@ public class ClawIntake extends LinearOpMode {
        waitForStart();
 
         boolean full = false;
-        boolean dir = true;
+        boolean dir  = false;
 
         while(opModeIsActive()) {
+
+            telemetry.addData("LPos", clawL.getCurrentPosition());
+            telemetry.addData("RPos", clawR.getCurrentPosition());
+
+            telemetry.update();
+
             // INTAKE
             if(gamepad1.y && !full) {
                 intake.setPower(1);
@@ -40,41 +46,39 @@ public class ClawIntake extends LinearOpMode {
                     full = true;
                 }
             }
-            else if(gamepad1.a && full) {
+            else if(gamepad1.y && full) {
                 intake.setPower(-1);
-                if (gamepad1.a) {
+                if (gamepad1.y) {
                     intake.setPower(0);
                     full = false;
                 }
             }
 
             // GO
-            if(gamepad1.x && dir) {
-                clawL.setTargetPosition(1);
-                clawR.setTargetPosition(1);
+            if(gamepad1.x) {
+                clawL.setTargetPosition(40);
+                clawR.setTargetPosition(40);
 
                 clawL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 clawR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-                clawL.setPower(0.7);
-                clawR.setPower(0.7);
-
-                sleep(500);
-                dir = false;
+                clawL.setPower(0.8);
+                clawR.setPower(0.8);
+                dir = true;
             }
 
             // BACK
-            if(gamepad1.y && !dir) {
+            else if(gamepad1.b) {
                 clawL.setTargetPosition(0);
                 clawR.setTargetPosition(0);
 
                 clawL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 clawR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-                clawR.setPower(-0.1);
-                clawL.setPower(-0.1);
+                clawR.setPower(-0.3);
+                clawL.setPower(-0.3);
+                dir = false;
 
-                dir = true;
             }
             if (!dir && ( clawL.getTargetPosition() < 5 || clawR.getTargetPosition() < 5)) {
                 clawL.setPower(0);

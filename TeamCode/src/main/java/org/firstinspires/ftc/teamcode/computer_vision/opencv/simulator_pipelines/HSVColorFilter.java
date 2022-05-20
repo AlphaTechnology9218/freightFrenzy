@@ -40,6 +40,7 @@ public class HSVColorFilter extends OpenCvPipeline {
 
         // Draw Contours
         Imgproc.drawContours(input, contours, -1, new Scalar(255, 0, 0));
+
         return mat;
     }
 }

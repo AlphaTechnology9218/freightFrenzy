@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.exception.TargetPositionNotSetException;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -14,8 +15,11 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
+import java.lang.annotation.Target;
+
 @Autonomous(name = "YCrCb Channel", group = "Computer Vision")
 public class YCrCbChannel extends OpMode {
+    public int targetPos;
     OpenCvCamera camera;
 
     @Override
@@ -93,10 +97,13 @@ public class YCrCbChannel extends OpMode {
 
             if ((leftValue > rightValue) && (leftValue > centerValue)) {
                 telemetry.addLine("The Object is on the Left");
+                targetPos = 0;
             } else if ((rightValue > leftValue) && (rightValue > centerValue)) {
                 telemetry.addLine("The Object ios on the Right");
+                targetPos = 1;
             } else if ((centerValue > leftValue) && (centerValue > rightValue)) {
                 telemetry.addLine("The object is on the center");
+                targetPos = 2;
             } else {
                 telemetry.addLine("There are no objects");
             }

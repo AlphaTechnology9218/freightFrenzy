@@ -96,7 +96,6 @@ public class ExtractYCbCrChannelUpgraded extends LinearOpMode {
             regionCb = outPut.submat(new Rect(pointA, pointB));
         }
 
-
         @Override
         public Mat processFrame(Mat input) {
 

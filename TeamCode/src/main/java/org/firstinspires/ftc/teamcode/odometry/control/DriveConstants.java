@@ -9,7 +9,7 @@ public class DriveConstants {
         public static final double MAX_RPM = 150;
 
         public static final boolean RUN_USING_ENCODER = true;
-        public static PIDFCoefficients MOTOR_VELO_PID = new PIDFCoefficients(22, 0, 0.8, 12.481373);
+        public static PIDFCoefficients MOTOR_VELO_PID = new PIDFCoefficients(22, 0, 0.8, 12.69649);
 
         public static double WHEEL_RADIUS = 1.4763;
         public static double GEAR_RATIO = 1.33;
@@ -19,8 +19,8 @@ public class DriveConstants {
         public static double kA = 0;
         public static double kStatic = 0; // don't change!
 
-        public static double MAX_VEL = 20.1798392; // 80% of max velocity
-        public static double MAX_ACCEL = 20.1798392;
+        public static double MAX_VEL = 28.30536; // 80% of max velocity
+        public static double MAX_ACCEL = 28.30536;
         public static double MAX_ANG_VEL = Math.toRadians(182.073254);
         public static double MAX_ANG_ACCEL = Math.toRadians(182.073254);
 
@@ -36,7 +36,7 @@ public class DriveConstants {
                 return 32767 / ticksPerSecond;
         }
 }
-         // max velocity = 25.224799
+         // max velocity = 31.45044
         // documentation: https://docs.google.com/document/d/1tyWrXDfMidwYyP_5H4mZyVgaEswhOC35gvdmP-V-5hA/edit#heading=h.61g9ixenznbx
 
 

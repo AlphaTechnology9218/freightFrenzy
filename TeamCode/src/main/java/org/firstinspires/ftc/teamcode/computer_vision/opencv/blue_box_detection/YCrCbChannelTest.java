@@ -1,18 +1,24 @@
 package org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
+@Autonomous
 public class YCrCbChannelTest extends OpMode {
     YCrCbChannel vision = new YCrCbChannel();
 
     @Override
     public void init() {
+        vision.init(hardwareMap);
+
         if (vision.targetPos == 1) {
-            // robot logic
+            telemetry.addLine("The Object is on the Left");
         } else if (vision.targetPos == 2) {
-            // robot logic
+            telemetry.addLine("The Object ios on the Right");
+        } else if (vision.targetPos == 3) {
+            telemetry.addLine("The object is on the center");
         } else {
-            // robot logic
+            telemetry.addLine("There are no objects");
         }
     }
 

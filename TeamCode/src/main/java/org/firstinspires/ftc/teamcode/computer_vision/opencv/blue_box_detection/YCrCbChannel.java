@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.exception.TargetPositionNotSetException;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -21,9 +22,19 @@ import java.lang.annotation.Target;
 public class YCrCbChannel extends OpMode {
     public int targetPos;
     OpenCvCamera camera;
+    TargetLocation target;
 
     @Override
     public void init() {
+        init(hardwareMap);
+    }
+
+    @Override
+    public void loop() {
+
+    }
+
+    public void init(HardwareMap hardwareMap) {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier
                 ("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createInternalCamera
@@ -42,11 +53,6 @@ public class YCrCbChannel extends OpMode {
             }
         });
     } // Initialize the camera
-
-    @Override
-    public void loop() {
-
-    }
 
     class YCrCbVision extends OpenCvPipeline {
         Mat YCrCb  = new Mat();
@@ -109,5 +115,9 @@ public class YCrCbChannel extends OpMode {
             }
             return (outPut);
         }
+    }
+
+    public TargetLocation getTarget() {
+        return target;
     }
 }

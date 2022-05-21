@@ -12,8 +12,8 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 @Autonomous(name = "OpenCV Setup Webcam", group = "Robot Components")
 public class SetupWebcam extends LinearOpMode {
     public WebcamName robotWebcam;
-    public OpenCvCamera camera;
     public int cameraMonitorViewId;
+    OpenCvCamera camera;
     public boolean act = true;
     /*********************************************************************************************
      * cameraMonitorViewId - live camera preview to display on the Robot Controller screen       *
@@ -22,34 +22,30 @@ public class SetupWebcam extends LinearOpMode {
      * act - active and detective the camera                                                     *
      *********************************************************************************************/
 
-    public void init(HardwareMap hardwareMap) {
-        cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
-                "cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-
-        robotWebcam = hardwareMap.get(WebcamName.class, "Robot Webcam");
-        camera = OpenCvCameraFactory.getInstance().createWebcam(robotWebcam, cameraMonitorViewId);
-    }
-
     @Override
     public void runOpMode() {
-        camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier
+                ("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        WebcamName webcamName = hardwareMap.get(WebcamName.class, "Robot Webcam");
+        OpenCvCamera camera = OpenCvCameraFactory.getInstance().createWebcam(webcamName, cameraMonitorViewId);
+
+        camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
+        {
             @Override
-            public void onOpened() {
+            public void onOpened()
+            {
                 camera.setViewportRenderer(OpenCvCamera.ViewportRenderer.GPU_ACCELERATED);
-                /*
-                 * Commonly Supported Resolutions:
-                 * 320x240
-                 * 640x480
-                 * 1280x720
-                 * 1920x1080
-                 * */
-                camera.startStreaming(1280, 720, OpenCvCameraRotation.UPRIGHT);
+                camera.startStreaming(160, 120, OpenCvCameraRotation.UPRIGHT);
             }
             @Override
-            public void onError(int errorCode) {
+            public void onError(int errorCode)
+            {
                 telemetry.addData("Status", "An error occurred with OpenCV!");
             }
         });
+
+        waitForStart();
+
         if (opModeIsActive()) {
             telemetry.addData("Status", "Op Mode is Activated");
             while (opModeIsActive()) {

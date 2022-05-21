@@ -9,7 +9,7 @@ import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 
-@Autonomous(name="OpenCV_Contour_3954_Test", group="Tutorials")
+@Autonomous(name="Advanced OpenCV", group="Computer Vision")
 
 public class AdvancedDetectionOpMode extends LinearOpMode {
     private OpenCvCamera webcam;

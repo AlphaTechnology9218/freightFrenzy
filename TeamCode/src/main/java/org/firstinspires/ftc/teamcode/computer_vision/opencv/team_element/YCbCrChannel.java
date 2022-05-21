@@ -1,10 +1,14 @@
 package org.firstinspires.ftc.teamcode.computer_vision.opencv.team_element;
 
+import androidx.annotation.NonNull;
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.util.Hardware;
 
-import org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box.TargetLocation;
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Rect;
@@ -16,28 +20,26 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-@Autonomous(name = "YCrCb Channel", group = "Computer Vision")
-public class YCrCbChannel extends OpMode {
-    public int targetPos;
+@Autonomous(name = "YCbCr Channel", group = "Computer Vision")
+public class YCbCrChannel extends OpMode {
     OpenCvCamera camera;
-    TargetLocation target;
 
     @Override
-    public void init() {
-        init(hardwareMap);
-    }
+    public void init() { runPipeline(hardwareMap); }
 
     @Override
     public void loop() {
 
     }
 
-    public void init(HardwareMap hardwareMap) {
+    public void runPipeline(@NonNull HardwareMap hardwareMap) {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier
                 ("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createInternalCamera
                 (OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
-        camera.setPipeline(new YCrCbVision());
+
+        camera.setPipeline(new YCbCrVision());
+
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {
@@ -50,11 +52,13 @@ public class YCrCbChannel extends OpMode {
                 telemetry.addData("Status", "An error occurred with OpenCV!");
             }
         });
+
     } // initialize the camera
 
-    class YCrCbVision extends OpenCvPipeline {
+    class YCbCrVision extends OpenCvPipeline {
         Mat YCrCb  = new Mat();
         Mat outPut = new Mat();
+
         Mat leftMat;
         Mat rightMat;
         Mat centerMat;
@@ -95,27 +99,17 @@ public class YCrCbChannel extends OpMode {
             rightValue = Math.round(rightAvg.val[0]);
             centerValue = Math.round(centerAvg.val[0]);
 
-            telemetry.addData("Left", leftValue);
-            telemetry.addData("Right", rightValue);
-            telemetry.addData("Center", centerValue);
-
             if ((leftValue > rightValue) && (leftValue > centerValue)) {
                 telemetry.addLine("The Object is on the Left");
-                targetPos = 0;
             } else if ((rightValue > leftValue) && (rightValue > centerValue)) {
                 telemetry.addLine("The Object ios on the Right");
-                targetPos = 1;
             } else if ((centerValue > leftValue) && (centerValue > rightValue)) {
                 telemetry.addLine("The object is on the center");
-                targetPos = 2;
             } else {
                 telemetry.addLine("There are no objects");
             }
+
             return (outPut);
         }
-    }
-
-    public TargetLocation getTarget() {
-        return target;
     }
 }

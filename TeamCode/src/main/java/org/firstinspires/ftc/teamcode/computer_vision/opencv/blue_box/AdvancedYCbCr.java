@@ -15,8 +15,8 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-@Autonomous
-public class ExtractYCbCrChannelUpgraded extends LinearOpMode {
+@Autonomous(name = "Extract YCbCr", group = "Computer Vision")
+public class AdvancedYCbCr extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         OpenCvCamera camera;

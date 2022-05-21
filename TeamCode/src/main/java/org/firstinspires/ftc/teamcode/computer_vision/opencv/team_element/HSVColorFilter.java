@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection;
+package org.firstinspires.ftc.teamcode.computer_vision.opencv.team_element;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -6,7 +6,6 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
-import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvCamera;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Autonomous
-public class HSVColorFilterTest extends OpMode {
+public class HSVColorFilter extends OpMode {
     OpenCvCamera camera;
 
     @Override

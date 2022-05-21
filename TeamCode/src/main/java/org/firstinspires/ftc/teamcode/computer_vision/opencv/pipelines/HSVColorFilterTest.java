@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.computer_vision.opencv.simulator_pipelines;
+package org.firstinspires.ftc.teamcode.computer_vision.opencv.pipelines;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -10,7 +10,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HSVColorFilter extends OpenCvPipeline {
+public class HSVColorFilterTest extends OpenCvPipeline {
     Mat mat  = new Mat();
     Mat mask = new Mat();
 

@@ -1,109 +1,101 @@
 package org.firstinspires.ftc.teamcode.computer_vision.opencv.team_element;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
-import org.opencv.core.MatOfPoint;
+import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
-import org.openftc.easyopencv.OpenCvCamera;
-import org.openftc.easyopencv.OpenCvCameraFactory;
-import org.openftc.easyopencv.OpenCvCameraRotation;
-import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@Autonomous
 public class Barcode extends OpMode {
-    OpenCvCamera camera;
-
     @Override
     public void init() {
-        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier
-                ("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        camera = OpenCvCameraFactory.getInstance().createInternalCamera
-                (OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
-        camera.setPipeline(new BarcdeVision());
-        camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
-            @Override
-            public void onOpened() {
-                camera.setViewportRenderingPolicy(OpenCvCamera.ViewportRenderingPolicy.OPTIMIZE_VIEW);
-                camera.setViewportRenderer(OpenCvCamera.ViewportRenderer.GPU_ACCELERATED);
-                camera.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
-            }
-            @Override
-            public void onError(int errorCode) {
-                telemetry.addData("Status", "An error occurred with OpenCV!");
-            }
-        });
-    } // initialize the camera
+
+    }
 
     @Override
     public void loop() {
 
     }
 
-    class BarcdeVision extends OpenCvPipeline {
+    static class BarcodeVision extends OpenCvPipeline {
         Mat mat = new Mat();
-        Mat outPut = new Mat();
-        Mat leftMat;
-        Mat rightMat;
-        Mat centerMat;
+        Telemetry telemetry;
 
-        Scalar rectColor = new Scalar(255.0, 0.0, 0.0);
+        public enum TargetPosition {
+            LEFT,
+            CENTER,
+            RIGHT,
+            NONE
+        }
+
+        private TargetPosition targetPosition;
+
+        static final Rect LEFT_RECT = new Rect(
+                new Point(20, 20),
+                new Point(40, 40)
+        );
+
+        static final Rect CENTER_RECT = new Rect(
+                new Point(40, 40),
+                new Point(60, 60)
+        );
+
+        static final Rect RIGHT_RECT = new Rect(
+                new Point(60, 60),
+                new Point(80, 80)
+        );
+
+        static double THRESHOLD = 10;
+
+        public BarcodeVision(Telemetry t) {
+            telemetry = t;
+        }
 
         @Override
         public Mat processFrame(Mat input) {
             Imgproc.cvtColor(input, mat, Imgproc.COLOR_RGBA2RGB);
             Imgproc.cvtColor(mat, mat, Imgproc.COLOR_RGB2HSV);
 
-            // Lower and upper bound for BLUE
-            Scalar lowerBound = new Scalar(221.0 / 2, 30, 30);
-            Scalar upperBound = new Scalar(240.0 / 2, 255, 255);
-
-            // Return Binary Mask
+            // Lower and upper bound for PINK
+            Scalar lowerBound = new Scalar(331.0 / 2, 30, 30);
+            Scalar upperBound = new Scalar(345.0 / 2, 255, 255);
             Core.inRange(mat, lowerBound, upperBound, mat);
 
-            Rect leftRect = new Rect(1, 60, 80, 120);
-            Rect centerRect = new Rect(80, 60, 80, 120);
-            Rect rightRect = new Rect(160, 60, 80, 120);
+            Mat leftMat = mat.submat(LEFT_RECT);
+            Mat rightMat = mat.submat(RIGHT_RECT);
+            Mat centerMat = mat.submat(CENTER_RECT);
 
-            input.copyTo(outPut);
-            Imgproc.rectangle(outPut, leftRect, rectColor, 2);
-            Imgproc.rectangle(outPut, rightRect, rectColor, 2);
-            Imgproc.rectangle(outPut, centerRect, rectColor, 2);
+            double leftValue = Core.sumElems(leftMat).val[0] / LEFT_RECT.area() / 255;
+            double rightValue = Core.sumElems(rightMat).val[0] / RIGHT_RECT.area() / 255;
+            double centerValue = Core.sumElems(centerMat).val[0] / CENTER_RECT.area() / 255;
 
-            leftMat = mat.submat(leftRect);
-            rightMat = mat.submat(rightRect);
-            centerMat = mat.submat(centerRect);
+            leftMat.release();
+            rightMat.release();
+            centerMat.release();
 
-            // Remove Noise
-            Imgproc.morphologyEx(mat, mat, Imgproc.MORPH_OPEN, new Mat());
-            Imgproc.morphologyEx(mat, mat, Imgproc.MORPH_CLOSE, new Mat());
-
-            // Find Contours
-            List<MatOfPoint> contours = new ArrayList<>();
-            Imgproc.findContours(mat, contours, new Mat(), Imgproc.RETR_LIST, Imgproc.CHAIN_APPROX_SIMPLE);
-
-            // Draw Contours
-            Imgproc.drawContours(input, contours, -1, new Scalar(255, 0, 0));
-
-            double centerValue = Math.round(Core.mean(centerMat).val[2] / 255);
-            double leftValue = Math.round(Core.mean(leftMat).val[2] / 255);
-            double rightValue = Math.round(Core.mean(rightMat).val[2] / 255);
-
-            //mat.release();
-
-            telemetry.addData("Center Value", centerValue);
-            telemetry.addData("Left Value", leftValue);
-            telemetry.addData("Right Value", rightValue);
-
+            if (leftValue > THRESHOLD) {
+                targetPosition = TargetPosition.LEFT;
+                telemetry.addData("Position", "Left");
+            }
+            if (rightValue > THRESHOLD) {
+                targetPosition = TargetPosition.RIGHT;
+                telemetry.addData("Position", "Right");
+            }
+            if (centerValue > THRESHOLD) {
+                targetPosition = TargetPosition.CENTER;
+                telemetry.addData("Position", "Center");
+            }
             return mat;
+        }
+
+        public TargetPosition getTargetPosition() {
+            return targetPosition;
         }
     }
 }
+

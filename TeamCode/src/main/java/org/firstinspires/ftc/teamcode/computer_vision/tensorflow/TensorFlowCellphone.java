@@ -1,22 +1,16 @@
 package org.firstinspires.ftc.teamcode.computer_vision.tensorflow;
 
-import android.annotation.SuppressLint;
-
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
-import org.firstinspires.ftc.robotcore.external.ClassFactory;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
-import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
-import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
-
 import java.util.List;
+import org.firstinspires.ftc.robotcore.external.ClassFactory;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection;
+import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
+import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 
-@Autonomous(name = "TensorFlow Object Detection Webcam", group = "Computer Vision")
-public class TensorFlowObjectDetectionWebcam extends LinearOpMode {
+@TeleOp(name = "Concept: TensorFlow Object Detection", group = "Concept")
+public class TensorFlowCellphone extends LinearOpMode {
     /* Note: This sample uses the all-objects Tensor Flow model (FreightFrenzy_BCDM.tflite), which contains
      * the following 4 detectable objects
      *  0: Ball,
@@ -35,13 +29,12 @@ public class TensorFlowObjectDetectionWebcam extends LinearOpMode {
             "Duck",
             "Marker"
     };
-    ObjectsDetected objects = new ObjectsDetected();
 
-    private static final String VUFORIA_KEY = "AQV2x3v/////AAABmR7YRPgGBk1qj0WFSQ4LFt1z+UiyM9AC" +
-            "60gmkqBNr2qIo9N8YsunPo1FXuzFM5RJwDrIaY4NNkwX9MPpT2gIlSXJ9sVpp+jmOhrQ69XSzoEp46dr76" +
-            "DCp/Nq3IJvzuq9/cmS1+c5VK7vXkM/y+QJjjdIgwYCO8eDGKldugYmTZRWXW2Vzs48jElCug8hkKMDeVgS" +
-            "mk9D+H0oI/XzulgOUasttCiw7CQRmL0a4AFioC6+C4qcphnpSg0HV0kVhmLpdxoNIwaVsZdAbOtch5+Sww" +
-            "IAcej9pJU7l7TgLTXkKlToMnWJg6P8QDORSh9kUpqmOYD7q3jUQhBnLijX1HW9dyQPc5zWwRcukxKwlj9H5mM4";
+    private static final String VUFORIA_KEY = "AQV2x3v/////AAABmR7YRPgGBk1qj0WFSQ4LFt1z+UiyM9AC60gmk" +
+            "qBNr2qIo9N8YsunPo1FXuzFM5RJwDrIaY4NNkwX9MPpT2gIlSXJ9sVpp+jmOhrQ69XSzoEp46dr76DCp/Nq3IJv" +
+            "zuq9/cmS1+c5VK7vXkM/y+QJjjdIgwYCO8eDGKldugYmTZRWXW2Vzs48jElCug8hkKMDeVgSmk9D+H0oI/Xzulg" +
+            "OUasttCiw7CQRmL0a4AFioC6+C4qcphnpSg0HV0kVhmLpdxoNIwaVsZdAbOtch5+SwwIAcej9pJU7l7TgLTXkKl" +
+            "ToMnWJg6P8QDORSh9kUpqmOYD7q3jUQhBnLijX1HW9dyQPc5zWwRcukxKwlj9H5mM4";
 
     /**
      * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
@@ -55,7 +48,6 @@ public class TensorFlowObjectDetectionWebcam extends LinearOpMode {
      */
     private TFObjectDetector tfod;
 
-    @SuppressLint("DefaultLocale")
     @Override
     public void runOpMode() {
         // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
@@ -69,10 +61,10 @@ public class TensorFlowObjectDetectionWebcam extends LinearOpMode {
          **/
         if (tfod != null) {
             tfod.activate();
-            tfod.setZoom(2.5, 16.0 / 9.0);
+            tfod.setZoom(2.5, 16.0/9.0);
         }
 
-        /* Wait for the game to begin */
+        /** Wait for the game to begin */
         telemetry.addData(">", "Press Play to start op mode");
         telemetry.update();
         waitForStart();
@@ -85,9 +77,9 @@ public class TensorFlowObjectDetectionWebcam extends LinearOpMode {
                     List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
                     if (updatedRecognitions != null) {
                         telemetry.addData("# Object Detected", updatedRecognitions.size());
+
                         // step through the list of recognitions and display boundary info.
                         int i = 0;
-
                         for (Recognition recognition : updatedRecognitions) {
                             telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
                             telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
@@ -95,31 +87,9 @@ public class TensorFlowObjectDetectionWebcam extends LinearOpMode {
                             telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
                                     recognition.getRight(), recognition.getBottom());
                             i++;
-
-                            /* Address each recognition possibility to a public method */
-                            switch (recognition.getLabel()) {
-                                case "Duck":
-                                    telemetry.addData("Object: ", "Duck");
-                                    objects.duckObject();
-                                    break;
-                                case "Ball":
-                                    telemetry.addData("Object: ", "Ball");
-                                    objects.ballObject();
-                                    break;
-                                case "Cube":
-                                    telemetry.addData("Object: ", "Cube");
-                                    objects.cubeObject();
-                                    break;
-                                case "Marker":
-                                    telemetry.addData("Duck Location: ", "Marker");
-                                    objects.markerBarCode(recognition.getRight(), recognition.getLeft());
-                                    break;
-                                default:
-                                    telemetry.addData("Object", "Nothing Detected");
-                            }
                         }
+                        telemetry.update();
                     }
-                    telemetry.update();
                 }
             }
         }
@@ -135,7 +105,7 @@ public class TensorFlowObjectDetectionWebcam extends LinearOpMode {
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
         parameters.vuforiaLicenseKey = VUFORIA_KEY;
-        parameters.cameraName = hardwareMap.get(WebcamName.class, "Robot Webcam");
+        parameters.cameraDirection = CameraDirection.BACK;
 
         //  Instantiate the Vuforia engine
         vuforia = ClassFactory.getInstance().createVuforia(parameters);

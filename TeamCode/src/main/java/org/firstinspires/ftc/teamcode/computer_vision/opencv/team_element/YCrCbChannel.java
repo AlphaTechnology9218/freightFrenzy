@@ -50,7 +50,7 @@ public class YCrCbChannel extends OpMode {
                 telemetry.addData("Status", "An error occurred with OpenCV!");
             }
         });
-    } // Initialize the camera
+    } // initialize the camera
 
     class YCrCbVision extends OpenCvPipeline {
         Mat YCrCb  = new Mat();

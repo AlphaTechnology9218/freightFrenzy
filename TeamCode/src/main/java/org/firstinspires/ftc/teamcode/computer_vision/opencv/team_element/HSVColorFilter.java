@@ -69,19 +69,6 @@ public class HSVColorFilter extends OpMode {
             // Return Binary Mask
             Core.inRange(mat, lowerBound, upperBound, mat);
 
-            //Rect leftRect = new Rect(1, 60, 80, 120);
-            //Rect centerRect = new Rect(80, 60, 80, 120);
-            //Rect rightRect = new Rect(160, 60, 80, 120);
-
-            //input.copyTo(outPut);
-            //Imgproc.rectangle(outPut, leftRect, rectColor, 2);
-            //Imgproc.rectangle(outPut, rightRect, rectColor, 2);
-            //Imgproc.rectangle(outPut, centerRect, rectColor, 2);
-
-            //leftMat = mat.submat(leftRect);
-            //rightMat = mat.submat(rightRect);
-            //centerMat = mat.submat(centerRect);
-
             // Remove Noise
             Imgproc.morphologyEx(mat, mat, Imgproc.MORPH_OPEN, new Mat());
             Imgproc.morphologyEx(mat, mat, Imgproc.MORPH_CLOSE, new Mat());
@@ -92,9 +79,6 @@ public class HSVColorFilter extends OpMode {
 
             // Draw Contours
             Imgproc.drawContours(input, contours, -1, new Scalar(255, 0, 0));
-
-            //double centerValue = Math.round(Core.mean(mat).val[2] / 255);
-            //mat.release();
 
             return mat;
         }

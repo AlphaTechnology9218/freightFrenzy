@@ -28,7 +28,7 @@ public class Barcode extends OpMode {
                 ("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createInternalCamera
                 (OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
-        camera.setPipeline(new BarcdeVision());
+        camera.setPipeline(new BarcodeVision());
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {
@@ -48,7 +48,7 @@ public class Barcode extends OpMode {
 
     }
 
-    class BarcdeVision extends OpenCvPipeline {
+    class BarcodeVision extends OpenCvPipeline {
         Mat mat = new Mat();
         Mat outPut = new Mat();
         Mat leftMat;

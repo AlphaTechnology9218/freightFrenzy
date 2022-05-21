@@ -5,7 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.abilities.SleepRobot;
-import org.firstinspires.ftc.teamcode.computer_vision.opencv.simulator_pipelines.HSVColorFilter;
+import org.firstinspires.ftc.teamcode.computer_vision.opencv.pipelines.HSVColorFilterTest;
+import org.firstinspires.ftc.teamcode.computer_vision.opencv.team_element.HSVColorFilter;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
@@ -14,7 +15,7 @@ import org.openftc.easyopencv.OpenCvInternalCamera;
 @Autonomous(name = "OpenCV Setup Camera", group = "Robot Components")
 public class SetupCellphone extends OpMode {
     OpenCvCamera camera;
-    HSVColorFilter pipeline;
+    HSVColorFilterTest pipeline;
     private boolean act = true;
     /**********************************************************************************************
      * cameraMonitorViewId - live camera preview to display on the Robot Controller screen        *

@@ -1,10 +1,10 @@
-package org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box_detection;
+package org.firstinspires.ftc.teamcode.computer_vision.opencv.team_element;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.exception.TargetPositionNotSetException;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.computer_vision.opencv.blue_box.TargetLocation;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Rect;
@@ -15,8 +15,6 @@ import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
-
-import java.lang.annotation.Target;
 
 @Autonomous(name = "YCrCb Channel", group = "Computer Vision")
 public class YCrCbChannel extends OpMode {

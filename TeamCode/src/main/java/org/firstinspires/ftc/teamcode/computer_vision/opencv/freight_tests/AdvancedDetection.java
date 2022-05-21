@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.computer_vision.opencv.freight_elements;
+package org.firstinspires.ftc.teamcode.computer_vision.opencv.freight_tests;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;

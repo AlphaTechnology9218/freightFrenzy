@@ -1,11 +1,13 @@
 package org.firstinspires.ftc.teamcode.initial_tests.tele_operate;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
+@Disabled
 @TeleOp(name = "Intake Test", group = "claw tests")
 public class ClawIntake extends LinearOpMode {
     private DcMotor intake, clawL, clawR;

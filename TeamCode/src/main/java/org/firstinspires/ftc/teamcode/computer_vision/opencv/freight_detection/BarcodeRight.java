@@ -4,16 +4,17 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.computer_vision.opencv.team_element.HSVColorFilter;
 import org.firstinspires.ftc.teamcode.computer_vision.opencv.team_element.YCrCbChannel;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 
-@Autonomous(name = "Barcode", group = "Barcode Detection")
+@Autonomous(name = "Right Barcode", group = "Barcode Detection")
 public class BarcodeRight extends LinearOpMode {
     OpenCvCamera camera;
-    YCrCbChannel vision = new YCrCbChannel();
+    HSVColorFilter vision = new HSVColorFilter();
 
     @Override
     public void runOpMode() {

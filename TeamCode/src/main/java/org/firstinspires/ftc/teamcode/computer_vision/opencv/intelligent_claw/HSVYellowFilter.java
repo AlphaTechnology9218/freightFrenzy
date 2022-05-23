@@ -29,7 +29,6 @@ public class HSVYellowFilter extends OpMode {
                 (OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
 
         camera.setPipeline(new YellowVision());
-
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {
@@ -52,8 +51,6 @@ public class HSVYellowFilter extends OpMode {
     class YellowVision extends OpenCvPipeline {
         Mat mat  = new Mat();
         Mat mask = new Mat();
-
-        Scalar HOT_PINK = new Scalar(196, 23, 112);
 
         @Override
         public Mat processFrame(Mat input) {

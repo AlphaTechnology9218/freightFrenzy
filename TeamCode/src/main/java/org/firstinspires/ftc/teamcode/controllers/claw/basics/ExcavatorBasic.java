@@ -1,19 +1,16 @@
 package org.firstinspires.ftc.teamcode.controllers.claw.basics;
 
-import com.acmerobotics.roadrunner.control.PIDCoefficients;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.robot_components.MotorComponents;
 import org.firstinspires.ftc.teamcode.robot_components.MotorComponentsClaw;
 
 @Disabled
 @TeleOp(name = "Excavator Control", group = "Controllers")
 public class ExcavatorBasic extends LinearOpMode {
     MotorComponentsClaw motors = new MotorComponentsClaw();
-    PIDCoefficients control = new PIDCoefficients(0,0,0);
     ElapsedTime timer = new ElapsedTime();
 
     double command = 0.0;

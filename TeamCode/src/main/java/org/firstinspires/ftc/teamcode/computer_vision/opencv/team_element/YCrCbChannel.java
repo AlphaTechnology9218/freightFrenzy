@@ -55,6 +55,12 @@ public class YCrCbChannel extends OpenCvPipeline {
         return (outPut);
     }
 
+    /*
+     * Synchronize these operations as the user code could be incorrect otherwise, i.e a property is
+     * read while the same rectangle is being processed in the pipeline, leading to some values being
+     * not synced.
+     */
+
     public double getLeftValue() {
         synchronized (sync) {
             return leftValue;

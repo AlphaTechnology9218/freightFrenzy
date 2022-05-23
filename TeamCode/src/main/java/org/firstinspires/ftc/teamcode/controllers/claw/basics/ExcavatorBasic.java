@@ -7,7 +7,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.robot_components.MotorComponentsClaw;
 
-@Disabled
 @TeleOp(name = "Excavator Control", group = "Controllers")
 public class ExcavatorBasic extends LinearOpMode {
     MotorComponentsClaw motors = new MotorComponentsClaw();

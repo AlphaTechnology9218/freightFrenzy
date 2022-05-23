@@ -21,7 +21,7 @@ import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
 @Autonomous(name = "YCbCr Channel", group = "Computer Vision")
-public class YCbCrChannel extends OpMode {
+public class YCrCbChannelTest extends OpMode {
     OpenCvCamera camera;
     public int result;
 

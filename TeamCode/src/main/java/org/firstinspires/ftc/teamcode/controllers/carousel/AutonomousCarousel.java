@@ -13,7 +13,7 @@ import com.qualcomm.robotcore.hardware.Servo;
  * *********************/
 
 @Autonomous(name = "Autonomous Carousel Control", group = "Controllers")
-public class AutonomousCarouselControl extends LinearOpMode {
+public class AutonomousCarousel extends LinearOpMode {
     private Servo servoDuck;
     public double position;
 

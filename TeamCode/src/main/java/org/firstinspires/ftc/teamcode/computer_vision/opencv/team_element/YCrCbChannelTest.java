@@ -21,8 +21,9 @@ import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
 @Autonomous(name = "YCbCr Channel", group = "Computer Vision")
-public class YCbCrChannel extends OpMode {
+public class YCrCbChannelTest extends OpMode {
     OpenCvCamera camera;
+    public int result;
 
     @Override
     public void init() { runPipeline(hardwareMap); }
@@ -101,10 +102,13 @@ public class YCbCrChannel extends OpMode {
 
             if ((leftValue > rightValue) && (leftValue > centerValue)) {
                 telemetry.addLine("The Object is on the Left");
+                result = 0;
             } else if ((rightValue > leftValue) && (rightValue > centerValue)) {
-                telemetry.addLine("The Object ios on the Right");
+                telemetry.addLine("The Object is on the Right");
+                result = 1;
             } else if ((centerValue > leftValue) && (centerValue > rightValue)) {
-                telemetry.addLine("The object is on the center");
+                telemetry.addLine("The object is on the Center");
+                result = 2;
             } else {
                 telemetry.addLine("There are no objects");
             }

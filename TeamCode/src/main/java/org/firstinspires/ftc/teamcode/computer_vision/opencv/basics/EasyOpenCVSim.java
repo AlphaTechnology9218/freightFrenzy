@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.computer_vision.opencv.basics;
 import org.opencv.core.Mat;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-public class EasyOpenCVSimulator extends OpenCvPipeline {
+public class EasyOpenCVSim extends OpenCvPipeline {
 
     @Override
     public void init(Mat input) {

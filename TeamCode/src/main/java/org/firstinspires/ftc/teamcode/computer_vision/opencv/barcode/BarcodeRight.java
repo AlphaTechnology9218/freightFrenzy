@@ -1,18 +1,17 @@
-package org.firstinspires.ftc.teamcode.computer_vision.opencv.freight_detection;
+package org.firstinspires.ftc.teamcode.computer_vision.opencv.barcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.computer_vision.opencv.team_element.HSVColorFilter;
-import org.firstinspires.ftc.teamcode.computer_vision.opencv.team_element.YCrCbChannel;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 
-@Autonomous(name = "Left Barcode", group = "Barcode Detection")
-public class BarcodeLeft extends LinearOpMode {
+@Autonomous(name = "Right Barcode", group = "Barcode Detection")
+public class BarcodeRight extends LinearOpMode {
     OpenCvCamera camera;
     HSVColorFilter vision = new HSVColorFilter();
 
@@ -28,6 +27,7 @@ public class BarcodeLeft extends LinearOpMode {
             double center = vision.getCenterValue();
 
             telemetry.update();
+
             if ((left > right) && (left > center)) {
                 hubLevel1();
             } else if ((center > left) && (center > right)) {
@@ -59,7 +59,7 @@ public class BarcodeLeft extends LinearOpMode {
                 telemetry.addData("Status", "An error occurred with OpenCV!");
             }
         });
-    } // camera initialization
+    }
 
     public void hubLevel1() {
         telemetry.addLine("Left");

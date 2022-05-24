@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.abilities.SleepRobot;
 
 @TeleOp(name = "Servo Carousel Control", group = "Controllers")
-public class CarouselControlServo extends OpMode {
+public class ServoCarouselControl extends OpMode {
     private Servo servoDuck;
     public boolean act;
     /***************************************************************************

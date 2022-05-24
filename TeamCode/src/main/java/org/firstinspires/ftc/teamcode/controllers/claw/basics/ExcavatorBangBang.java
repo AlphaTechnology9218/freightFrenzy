@@ -6,42 +6,36 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.odometry.control.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.robot_components.MotorComponentsClaw;
 
-@TeleOp(name = "Excavator Control", group = "Controllers")
-public class ExcavatorBasic extends LinearOpMode {
+@TeleOp(name = "Bang Bang Arm", group = "controllers")
+public class ExcavatorBangBang extends LinearOpMode {
     MotorComponentsClaw motors = new MotorComponentsClaw();
-    ElapsedTime timer = new ElapsedTime();
 
-    // Excavator weight: 362 g
-
-    double command = 0.0;  // motor strength
-    int tP = 5;            // set point
-    double feedF = 0.362;  // feed-forward
-    double integralSum;    // integral sum
-    double Kp = 5;
-    double Ki = 0.4;
-    double Kd = 0.3;
-    double lastError;
+    double sP = 5;
+    double pV;
+    double error = 0;
 
     @Override
-    public void runOpMode() throws InterruptedException {
-        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+    public void runOpMode() {
         motors.init(hardwareMap);
+        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+
 
         waitForStart();
+        motors.cL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         drive.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, MOTOR_VELO_PID);
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while (opModeIsActive()) {
-            armUp();
-            armDown();
-            command = controlLoop(tP, motors.cL.getCurrentPosition());
-            runPower();
+        while (opModeIsActive()){
+            telemetry.addData("Pos", motors.cL.getCurrentPosition());
+            telemetry.update();
+            motorBang();
+            positionControl();
             intake();
+
             drive.setWeightedDrivePower(
                     new Pose2d(
                             gamepad1.left_stick_y,
@@ -52,33 +46,25 @@ public class ExcavatorBasic extends LinearOpMode {
         }
     }
 
-    public void armUp() {
-        if(gamepad1.y){
-            tP = 60;
-        }
+    public void motorBang(){
+        motors.cL.setPower(error);
+        motors.cR.setPower(error);
+
+        if(2 < Math.abs(error)){
+            motors.cL.setPower(0.2);
+        };
     }
 
-    public void armDown() {
+    public void positionControl(){
+        pV = motors.cL.getCurrentPosition();
+        sP = 5;
+        if(gamepad1.x){
+            sP = 120;
+        }
         if(gamepad1.b){
-            tP = 5;
+            sP = 2;
         }
-    }
-
-    public double controlLoop(double SP, double PV) {
-        timer.reset();
-        double error = SP - PV;
-        integralSum += error * timer.seconds();
-        double derivative = (error - lastError) * timer.seconds();
-        lastError = error;
-
-        timer.reset();
-
-        return (error * Kp) + (integralSum * Ki) + (derivative * Kd) + (Math.cos(SP) * feedF);
-    }
-
-    public void runPower() {
-        motors.cL.setPower(command);
-        motors.cR.setPower(command);
+        error = sP - pV;
     }
 
     public void intake(){

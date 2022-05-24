@@ -9,10 +9,10 @@ import org.firstinspires.ftc.teamcode.abilities.SleepRobot;
 public class CarouselControlServo extends OpMode {
     private Servo servoDuck;
     public boolean act;
-    /**************************
+    /***************************************************************************
      * servoDuck - servo to take down the ducks                                *
      * act - activate the servo                                                *
-     *************************/
+     ***************************************************************************/
     SleepRobot sleep = new SleepRobot();
 
     @Override

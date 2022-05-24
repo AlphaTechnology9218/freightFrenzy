@@ -13,7 +13,7 @@ public class MotorComponentsClaw {
 
     public void init(HardwareMap hardwareMap){
         /* Motors for intake and arm */
-        take = hardwareMap.get(DcMotor.class, "Intake");
+        take = hardwareMap.get(DcMotor.class, "intake");
         cL = hardwareMap.get(DcMotor.class, "clawR");
         cR = hardwareMap.get(DcMotor.class, "clawL");
 
@@ -21,7 +21,7 @@ public class MotorComponentsClaw {
         cL.setDirection(DcMotor.Direction.FORWARD);
         cR.setDirection(DcMotor.Direction.FORWARD);
 
-        cL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        cL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         cR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         cL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

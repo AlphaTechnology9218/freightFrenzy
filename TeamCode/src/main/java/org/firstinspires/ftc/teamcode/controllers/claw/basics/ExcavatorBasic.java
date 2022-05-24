@@ -2,7 +2,9 @@ package org.firstinspires.ftc.teamcode.controllers.claw.basics;
 
 import static org.firstinspires.ftc.teamcode.odometry.control.DriveConstants.MOTOR_VELO_PID;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -11,7 +13,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.odometry.control.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.robot_components.MotorComponentsClaw;
 
-@TeleOp(name = "Excavator Control", group = "Controllers")
+@Config
+@Autonomous(name = "Excavator Control", group = "Controllers")
 public class ExcavatorBasic extends LinearOpMode {
     MotorComponentsClaw motors = new MotorComponentsClaw();
     ElapsedTime timer = new ElapsedTime();
@@ -19,12 +22,12 @@ public class ExcavatorBasic extends LinearOpMode {
     // Excavator weight: 362 g
 
     double command = 0.0;  // motor strength
-    int tP = 5;            // set point
-    double feedF = 0.362;  // feed-forward
+    int tP = -180;         // set point
+    double feedF = -0.362;  // feed-forward
     double integralSum;    // integral sum
-    double Kp = 5;
-    double Ki = 0.4;
-    double Kd = 0.3;
+    public static double Kp = 0.1;
+    public static double Ki = 0.1;
+    public static double Kd = 0.4;
     double lastError;
 
     @Override
@@ -37,6 +40,9 @@ public class ExcavatorBasic extends LinearOpMode {
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         while (opModeIsActive()) {
+            telemetry.addData("pos", motors.cL.getCurrentPosition());
+            telemetry.update();
+
             armUp();
             armDown();
             command = controlLoop(tP, motors.cL.getCurrentPosition());
@@ -54,13 +60,13 @@ public class ExcavatorBasic extends LinearOpMode {
 
     public void armUp() {
         if(gamepad1.y){
-            tP = 60;
+            tP = -120;
         }
     }
 
     public void armDown() {
         if(gamepad1.b){
-            tP = 5;
+            tP = -225;
         }
     }
 

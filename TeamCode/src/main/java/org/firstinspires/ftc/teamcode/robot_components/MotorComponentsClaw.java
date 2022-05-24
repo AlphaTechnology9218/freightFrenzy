@@ -14,8 +14,8 @@ public class MotorComponentsClaw {
     public void init(HardwareMap hardwareMap){
         /* Motors for intake and arm */
         take = hardwareMap.get(DcMotor.class, "intake");
-        cL = hardwareMap.get(DcMotor.class, "clawR");
-        cR = hardwareMap.get(DcMotor.class, "clawL");
+        cL = hardwareMap.get(DcMotor.class, "clawL");
+        cR = hardwareMap.get(DcMotor.class, "clawR");
 
         take.setDirection(DcMotor.Direction.FORWARD);
         cL.setDirection(DcMotor.Direction.FORWARD);

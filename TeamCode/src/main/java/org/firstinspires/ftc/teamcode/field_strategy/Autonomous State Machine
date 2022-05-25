@@ -1,0 +1,19 @@
+Mealy Machine
+
+(initial state) robot off
+(transition) start button pressed
+(state) robot on -> team element not detected
+(transition) call opencv pipeline
+(state) team element position detected
+(transition) call robot position to shipping hub
+(state) robot idle
+(transition) call excavator movement
+(state) pre-freight delivered
+(transition) call robot movement to carousel
+(state) robot idle
+(transition) call carousel control
+(state) duck down
+(transition) call movement to warehouse
+(state) robot off
+
+COMPLETE AUTONOMOUS

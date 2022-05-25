@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.controllers.claw.basics;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -10,6 +11,7 @@ import org.firstinspires.ftc.teamcode.abilities.SleepRobot;
 
 import java.util.concurrent.TimeUnit;
 
+@Disabled
 @TeleOp(name = "Basic Claw Control", group = "Controllers")
 public class BasicClawControl extends OpMode {
     private Servo sOC, sUD;

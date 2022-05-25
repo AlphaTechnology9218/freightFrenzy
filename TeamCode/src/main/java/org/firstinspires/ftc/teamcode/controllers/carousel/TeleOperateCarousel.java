@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.robot_components.MotorComponents;
 
 import java.util.concurrent.TimeUnit;
 
-@TeleOp(name = "Motor Carousel Control", group = "Controllers")
+@TeleOp(name = "Advanced Carousel Control", group = "Controllers")
 public class TeleOperateCarousel extends OpMode {
     MotorComponents motors = new MotorComponents();
     ElapsedTime timer = new ElapsedTime();
@@ -25,23 +25,19 @@ public class TeleOperateCarousel extends OpMode {
     @Override
     public void loop() { takeDownDuck(); }
 
-    @Override
-    public void stop() { telemetry.addData("Status", "Finished"); }
-
     public void takeDownDuck() {
         SleepRobot sleep = new SleepRobot();
         telemetry.addData("Time", timer.time());
-
-        float power = (float) 0.7;
+        float power = 0.7F;
 
         if (gamepad1.y && act) { // Take Duck Down
             timer.startTime();
             motors.mDDR.setPower(power);
             motors.mDDL.setPower(power);
             if (timer.time(TimeUnit.SECONDS) == 2) {
-                int i = 0;
+                int i;
                 for (i = 0; i < 3; i++) {
-                    power = (float) + 0.1;
+                    power += 0.1F;
                     motors.mDDR.setPower(power);
                     motors.mDDL.setPower(power);
                     i++;

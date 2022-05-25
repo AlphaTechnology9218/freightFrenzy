@@ -11,6 +11,7 @@ import org.firstinspires.ftc.teamcode.computer_vision.opencv.team_element.HSVCol
 import org.firstinspires.ftc.teamcode.computer_vision.opencv.team_element.YCrCbChannel;
 import org.firstinspires.ftc.teamcode.odometry.control.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.odometry.traject.TrajectorySequence;
+import org.firstinspires.ftc.teamcode.robot_components.SetupWebcam;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
@@ -19,11 +20,14 @@ import org.openftc.easyopencv.OpenCvInternalCamera;
 @Autonomous(name = "Left Barcode", group = "Barcode Detection")
 public class BarcodeLeft extends LinearOpMode {
     OpenCvCamera camera;
-    YCrCbChannel vision = new YCrCbChannel();
+    HSVColorFilter vision = new HSVColorFilter();
     boolean found = false;
+
+    SetupWebcam webcam = new SetupWebcam();
 
     @Override
     public void runOpMode() {
+        //webcam.startWebcam(hardwareMap);
         runPipeline(hardwareMap);
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 

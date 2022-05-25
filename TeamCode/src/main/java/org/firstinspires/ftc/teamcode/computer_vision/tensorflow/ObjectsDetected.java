@@ -16,7 +16,7 @@ public static int DuckBarcode; // The level where the duck should be placed in t
         if(right > 50){ // 3° shipping level
             DuckBarcode = 3;
         }
-        else if(left < 50 && right < 50){ // 2° shipping level
+        else if(left < 50 && right < 50) { // 2° shipping level
             DuckBarcode = 2;
         }
         else{ // 1° shipping level

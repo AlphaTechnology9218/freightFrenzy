@@ -266,8 +266,8 @@ public class SampleMecanumDrive extends MecanumDrive {
     public void setMotorPowers(double v, double v1, double v2, double v3) {
         mFL.setPower(v);
         mBL.setPower(v1);
-        mFR.setPower(v2);
-        mBR.setPower(v3);
+        mBR.setPower(v2);
+        mFR.setPower(v3);
     }
 
     @Override

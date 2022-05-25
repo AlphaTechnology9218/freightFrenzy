@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.robot_components;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class MotorComponentsClaw {
@@ -18,10 +19,10 @@ public class MotorComponentsClaw {
         cR = hardwareMap.get(DcMotor.class, "clawR");
 
         take.setDirection(DcMotor.Direction.FORWARD);
-        cL.setDirection(DcMotor.Direction.FORWARD);
-        cR.setDirection(DcMotor.Direction.FORWARD);
+        cL.setDirection(DcMotor.Direction.REVERSE);
+        cR.setDirection(DcMotor.Direction.REVERSE);
 
-        cL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        cL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         cR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         cL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

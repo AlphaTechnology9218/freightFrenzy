@@ -43,7 +43,8 @@ public class ExcavatorBasic extends LinearOpMode {
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         while (opModeIsActive()) {
-            telemetry.addData("pos", motors.cL.getCurrentPosition());
+            telemetry.addData("sP", tP);
+            telemetry.addData("pV", motors.cL.getCurrentPosition());
             telemetry.update();
 
             manualControl();
@@ -90,8 +91,6 @@ public class ExcavatorBasic extends LinearOpMode {
         double derivative = (error - lastError) * timer.seconds();
         lastError = error;
 
-        telemetry.addData("error", error);
-
         timer.reset();
 
         return (error * Kp) + (integralSum * Ki) + (derivative * Kd) + (Math.cos(SP) * feedF);
@@ -104,10 +103,10 @@ public class ExcavatorBasic extends LinearOpMode {
 
     public void intake(){
         if(gamepad1.left_bumper){
-            motors.take.setPower(1);
+            motors.take.setPower(0.7);
         }
         if (gamepad1.right_bumper){
-            motors.take.setPower(-1);
+            motors.take.setPower(-0.7);
         }
         if(gamepad1.a){
             motors.take.setPower(0);

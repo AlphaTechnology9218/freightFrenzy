@@ -2,7 +2,9 @@ package org.firstinspires.ftc.teamcode.controllers.claw.basics;
 
 import static org.firstinspires.ftc.teamcode.odometry.control.DriveConstants.MOTOR_VELO_PID;
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -23,7 +25,7 @@ public class ExcavatorBasic extends LinearOpMode {
 
     public static double command = 0.0; // motor strength
     public static int tP = -5;         // set point
-    double feedF = -0.362;            // feed-forward
+    public static double feedF = -0.362;            // feed-forward
     double integralSum;              // integral sum
     public static double Kp = 0.1;
     public static double Ki = 0.1;
@@ -34,6 +36,7 @@ public class ExcavatorBasic extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
         motors.init(hardwareMap);
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         waitForStart();
         drive.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, MOTOR_VELO_PID);
@@ -106,7 +109,7 @@ public class ExcavatorBasic extends LinearOpMode {
         if (gamepad1.right_bumper){
             motors.take.setPower(-1);
         }
-        if(gamepad1.y){
+        if(gamepad1.a){
             motors.take.setPower(0);
         }
     }

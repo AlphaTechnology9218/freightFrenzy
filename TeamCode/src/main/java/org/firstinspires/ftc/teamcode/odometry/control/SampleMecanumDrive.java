@@ -119,10 +119,10 @@ public class SampleMecanumDrive extends MecanumDrive {
             setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, MOTOR_VELO_PID);
         }
 
-        mFL.setDirection(DcMotor.Direction.FORWARD);
-        mBL.setDirection(DcMotor.Direction.FORWARD);
-        mFR.setDirection(DcMotor.Direction.REVERSE);
-        mBR.setDirection(DcMotor.Direction.REVERSE);
+        mFL.setDirection(DcMotor.Direction.REVERSE);
+        mBL.setDirection(DcMotor.Direction.REVERSE);
+        mFR.setDirection(DcMotor.Direction.FORWARD);
+        mBR.setDirection(DcMotor.Direction.FORWARD);
 
         trajectorySequenceRunner = new TrajectorySequenceRunner(follower, HEADING_PID);
     }
@@ -272,12 +272,12 @@ public class SampleMecanumDrive extends MecanumDrive {
 
     @Override
     public double getRawExternalHeading() {
-        return imu.getAngularOrientation().firstAngle;
+        return imu.getAngularOrientation().secondAngle;
     }
 
     @Override
     public Double getExternalHeadingVelocity() {
-        return (double) -imu.getAngularVelocity().xRotationRate;
+        return (double) imu.getAngularVelocity().yRotationRate;
     }
 
     public static TrajectoryVelocityConstraint getVelocityConstraint(double maxVel,

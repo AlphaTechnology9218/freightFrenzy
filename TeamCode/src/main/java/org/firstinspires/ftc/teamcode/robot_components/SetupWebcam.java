@@ -52,7 +52,7 @@ public class SetupWebcam extends LinearOpMode {
             @Override
             public void onOpened() {
                 camera.setViewportRenderer(OpenCvCamera.ViewportRenderer.GPU_ACCELERATED);
-                camera.startStreaming(160, 120, OpenCvCameraRotation.UPRIGHT);
+                camera.startStreaming(160, 120, OpenCvCameraRotation.UPSIDE_DOWN);
             }
             @Override
             public void onError(int errorCode) {

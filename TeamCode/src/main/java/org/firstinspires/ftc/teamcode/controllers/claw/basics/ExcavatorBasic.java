@@ -21,8 +21,8 @@ public class ExcavatorBasic extends LinearOpMode {
 
     // Excavator weight: 362 g
 
-    double command = 0.0;  // motor strength
-    int tP;         // set point
+    double command = 0.0;     // motor strength
+    int tP = 210;            // set point
     double feedF = -0.362;  // feed-forward
     double integralSum;    // integral sum
     public static double Kp = 0.1;
@@ -55,6 +55,15 @@ public class ExcavatorBasic extends LinearOpMode {
                             -gamepad1.right_stick_x
                     )
             );
+        }
+    }
+
+    public void manualControl(){
+        if(gamepad1.dpad_down){
+            tP++;
+        }
+        else if(gamepad1.dpad_up){
+            tP--;
         }
     }
 

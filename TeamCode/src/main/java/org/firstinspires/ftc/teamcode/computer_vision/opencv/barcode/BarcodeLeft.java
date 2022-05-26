@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.computer_vision.opencv.freight_detection;
+package org.firstinspires.ftc.teamcode.computer_vision.opencv.barcode;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
@@ -23,26 +23,26 @@ public class BarcodeLeft extends LinearOpMode {
     HSVColorFilter vision = new HSVColorFilter();
     boolean found = false;
 
-    SetupWebcam webcam = new SetupWebcam();
+    //SetupWebcam webcam = new SetupWebcam();
 
     @Override
     public void runOpMode() {
         //webcam.startWebcam(hardwareMap);
         runPipeline(hardwareMap);
-        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
-
-        Pose2d startPose = new Pose2d(-10 / 2, -10 / 2, 0);
-
-        drive.setPoseEstimate(startPose);
-
-        Trajectory traj1 = drive.trajectoryBuilder(startPose)
-                .forward(10)
-                //.splineTo(new Vector2d(-2, -52), Math.toRadians(46.5))
-                //.back(5)
-                .build();
-        Trajectory traj2 = drive.trajectoryBuilder(startPose)
-                .strafeRight(4)
-                .build();
+//        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+//
+//        Pose2d startPose = new Pose2d(-10 / 2, -10 / 2, 0);
+//
+//        drive.setPoseEstimate(startPose);
+//
+//        Trajectory traj1 = drive.trajectoryBuilder(startPose)
+//                .forward(10)
+//                //.splineTo(new Vector2d(-2, -52), Math.toRadians(46.5))
+//                //.back(5)
+//                .build();
+//        Trajectory traj2 = drive.trajectoryBuilder(startPose)
+//                .strafeRight(4)
+//                .build();
 
 
         waitForStart();
@@ -66,9 +66,9 @@ public class BarcodeLeft extends LinearOpMode {
                 hubDefault(); }
                 // 2° strategy: duck control
         }
-        if(isStopRequested()) return;
-        drive.followTrajectory(traj1);
-        drive.followTrajectory(traj2);
+//        if(isStopRequested()) return;
+//        drive.followTrajectory(traj1);
+//        drive.followTrajectory(traj2);
 
     }
 

@@ -21,10 +21,10 @@ public class ExcavatorBasic extends LinearOpMode {
 
     // Excavator weight: 362 g
 
-    double command = 0.0;     // motor strength
-    int tP = 210;            // set point
-    double feedF = -0.362;  // feed-forward
-    double integralSum;    // integral sum
+    public static double command = 0.0; // motor strength
+    public static int tP = -5;         // set point
+    double feedF = -0.362;            // feed-forward
+    double integralSum;              // integral sum
     public static double Kp = 0.1;
     public static double Ki = 0.1;
     public static double Kd = 0.4;
@@ -43,6 +43,7 @@ public class ExcavatorBasic extends LinearOpMode {
             telemetry.addData("pos", motors.cL.getCurrentPosition());
             telemetry.update();
 
+            manualControl();
             armUp();
             armDown();
             command = controlLoop(tP, motors.cL.getCurrentPosition());
@@ -85,6 +86,8 @@ public class ExcavatorBasic extends LinearOpMode {
         integralSum += error * timer.seconds();
         double derivative = (error - lastError) * timer.seconds();
         lastError = error;
+
+        telemetry.addData("error", error);
 
         timer.reset();
 

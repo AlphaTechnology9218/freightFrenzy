@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>Localization.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #ff6188; font-style: italic;}
+.s1 { color: #fcfcfa;}
+.s2 { color: #939293;}
+.s3 { color: #727072; font-style: italic;}
+.s4 { color: #ff6188;}
+.s5 { color: #ab9df2;}
+.s6 { color: #ffd866;}
+</style>
+</head>
+<body bgcolor="#2d2a2e">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Localization.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">org</span><span class="s2">.</span><span class="s1">firstinspires</span><span class="s2">.</span><span class="s1">ftc</span><span class="s2">.</span><span class="s1">teamcode</span><span class="s2">.</span><span class="s1">abilities</span><span class="s2">;</span>
+
+<span class="s0">import static </span><span class="s1">org</span><span class="s2">.</span><span class="s1">firstinspires</span><span class="s2">.</span><span class="s1">ftc</span><span class="s2">.</span><span class="s1">robotcore</span><span class="s2">.</span><span class="s1">external</span><span class="s2">.</span><span class="s1">navigation</span><span class="s2">.</span><span class="s1">AngleUnit</span><span class="s2">.</span><span class="s1">DEGREES</span><span class="s2">;</span>
+<span class="s0">import static </span><span class="s1">org</span><span class="s2">.</span><span class="s1">firstinspires</span><span class="s2">.</span><span class="s1">ftc</span><span class="s2">.</span><span class="s1">robotcore</span><span class="s2">.</span><span class="s1">external</span><span class="s2">.</span><span class="s1">navigation</span><span class="s2">.</span><span class="s1">AxesOrder</span><span class="s2">.</span><span class="s1">XYZ</span><span class="s2">;</span>
+<span class="s0">import static </span><span class="s1">org</span><span class="s2">.</span><span class="s1">firstinspires</span><span class="s2">.</span><span class="s1">ftc</span><span class="s2">.</span><span class="s1">robotcore</span><span class="s2">.</span><span class="s1">external</span><span class="s2">.</span><span class="s1">navigation</span><span class="s2">.</span><span class="s1">AxesReference</span><span class="s2">.</span><span class="s1">EXTRINSIC</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">firstinspires</span><span class="s2">.</span><span class="s1">ftc</span><span class="s2">.</span><span class="s1">robotcore</span><span class="s2">.</span><span class="s1">external</span><span class="s2">.</span><span class="s1">navigation</span><span class="s2">.</span><span class="s1">Orientation</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">firstinspires</span><span class="s2">.</span><span class="s1">ftc</span><span class="s2">.</span><span class="s1">teamcode</span><span class="s2">.</span><span class="s1">computer_vision</span><span class="s2">.</span><span class="s1">vuforia</span><span class="s2">.</span><span class="s1">VuforiaFieldNavigation</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">Localization </span><span class="s0">extends </span><span class="s1">VuforiaFieldNavigation </span><span class="s2">{</span>
+    <span class="s3">/* 
+     * LX == location in the x axis 
+     * LY == location in the y axis 
+     * RR == robot's rotation angle 
+     */</span>
+    <span class="s0">public float </span><span class="s1">LX</span><span class="s2">;</span>
+    <span class="s0">public float </span><span class="s1">LY</span><span class="s2">;</span>
+    <span class="s0">public float </span><span class="s1">RR</span><span class="s2">;</span>
+
+    <span class="s0">public void </span><span class="s1">runOpMode</span><span class="s2">(){</span>
+        <span class="s0">while</span><span class="s2">(</span><span class="s1">opModeIsActive</span><span class="s2">()){</span>
+            <span class="s0">float</span><span class="s2">[] </span><span class="s1">coordinates </span><span class="s4">= </span><span class="s1">lastLocation</span><span class="s2">.</span><span class="s1">getTranslation</span><span class="s2">().</span><span class="s1">getData</span><span class="s2">();</span>
+            <span class="s3">//Gets translational location in the x and y axes</span>
+            <span class="s1">LX </span><span class="s4">= </span><span class="s1">coordinates</span><span class="s2">[</span><span class="s5">0</span><span class="s2">];</span>
+            <span class="s1">LY </span><span class="s4">= </span><span class="s1">coordinates</span><span class="s2">[</span><span class="s5">1</span><span class="s2">];</span>
+            <span class="s1">RR </span><span class="s4">= </span><span class="s1">Orientation</span><span class="s2">.</span><span class="s1">getOrientation</span><span class="s2">(</span><span class="s1">lastLocation</span><span class="s2">, </span><span class="s1">EXTRINSIC</span><span class="s2">, </span><span class="s1">XYZ</span><span class="s2">, </span><span class="s1">DEGREES</span><span class="s2">).</span><span class="s1">thirdAngle</span><span class="s2">;</span>
+            <span class="s3">//gets degree of rotation in the z axis</span>
+            <span class="s1">telemetry</span><span class="s2">.</span><span class="s1">addData</span><span class="s2">(</span><span class="s6">&quot;Angle&quot;</span><span class="s2">, </span><span class="s1">RR</span><span class="s2">); </span><span class="s3">//output the rotation angle</span>
+            <span class="s1">telemetry</span><span class="s2">.</span><span class="s1">update</span><span class="s2">();                </span><span class="s3">//show it in telemetry</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

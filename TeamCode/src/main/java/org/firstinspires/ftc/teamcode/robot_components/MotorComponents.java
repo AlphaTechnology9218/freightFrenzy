@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class MotorComponents {
-    public DcMotor mFL, mBL, mFR, mBR, mDDR, mDDL;
+    public DcMotor mFL, mBL, mFR, mBR, mD;
     /**************************************************************************
      * mFL  - front left motor                                                *
      * mBL  - back left motor                                                 *
@@ -28,11 +28,9 @@ public class MotorComponents {
         mBR.setDirection(DcMotor.Direction.REVERSE);
 
         /* Motors for duck down control */
-        mDDR = hardwareMap.get(DcMotor.class, "motorDDR");
-        mDDL = hardwareMap.get(DcMotor.class, "motorDDL");
+        mD = hardwareMap.get(DcMotor.class, "motorDuck");
 
-        mDDR.setDirection(DcMotor.Direction.FORWARD);
-        mDDL.setDirection(DcMotor.Direction.FORWARD);
+        mD.setDirection(DcMotor.Direction.FORWARD);
     }
 
     public void motorPower(float powFL, float powBL, float powFR, float powBR) {

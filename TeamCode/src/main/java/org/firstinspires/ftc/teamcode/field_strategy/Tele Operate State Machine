@@ -1,32 +1,25 @@
-Harel Machine (hierarchic and parallelism)
+Harel Machine
 
 (initial state) robot off
 (transition) start button pressed
-                                                  Alliance Shipping Hub OR Shared Shipping Hub
+(transition) move robot to alliance shipping hub OR shared shipping hub
+
 --------------------                                            -----------------
 |(state) no freight| -> (transition) call excavator function -> |(state) freight|
 --------------------                                            -----------------
 freight = false      <- (transition) call excavator function <- freight = true
 
 (transition) end game started
-
 (transition) call excavator function OR call duck function
-(transition) call movement to shared shipping hub OR carousel
+(transition) move robot to shared shipping hub OR alliance shipping hub OR carousel
 
--------------------
-|(state) duck down|
--------------------
-
-(transition) call robot movement
-(state) robot idle in warehouse
-
-OR
-
---------------------                                            -----------------
-|(state) no freight| -> (transition) call excavator function -> |(state) freight|
---------------------                                            -----------------
+--------------------                                            -----------------    -------------------
+|(state) no freight| -> (transition) call excavator function -> |(state) freight| OR |(state) duck down|
+--------------------                                            -----------------    -------------------
 freight = false      <- (transition) call excavator function <- freight = true
 
+(transition) move robot to warehouse or move robot to storage unit
+(state) robot idle
 (transition) end game finished
 (state) robot off
 

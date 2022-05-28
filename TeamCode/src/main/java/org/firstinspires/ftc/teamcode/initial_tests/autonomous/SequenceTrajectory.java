@@ -6,14 +6,17 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.odometry.control.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.odometry.traject.TrajectorySequence;
+import org.firstinspires.ftc.teamcode.robot_components.MotorComponents;
 
 @Autonomous(name = "Sequence Test", group = "Odometry Tests")
 public class SequenceTrajectory extends LinearOpMode {
     public static double DISTANCE = 10; // in
+    MotorComponents motors = new MotorComponents();
 
     @Override
     public void runOpMode() throws InterruptedException {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+        motors.init(hardwareMap);
 
         Pose2d startPose = new Pose2d(-DISTANCE / 2, -DISTANCE / 2, 0);
 
@@ -25,16 +28,11 @@ public class SequenceTrajectory extends LinearOpMode {
 
         while (!isStopRequested()) {
             TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(startPose)
-                    .turn(Math.toRadians(24.5f))
+                    .turn(Math.toRadians(44.6f))
                     .forward(8)
-                    .back(3)
-                    .turn(Math.toRadians(25))
-                    .forward(48)
-                    .turn(Math.toRadians(-25))
-                    .strafeLeft(10)
-                    .splineToLinearHeading(startPose, 45)
                     .build();
             drive.followTrajectorySequence(trajSeq);
+            motors.mD.setPower(1);
         }
     }
 }

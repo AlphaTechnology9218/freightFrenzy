@@ -9,11 +9,11 @@ Mealy Machine
 (state) robot idle
 (transition) call excavator movement
 (state) pre-freight delivered
-(transition) call robot movement to carousel
-(state) robot idle
+(transition) call robot movement to carousel OR (transition) call movement to warehouse OR (transition) call movement to warehouse
+(state) robot idle                              (state) robot off                          (state) robot off
 (transition) call carousel control
 (state) duck down
-(transition) call movement to warehouse
-(state) robot off
+(transition) call movement to warehouse OR (transition) call movement to warehouse
+(state) robot off                          (state) robot off
 
-COMPLETE AUTONOMOUS
+COMPLETE AUTONOMOUS (4)

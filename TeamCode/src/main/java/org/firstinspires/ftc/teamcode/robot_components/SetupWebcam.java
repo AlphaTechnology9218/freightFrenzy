@@ -13,7 +13,6 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 @Autonomous(name = "OpenCV Setup Webcam", group = "Robot Components")
 public class SetupWebcam extends LinearOpMode {
     HSVColorFilter colorFilter = new HSVColorFilter();
-    public int cameraMonitorViewId;
     public WebcamName robotWebcam;
     public OpenCvCamera camera;
     /*********************************************************************************************
